@@ -1,0 +1,6 @@
+.pane-action {
+    padding: 15px;
+    background: var(--selected-button-color);
+    position: absolute;
+    border-radius: 12px;
+}

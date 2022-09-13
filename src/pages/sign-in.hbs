@@ -1,0 +1,53 @@
+---
+styles:
+    - ../styles/login.css
+sign-page:
+    title: Регистрация
+    modification: sign
+    inputs:
+        -
+            name: email
+            type: email
+            label: Почта
+            placeholder: Логин
+        -
+            name: login
+            type: text
+            label: Логин
+            placeholder: Логин
+        -
+            name: first_name
+            type: text
+            label: Имя
+            placeholder: Имя
+        -
+            name: last_name
+            type: text
+            label: Фамилия
+            placeholder: Фамилия
+        -
+            name: phone
+            type: tel
+            label: Телефон
+            placeholder: Телефон
+        -
+            name: password
+            type: password
+            label: Пароль
+            placeholder: Пароль
+        -
+            name: repeat-password
+            type: password
+            label: Пароль (еще раз)
+            placeholder: Пароль (еще раз)
+    actions:
+        button-submit:
+            role: button-submit
+            text: Зарегистрироваться
+        link:
+            href: /
+            text: Войти
+---
+{{!< main }}
+
+{{> 'login-content/login-content' sign-page }}

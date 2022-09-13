@@ -1,0 +1,6 @@
+<div class="messages">
+    <div class="messages__time">{{ time }}</div>
+    {{#each messages}}
+        {{> 'message-pane/message-pane' this }}
+    {{/each}}
+</div>

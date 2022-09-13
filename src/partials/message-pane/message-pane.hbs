@@ -1,0 +1,11 @@
+<div class="message-pane message-pane_{{#if isCurrentPerson}}current{{else}}other{{/if}}">
+    <div class="message-pane__wrapper message-pane__wrapper_{{#if attachment}}attachment{{/if}} message-pane__wrapper_{{#if isCurrentPerson}}current{{else}}other{{/if}}">
+        {{#if attachment}}
+            <img class="message-pane__attachment" src="{{ attachment }}" />
+        {{/if}}
+        {{#if text}}
+            <p class="message-pane__message">{{ text }}</p>
+        {{/if}}
+            <div class="message-pane__time"> {{#if isCurrentPerson}}{{> 'icons/double-check' }}{{/if}}{{ time }}</div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="mini-chat {{#if selected-chat}} mini-chat_selected {{/if}}">
+    <div class="mini-chat__content">
+        <div class="mini-chat__avatar">
+            {{> 'avatar/avatar' }}
+        </div>
+
+        <div class="mini-chat__general-info">
+            <div class="mini-chat__row">
+                <p class="mini-chat__name">{{ name }}</p>
+                <p class="mini-chat__time">
+                    {{ time }}
+                </p>
+            </div>
+            <div class="mini-chat__row">
+                <p class="mini-chat__preview-message">{{#if lastMessageIsYour}} <span class="mini-chat__prefix">Вы: </span> {{/if}} {{ preview-message }}</p>
+                {{#if message-count}}
+                    <p class="mini-chat__message-count">
+                        {{message-count}}
+                    </p>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="divider"></div>

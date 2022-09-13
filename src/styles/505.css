@@ -1,0 +1,13 @@
+@import "./vars.css";
+@import "../partials/pane-error/pane-error.css";
+
+body {
+    background: url("../asserts/505.gif") no-repeat center;
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}

@@ -1,0 +1,14 @@
+<div class="wrapper wrapper_{{ modification }}">
+    <div class="content">
+        <h3 class="title">{{ title }}</h3>
+        <div class="inputs_container inputs_container_{{ modification }}">
+            {{#each inputs}}
+                {{> 'text-field/text-field' this }}
+            {{/each}}
+        </div>
+    </div>
+    <div class="actions">
+        {{> 'button/button' actions.button-submit }}
+        {{> 'link/link' actions.link }}
+    </div>
+</div>

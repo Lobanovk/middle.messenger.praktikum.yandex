@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,300;0,400;0,600;1,100&display=swap');@import "../partials/button/button.css";
+@import "../partials/link/link.css";
+@import "../partials/text-field/text-field.css";
+@import "../partials/text-field-outlined/text-field-outlined.css";
+@import "../partials/fab-button/fab-button.css";
+@import "../partials/avatar/avatar.css";
+@import "./vars.css";
+
+* {
+    font-family: 'Exo 2', sans-serif;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+p, h1, h2, h3, h4 {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.title {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--main-text-color);
+    text-align: center;
+}
+

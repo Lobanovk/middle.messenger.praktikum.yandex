@@ -1,0 +1,50 @@
+---
+styles:
+    - ../styles/chats.css
+go-to-profile-link:
+    href: ./profile.hbs
+    text: Профиль
+    modification: link_profile
+input-search:
+    modification: text-field-outlined__input_search
+    type: search
+    name: search
+    placeholder: Поиск
+pane-first-action:
+    settings:
+        top: 60px
+        right: 10px
+pane-second-action:
+    settings:
+        bottom: 65px
+        left: 10px
+---
+
+{{!< main }}
+
+<div class="wrapper">
+    <div class="chats-list">
+        <div class="chats-list__header">
+            <div class="chats-list__link">
+                {{> 'link/link' go-to-profile-link}}
+            </div>
+            <div class="chats-list__input">
+                {{> 'text-field-outlined/text-field-outlined' input-search }}
+            </div>
+        </div>
+        <div class="chats-list__content">
+            {{#each chats}}
+                {{> 'mini-chat/mini-chat' this }}
+            {{/each}}
+        </div>
+    </div>
+    <div class="chat">
+        {{> 'chat-content/chat-content' person }}
+    {{#> 'pane-action/pane-action' pane-first-action}}
+        actions
+    {{/'pane-action/pane-action'}}
+    {{#> 'pane-action/pane-action' pane-second-action}}
+        actions
+    {{/'pane-action/pane-action'}}
+    </div>
+</div>
