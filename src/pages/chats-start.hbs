@@ -1,0 +1,38 @@
+---
+styles:
+    - ../styles/chats.css
+go-to-profile-link:
+    href: ./profile.hbs
+    text: Профиль
+    modification: link_profile
+input-search:
+    modification: text-field-outlined__input_search
+    type: search
+    name: search
+    placeholder: Поиск
+---
+
+{{!< main }}
+
+<div class="wrapper">
+    <div class="chats-list">
+        <div class="chats-list__header">
+            <div class="chats-list__link">
+                {{> 'link/link' go-to-profile-link}}
+            </div>
+            <div class="chats-list__input">
+                {{> 'text-field-outlined/text-field-outlined' input-search }}
+            </div>
+        </div>
+        <div class="chats-list__content">
+            {{#each chats}}
+                <a href="chats-selected.hbs">
+                {{> 'mini-chat/mini-chat' this }}
+                </a>
+            {{/each}}
+        </div>
+    </div>
+    <div class="chat">
+        <p class="chat__empty">Выберите чат чтобы отправить сообщение</p>
+    </div>
+</div>

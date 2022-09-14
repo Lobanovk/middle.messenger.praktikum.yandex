@@ -1,0 +1,27 @@
+:root {
+    --main-action-color: #A568CA;
+    --main-action-hover-color: #C37CEF;
+    --secondary-action-color: #FDDAC9;
+    --chats-background-color: #79528C;
+    --default-avatar-color: #DF5B9F;
+    --profile-avatar-color: #EB94B0;
+    --main-text-color: #421D5A;
+    --secondary-text-color: #354749;
+    --selected-chat-color: #F9B9EF;
+    --error-color: #FF2F2F;
+    --background-chats-color: #79528C;
+    --link-chats-color: #FDDAC9;
+    --main-chats-color: #F84EFC;
+    --secondary-chats-color: #FFFFFF;
+    --time-info-chat-color: #DDDDDD;
+    --white-color: #FFFFFF;
+    --placeholder-color: #AE72CA;
+    --attention-color: #FF0000;
+    --chat-divider-color: #EAEAEA;
+    --background-chat-other-color: #F8F8F8;
+    --background-chat-current-color: #EFC9FD;
+    --double-check-color: #FA70CC;
+    --selected-button-color: #F5E3C0;
+
+    --pane-error-backgorund: #ffffff99;
+}
