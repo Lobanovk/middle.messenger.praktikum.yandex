@@ -1,11 +1,12 @@
 {
-  "name": "web messenger",
+  "name": "web-messenger",
   "version": "1.0.0",
-  "description": "web messenger",
+  "description": "web-messenger",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel src/pages/*.hbs --no-cache",
-    "build": "parcel build src/pages/*.hbs && node server.js"
+    "dev": "parcel src/pages/*.hbs --no-cache",
+    "build" : "parcel build src/pages/*.hbs",
+    "start": "npm run build && node server.js"
   },
   "repository": {
     "type": "git",
