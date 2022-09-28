@@ -1,0 +1,34 @@
+{
+  "name": "web-messenger",
+  "version": "1.0.0",
+  "description": "web-messenger",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel src/pages/*.hbs --no-cache",
+    "build": "parcel build src/pages/*.hbs",
+    "start": "npm run build && node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lobanovk/middle.messenger.praktikum.yandex.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lobanovk/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/Lobanovk/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "^1.0.9",
+    "@parcel/transformer-svg": "^2.7.0",
+    "postcss": "^8.4.16",
+    "postcss-css-variables": "^0.18.0",
+    "postcss-import": "^14.1.0",
+    "postcss-nested": "^5.0.6"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "parcel": "^2.7.0"
+  }
+}

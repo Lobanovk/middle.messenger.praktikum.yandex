@@ -1,0 +1,11 @@
+.file-upload {
+    max-width: 122px;
+    &__label {
+        display: block;
+        color: var(--main-action-color);
+        font-size: 12px;
+        text-decoration: underline;
+        text-align: center;
+        cursor: pointer;
+    }
+}

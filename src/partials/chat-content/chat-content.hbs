@@ -1,0 +1,29 @@
+<div class="chat-content">
+    <div class="chat-content__header">
+        <div class="chat-content__person">
+            {{> 'avatar/avatar' }}
+            <h2 class="chat-content__person-name"> {{ person-name }} </h2>
+        </div>
+        <div class="chat-content__header-actions">
+            {{#> 'fab-button/fab-button' modification='fab-button_transparent fab-button_small '}}
+                {{> 'icons/more-vert' }}
+            {{/'fab-button/fab-button'}}
+        </div>
+    </div>
+    <div class="chat-content__main">
+        {{#each messages}}
+            {{> 'messages/messages' this }}
+        {{/each}}
+    </div>
+    <div class="chat-content__footer">
+        {{#> 'fab-button/fab-button' modification='fab-button_transparent fab-button_small '}}
+            {{> 'icons/clip' }}
+        {{/'fab-button/fab-button'}}
+        <div class="chat-content__input-message">
+            {{> 'text-field-outlined/text-field-outlined' type=text name=message placeholder='Сообщение' }}
+        </div>
+        {{#> 'fab-button/fab-button' modification='fab-button_small fab-button_white-icon'}}
+            {{> 'icons/arrow-right' }}
+        {{/'fab-button/fab-button'}}
+    </div>
+</div>
