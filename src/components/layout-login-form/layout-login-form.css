@@ -1,0 +1,12 @@
+@import "../../styles/vars.css";
+
+.wrapper {
+    background: url("../../asserts/login.gif") no-repeat center;
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}

@@ -1,0 +1,10 @@
+@import "../../styles/vars.css";
+
+.error {
+    margin-top: 7px;
+    &_message {
+        color: var(--error-color);
+        font-size: 10px;
+        font-weight: 400;
+    }
+}

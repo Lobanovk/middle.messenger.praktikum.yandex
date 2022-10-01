@@ -8,7 +8,7 @@ interface MetaComponent<P = any> {
   props: P
 }
 
-export default class Component<P extends object= any> {
+export default class Component<P extends {[key: string]: any} = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -16,15 +16,19 @@ export default class Component<P extends object= any> {
     FLOW_RENDER: 'flow:render',
   } as const;
 
+  static componentName: string;
+
   public readonly id = nanoid(6);
 
   private readonly _meta: MetaComponent
   protected _element: Nullable<HTMLElement> = null;
 
-  protected readonly props: P;
+  readonly props: P;
   protected children: {[id: string]: Component} = {};
 
   eventBus: () => EventBus<Events>
+
+  protected refs: { [key: string]: Component } = {};
 
   constructor(props?: P) {
     const eventBus = new EventBus<Events>();
@@ -169,7 +173,7 @@ export default class Component<P extends object= any> {
     const fragment = document.createElement('template');
 
     const template = Handlebars.compile(this.render());
-    fragment.innerHTML = template({ ...this.props, children: this.children });
+    fragment.innerHTML = template({ ...this.props, children: this.children, refs: this.refs });
 
     Object.entries(this.children).forEach(([id, component]) => {
       const stub = fragment.content.querySelector(`[data-id="${id}"]`);
@@ -183,7 +187,7 @@ export default class Component<P extends object= any> {
       const content = component.getContent();
       stub.replaceWith(content);
 
-      const layoutContent = content.querySelector('[data-layout="1"]');
+      const layoutContent = content.querySelector(`[data-layout="${this.props?.layoutId}"]`);
 
       if (layoutContent && stubChild.length) {
         layoutContent.append(...stubChild);

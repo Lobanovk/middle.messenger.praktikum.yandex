@@ -19,6 +19,12 @@
     "url": "https://github.com/Lobanovk/middle.messenger.praktikum.yandex/issues"
   },
   "homepage": "https://github.com/Lobanovk/middle.messenger.praktikum.yandex#readme",
+  "alias": {
+    "core": "./src/core",
+    "components": "./src/components",
+    "helpers": "./src/helpers",
+    "pages": "./src/pages"
+  },
   "devDependencies": {
     "@babel/core": "7.19.3",
     "@types/node": "18.7.23",
