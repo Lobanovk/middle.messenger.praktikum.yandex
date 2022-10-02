@@ -1,6 +1,6 @@
 import {Component} from "../../core";
 
-import './layout-login-form.css'
+import './layout-login.css'
 
 interface LayoutLoginFormProps {
   title: string;
@@ -10,7 +10,7 @@ interface LayoutLoginFormProps {
   linkProps: { [key: string]: string }
 }
 
-export class LayoutLoginForm extends Component<LayoutLoginFormProps>{
+export class LayoutLogin extends Component<LayoutLoginFormProps>{
   static componentName = "LayoutLoginForm";
 
   constructor(props: LayoutLoginFormProps) {
@@ -19,7 +19,7 @@ export class LayoutLoginForm extends Component<LayoutLoginFormProps>{
 
   protected render(): string {
     return `
-    <div class="wrapper">
+    <div class="wrapper wrapper_login">
         {{{LoginForm
               title=title
               onSubmit=onSubmit 

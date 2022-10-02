@@ -26,10 +26,10 @@ export class LoginForm extends Component {
       <form class="card card_{{ modification }}">
           <div class="content">
             <h3 class="title">{{ title }}</h3>
-            <div class="inputs_container inputs_container_{{ modification }}" data-layout="{{ layoutId }}">
+            <div class="inputs_container inputs_container_{{ modification }}" data-layout="1">
             </div>
           </div>
-          <div class="actions">
+          <div class="actions-login">
             {{{ Button text=buttonProps.text }}}
             {{{ Link text=linkProps.text href=linkProps.href }}}
           </div>

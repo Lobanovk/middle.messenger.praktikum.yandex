@@ -22,6 +22,7 @@ export class SignIn extends Component {
           ref: "emailInput",
           errorMessage: "",
           value: "",
+          inputModification: ['filled'],
           onBlur: (event: FocusEvent) => {
             console.log((event.target as HTMLInputElement).value);
           }
@@ -34,6 +35,7 @@ export class SignIn extends Component {
           ref: "loginInput",
           errorMessage: "",
           value: "",
+          inputModification: ['filled'],
           onBlur: (event: FocusEvent) => {
             console.log((event.target as HTMLInputElement).value);
           }
@@ -46,6 +48,7 @@ export class SignIn extends Component {
           ref: "firstNameInput",
           errorMessage: "",
           value: "",
+          inputModification: ['filled'],
           onBlur: (event: FocusEvent) => {
             console.log((event.target as HTMLInputElement).value);
           }
@@ -58,6 +61,7 @@ export class SignIn extends Component {
           ref: "lastNameInput",
           errorMessage: "",
           value: "",
+          inputModification: ['filled'],
           onBlur: (event: FocusEvent) => {
             console.log((event.target as HTMLInputElement).value);
           }
@@ -70,6 +74,7 @@ export class SignIn extends Component {
           ref: "phoneInput",
           errorMessage: "",
           value: "",
+          inputModification: ['filled'],
           onBlur: (event: FocusEvent) => {
             console.log((event.target as HTMLInputElement).value);
           }
@@ -82,6 +87,7 @@ export class SignIn extends Component {
           ref: "passwordInput",
           errorMessage: "",
           value: "",
+          inputModification: ['filled'],
           onBlur: (event: FocusEvent) => {
             console.log((event.target as HTMLInputElement).value);
           }
@@ -94,6 +100,7 @@ export class SignIn extends Component {
           ref: "repeatPasswordInput",
           errorMessage: "",
           value: "",
+          inputModification: ['filled'],
           onBlur: (event: FocusEvent) => {
             console.log((event.target as HTMLInputElement).value);
           }
@@ -125,6 +132,7 @@ export class SignIn extends Component {
               value=this.value
               ref=this.ref
               onBlur=this.onBlur
+              modifications=this.inputModification
             }}}
           {{/each}}
         {{/LayoutLoginForm}}`

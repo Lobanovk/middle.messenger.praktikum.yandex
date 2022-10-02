@@ -1,11 +1,12 @@
 import { Component } from "core";
 
+import './login.css';
+
 export class Login extends Component {
   static componentName = "Login";
 
   constructor() {
     super({
-      layoutId: "form-layout",
       buttonProps: {
         text: "Авторизоваться"
       },
@@ -20,6 +21,10 @@ export class Login extends Component {
           placeholder: "Логин",
           value: "",
           ref: "loginInput",
+          modification: ['filled'],
+          inputProps: {
+            className: "text-field-login__input"
+          }
         },
         {
           name: "password",
@@ -27,7 +32,11 @@ export class Login extends Component {
           label: "Пароль",
           placeholder: "Пароль",
           value: '',
-          ref: "passwordInput"
+          ref: "passwordInput",
+          modification: ['filled'],
+          inputProps: {
+            className: "text-field-login__input"
+          }
         }
       ],
       onSubmit: (event: SubmitEvent) => {
@@ -50,7 +59,6 @@ export class Login extends Component {
     });
   }
   protected render(): string {
-    console.log(this.refs);
     // language = hbs
     return `
         {{#LayoutLoginForm 
@@ -69,6 +77,8 @@ export class Login extends Component {
               errorMessage=this.error
               value=this.value
               ref=this.ref
+              modifications=this.modification
+              inputProps=this.inputProps
             }}}
           {{/each}}
         {{/LayoutLoginForm}}

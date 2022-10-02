@@ -28,7 +28,7 @@ export default class Component<P extends {[key: string]: any} = any> {
 
   eventBus: () => EventBus<Events>
 
-  protected refs: { [key: string]: Component } = {};
+  refs: { [key: string]: Component } = {};
 
   constructor(props?: P) {
     const eventBus = new EventBus<Events>();
@@ -187,7 +187,7 @@ export default class Component<P extends {[key: string]: any} = any> {
       const content = component.getContent();
       stub.replaceWith(content);
 
-      const layoutContent = content.querySelector(`[data-layout="${this.props?.layoutId}"]`);
+      const layoutContent = content.querySelector(`[data-layout="1"]`);
 
       if (layoutContent && stubChild.length) {
         layoutContent.append(...stubChild);

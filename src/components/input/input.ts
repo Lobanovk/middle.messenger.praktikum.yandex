@@ -1,14 +1,17 @@
 import {Component} from "../../core";
 
+import './input.css';
+
 export interface InputProps {
-  onInput?: () => void;
+  onInput?: (event: InputEvent, val?: string) => void;
   onBlur?: () => void;
   onFocus?: () => void;
   type: string;
   name: string;
   placeholder: string;
-  className: string;
+  modifications: string[];
   value: string;
+  className?: string;
 }
 
 export class Input extends Component {
@@ -23,6 +26,13 @@ export class Input extends Component {
   }
 
   protected render(): string {
-    return `<input class="{{ className }}" type="{{ type }}" name="{{ name }}" placeholder="{{ placeholder }}" value="{{ value }}">`
+    // language = hbs
+    return `<input 
+              class="input {{#each modifications}}input_{{ this }}{{/each}} {{ className }}" 
+              type="{{ type }}" 
+              name="{{ name }}" 
+              placeholder="{{ placeholder }}" 
+              value="{{ value }}"
+            >`
   }
 }

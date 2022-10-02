@@ -4,17 +4,22 @@ import {TextFieldProps} from "../text-field/text-field";
 interface ControlledTextFieldProps extends TextFieldProps {
   errorMessage: string;
   value: string;
+  inputProps: {
+    className: string
+  };
+  labelProps: {
+    className: string;
+  };
 }
 
 export class ControlledTextField extends Component {
   static componentName = "ControlledTextField";
 
   constructor({ errorMessage = "", ...props }: ControlledTextFieldProps) {
-    super({ errorMessage, ...props});
+    super({ errorMessage, ...props });
   }
 
   protected render(): string {
-    console.log(this.props);
     // language = hbs
     return `
       <div>
@@ -27,6 +32,10 @@ export class ControlledTextField extends Component {
             onBlur=onBlur
             onInput=onInput
             onFocus=onFocus
+            modifications=modifications
+            className=className
+            inputProps=inputProps
+            labelProps=labelProps
         }}}
         {{#if errorMessage}} 
             {{{Error message=errorMessage }}}

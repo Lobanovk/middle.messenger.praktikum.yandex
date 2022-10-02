@@ -42,7 +42,7 @@
     }
 }
 
-.actions {
+.actions-login {
     flex: 0;
     text-align: center;
     &>button {

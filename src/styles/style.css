@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,300;0,400;0,600;1,100&display=swap');@import "../partials/button/button.css";
 @import "../partials/text-field-outlined/text-field-outlined.css";
 @import "../partials/fab-button/fab-button.css";
-@import "../partials/avatar/avatar.css";
 @import "./vars.css";
 
 @import "normalize.css/normalize.css";
@@ -15,6 +14,10 @@ body {
     overflow: hidden;
 }
 
+p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
 a {
     text-decoration: none;
 }
@@ -26,4 +29,50 @@ a {
     color: var(--main-text-color);
     text-align: center;
 }
+
+.wrapper {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    &_profile {
+        display: flex;
+    }
+}
+
+.back-to-chats-content {
+    flex: 0;
+    flex-basis: 64px;
+    background: var(--background-chats-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-content {
+    flex: 1;
+    background: rgb(128,61,226);
+    background: linear-gradient(115deg, rgba(128,61,226,1) 0%, rgba(238,134,99,1) 67%, rgba(251,246,227,1) 100%);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    max-width: 530px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--main-text-color);
+    margin-top: 21px;
+}
+
 

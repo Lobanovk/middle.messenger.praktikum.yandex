@@ -2,26 +2,12 @@
 
 .text-field {
     position: relative;
+    font-size: 14px;
+    font-weight: 500;
     &__input {
-        box-sizing: border-box;
-        width: 100%;
         padding: 7px 0;
-        font-family: inherit;
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--main-text-color);
-        background-color: transparent;
-        border: none;
-        border-bottom: 1px solid var(--main-action-color);
-        outline: none;
-
         &::placeholder {
             color: transparent;
-        }
-
-        &:focus~.text-field__label,
-        &:not(:placeholder-shown)~.text-field__label {
-            transform: scale(.85) translateY(-15px);
         }
     }
 

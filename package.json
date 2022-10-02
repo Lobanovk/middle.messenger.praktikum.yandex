@@ -26,6 +26,7 @@
     "pages": "./src/pages"
   },
   "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "1.0.9",
     "@babel/core": "7.19.3",
     "@types/node": "18.7.23",
     "babel-preset-es2015": "6.24.1",

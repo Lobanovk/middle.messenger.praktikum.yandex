@@ -1,18 +1,18 @@
-.profile-information-text-field {
+@import "../../styles/vars.css";
+
+.text-field-profile {
     display: flex;
     align-items: center;
     font-size: 13px;
-    font-weight: 500;
     &__input {
         color: var(--main-text-color);
         box-sizing: border-box;
         width: 100%;
         font-size: inherit;
-        border: none;
         background: transparent;
         text-align: right;
         outline: none;
-        padding: 8px 0;
+        padding: 10px 0;
         font-weight: 500;
     }
 
@@ -21,9 +21,5 @@
         font-size: inherit;
         color: var(--white-color);
         font-weight: inherit;
-    }
-
-    &:not(:last-child) {
-        border-bottom: 1px solid var(--main-action-color);
     }
 }

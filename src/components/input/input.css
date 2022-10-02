@@ -1,0 +1,21 @@
+@import "../../styles/vars.css";
+
+.input {
+    color: var(--main-text-color);
+    box-sizing: border-box;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: inherit;
+    font-family: inherit;
+    padding: 8px 0;
+
+    &_text-right {
+        text-align: right;
+    }
+
+    &_filled {
+        border-bottom: 1px solid var(--main-action-color);
+    }
+}

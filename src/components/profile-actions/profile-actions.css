@@ -1,0 +1,29 @@
+@import "../../styles/vars.css";
+
+.profile-actions {
+    margin-top: 40px;
+    width: 100%;
+    &__link {
+        box-sizing: border-box;
+        padding: 10px 0;
+        &_custom {
+            font-size: 13px;
+        }
+        &:not(:last-child) {
+            border-bottom: 1px solid var(--main-action-color);
+        }
+    }
+
+    &_change {
+        display: flex;
+        justify-content: center;
+    }
+
+    &_change-data {
+        margin-top: 60px;
+    }
+
+    &_change-password {
+        margin-top: 162px;
+    }
+}

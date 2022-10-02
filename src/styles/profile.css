@@ -49,14 +49,6 @@ body {
     margin-top: 21px;
 }
 
-.profile-information {
-    margin-top: 60px;
-    width: 100%;
-    &_data-settings {
-        margin-top: 97px;
-    }
-}
-
 .actions {
     margin-top: 40px;
     width: 100%;
