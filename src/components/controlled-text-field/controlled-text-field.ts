@@ -9,11 +9,12 @@ interface ControlledTextFieldProps extends TextFieldProps {
 export class ControlledTextField extends Component {
   static componentName = "ControlledTextField";
 
-  constructor({ errorMessage = "21345", ...props }: ControlledTextFieldProps) {
+  constructor({ errorMessage = "", ...props }: ControlledTextFieldProps) {
     super({ errorMessage, ...props});
   }
 
   protected render(): string {
+    console.log(this.props);
     // language = hbs
     return `
       <div>

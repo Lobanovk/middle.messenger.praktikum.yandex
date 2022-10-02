@@ -16,7 +16,6 @@ export class TextField extends Component {
   }
 
   protected render(): string {
-    console.log(this.props)
     // language = hbs
     return `
     <div class="text-field">
