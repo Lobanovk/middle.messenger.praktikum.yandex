@@ -1,8 +1,8 @@
 @import "../../styles/vars.css";
 
 .error {
-    margin-top: 7px;
     &_message {
+        margin-top: 7px;
         color: var(--error-color);
         font-size: 10px;
         font-weight: 400;

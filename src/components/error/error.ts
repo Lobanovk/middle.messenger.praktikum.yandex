@@ -9,14 +9,15 @@ export interface ErrorProps {
 export class Error extends Component {
   static componentName = "Error";
 
-  constructor({ message }: ErrorProps) {
-    super({ message });
+  constructor() {
+    super({ message: "" });
   }
 
   protected render(): string {
+    let content = this.props.message ? '<p class="error_message">{{ message }}</p>' : '';
     return `
       <div class="error">
-        <p class="error_message">{{ message }}</p>
+        ${content}
       </div>`
   }
 }

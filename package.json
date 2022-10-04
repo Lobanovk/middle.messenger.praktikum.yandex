@@ -4,7 +4,7 @@
   "description": "web-messenger",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel src/index.html --no-cache",
+    "dev": "parcel src/**/*.html --no-cache",
     "build": "parcel build src/pages/*.hbs",
     "start": "npm run build && node server.js"
   },

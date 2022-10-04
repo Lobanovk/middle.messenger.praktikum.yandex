@@ -20,7 +20,6 @@ export default class Component<P extends {[key: string]: any} = any> {
 
   public readonly id = nanoid(6);
 
-  private readonly _meta: MetaComponent
   protected _element: Nullable<HTMLElement> = null;
 
   readonly props: P;
@@ -33,10 +32,6 @@ export default class Component<P extends {[key: string]: any} = any> {
   constructor(props?: P) {
     const eventBus = new EventBus<Events>();
 
-    this._meta = {
-      props
-    }
-
     this.props = this._makePropsProxy(props || {} as P);
 
     this.eventBus = () => eventBus;
@@ -44,6 +39,14 @@ export default class Component<P extends {[key: string]: any} = any> {
     this._registerEvents(eventBus);
 
     eventBus.emit(Component.EVENTS.INIT, this.props);
+  }
+
+  getProps() {
+    return this.props;
+  }
+
+  getRefs() {
+    return this.refs;
   }
 
   get element(): Nullable<HTMLElement> {

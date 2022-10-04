@@ -3,7 +3,6 @@
 .card {
     box-sizing: border-box;
     max-width: 340px;
-    height: 100%;
     width: 100%;
     padding: 30px;
     display: flex;
@@ -12,11 +11,11 @@
     background: var(--white-color);
 
     &_login {
-        max-height: 450px;
+        min-height: 450px;
     }
 
     &_sign {
-        max-height: 615px;
+        min-height: 615px;
     }
 }
 
@@ -45,6 +44,7 @@
 .actions-login {
     flex: 0;
     text-align: center;
+    padding-top: 20px;
     &>button {
         margin-bottom: 18px;
     }

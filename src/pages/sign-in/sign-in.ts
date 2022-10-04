@@ -1,4 +1,5 @@
 import { Component } from "core";
+import {validation, ValidationKeys} from "../../helpers/validation";
 
 export class SignIn extends Component {
   static componentName = "SignIn";
@@ -11,7 +12,7 @@ export class SignIn extends Component {
       },
       linkProps: {
         text: "Войти",
-        href: "#"
+        href: "./"
       },
       inputs: [
         {
@@ -20,11 +21,10 @@ export class SignIn extends Component {
           label: "Почта",
           placeholder: "Почта",
           ref: "emailInput",
-          errorMessage: "",
           value: "",
           inputModification: ['filled'],
-          onBlur: (event: FocusEvent) => {
-            console.log((event.target as HTMLInputElement).value);
+          inputProps: {
+            className: "text-field-login__input"
           }
         },
         {
@@ -33,11 +33,10 @@ export class SignIn extends Component {
           label: "Логин",
           placeholder: "Логин",
           ref: "loginInput",
-          errorMessage: "",
           value: "",
           inputModification: ['filled'],
-          onBlur: (event: FocusEvent) => {
-            console.log((event.target as HTMLInputElement).value);
+          inputProps: {
+            className: "text-field-login__input"
           }
         },
         {
@@ -46,11 +45,10 @@ export class SignIn extends Component {
           label: "Имя",
           placeholder: "Имя",
           ref: "firstNameInput",
-          errorMessage: "",
           value: "",
           inputModification: ['filled'],
-          onBlur: (event: FocusEvent) => {
-            console.log((event.target as HTMLInputElement).value);
+          inputProps: {
+            className: "text-field-login__input"
           }
         },
         {
@@ -59,11 +57,10 @@ export class SignIn extends Component {
           label: "Фамилия",
           placeholder: "Фамилия",
           ref: "lastNameInput",
-          errorMessage: "",
           value: "",
           inputModification: ['filled'],
-          onBlur: (event: FocusEvent) => {
-            console.log((event.target as HTMLInputElement).value);
+          inputProps: {
+            className: "text-field-login__input"
           }
         },
         {
@@ -72,11 +69,10 @@ export class SignIn extends Component {
           label: "Телефон",
           placeholder: "Телефон",
           ref: "phoneInput",
-          errorMessage: "",
           value: "",
           inputModification: ['filled'],
-          onBlur: (event: FocusEvent) => {
-            console.log((event.target as HTMLInputElement).value);
+          inputProps: {
+            className: "text-field-login__input"
           }
         },
         {
@@ -85,11 +81,10 @@ export class SignIn extends Component {
           label: "Пароль",
           placeholder: "Пароль",
           ref: "passwordInput",
-          errorMessage: "",
           value: "",
           inputModification: ['filled'],
-          onBlur: (event: FocusEvent) => {
-            console.log((event.target as HTMLInputElement).value);
+          inputProps: {
+            className: "text-field-login__input"
           }
         },
         {
@@ -98,17 +93,36 @@ export class SignIn extends Component {
           label: "Пароль (ещё раз)",
           placeholder: "Пароль (ещё раз)",
           ref: "repeatPasswordInput",
-          errorMessage: "",
           value: "",
           inputModification: ['filled'],
-          onBlur: (event: FocusEvent) => {
-            console.log((event.target as HTMLInputElement).value);
+          inputProps: {
+            className: "text-field-login__input"
+          },
+          onFocus: () => {},
+          onBlur: (event: FocusEvent, el: HTMLInputElement, component: Component) => {
+            const error = validation(el.name as ValidationKeys, this.refs.passwordInput.getProps().value, el.value);
+            component.setProps({
+              value: el.value
+            });
+            component.refs.errorRef.setProps({
+              message: error
+            })
           }
         }
       ],
       onSubmit: (event: SubmitEvent) => {
         event.preventDefault();
-        console.log("1234");
+        const allRefs = Object.keys(this.refs);
+        const errors = allRefs
+          .map(key => this.refs[key].getRefs().errorRef.getProps().message)
+          .filter(Boolean);
+        if (errors.length) {
+          return;
+        }
+        const body = allRefs.map(key => ({
+          [this.refs[key].getProps().name]: this.refs[key].getProps().value
+        }))
+        console.log(body);
       },
     });
   }
@@ -128,11 +142,11 @@ export class SignIn extends Component {
               type=this.type 
               label=this.label 
               placeholder=this.placeholder
-              errorMessage=this.error
               value=this.value
               ref=this.ref
               onBlur=this.onBlur
               modifications=this.inputModification
+              inputProps=this.inputProps
             }}}
           {{/each}}
         {{/LayoutLoginForm}}`

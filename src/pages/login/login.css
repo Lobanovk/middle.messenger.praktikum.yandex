@@ -3,6 +3,7 @@
         &:focus~.text-field__label,
         &:not(:placeholder-shown)~.text-field__label {
             transform: scale(.85) translateY(-15px);
+            height: auto;
         }
     }
 }

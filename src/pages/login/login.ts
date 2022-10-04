@@ -12,7 +12,7 @@ export class Login extends Component {
       },
       linkProps: {
         text: "Нет аккаунта?",
-        href: "#"
+        href: "sign-in.html"
       },
       inputs: [
         {
@@ -24,7 +24,13 @@ export class Login extends Component {
           modification: ['filled'],
           inputProps: {
             className: "text-field-login__input"
-          }
+          },
+          onFocus: () => {},
+          onBlur: (event: FocusEvent, el: HTMLInputElement, component: Component) => {
+            component.setProps({
+              value: el.value
+            })
+          },
         },
         {
           name: "password",
@@ -36,25 +42,31 @@ export class Login extends Component {
           modification: ['filled'],
           inputProps: {
             className: "text-field-login__input"
-          }
+          },
+          onFocus: () => {},
+          onBlur: (event: FocusEvent, el: HTMLInputElement, component: Component) => {
+            component.setProps({
+              value: el.value
+            })
+          },
         }
       ],
       onSubmit: (event: SubmitEvent) => {
         event.preventDefault();
-        const target = event.target as HTMLFormElement;
-        const inputEl = target.querySelector('input[name="login"]') as HTMLInputElement;
-        const passwordEl = target.querySelector('input[name="password"]') as HTMLInputElement;
-
-        let passwordProps: Record<string, string> = {
-          value: passwordEl.value,
+        const isValid = Object.keys(this.refs).every(key => this.refs[key].getProps().value === "admin");
+        if (!isValid) {
+          this.refs.passwordInput.getRefs().errorRef.setProps({
+            message: "Неверный логин или пароль"
+          })
+        } else {
+          this.refs.passwordInput.getRefs().errorRef.setProps({
+            message: ""
+          })
+          console.log({
+            login: this.refs.loginInput.getProps().value,
+            password: this.refs.passwordInput.getProps().value,
+          })
         }
-        if (inputEl.value !== "admin" && passwordEl.value !== "admin") {
-          passwordProps.errorMessage = "Неверный логин или пароль"
-        }
-        this.refs.passwordInput.setProps(passwordProps);
-        this.refs.loginInput.setProps({
-          value: inputEl.value
-        })
       },
     });
   }
@@ -74,9 +86,10 @@ export class Login extends Component {
               type=this.type 
               label=this.label 
               placeholder=this.placeholder
-              errorMessage=this.error
               value=this.value
               ref=this.ref
+              onBlur=this.onBlur
+              onFocus=this.onFocus
               modifications=this.modification
               inputProps=this.inputProps
             }}}

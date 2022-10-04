@@ -1,45 +1,71 @@
 
-
-type ValidationRules = {
-  names: { rule: RegExp, error: string }[],
-  email: { rule: RegExp, error: string }[],
-  login: { rule: RegExp, error: string }[],
+export type ValidationKeys = "names" | "login" | "email" | "password" | "repeatPassword" | "phone" | "message"
+const validationRules: Record<ValidationKeys, (...args: string[]) => string> = {
+  names: (value: string) => {
+    const firstLetterIsUpper = value.match(/^[A-ZА-Я]/gm);
+    if (firstLetterIsUpper?.[0] !== value[0]) {
+      return "Первая буква должна быть заглавной"
+    }
+    const validValue = value.match(/^[A-ZА-Я][a-zа-я\-]*/gm);
+    if (value !== validValue?.[0]) {
+      return "Нельзя использовать цифры, спецсимволы, пробелы, кроме дефиса"
+    }
+    return "";
+  },
+  login: (value: string) => {
+    if (value.length < 3 || value.length > 20) {
+      return "Логин должен быть от 3 до 20 символов";
+    }
+    const onlyDigitalValue = value.match(/\d*$/gm);
+    if (onlyDigitalValue?.[0] === value) {
+      return "Логин не может состоять только из одних цифр";
+    }
+    const validValue = value.match(/[\da-zA-Z\-_]*/gm);
+    if (validValue?.[0] !== value) {
+      return "Нельзя использовать спецсимволы и пробелы, кроме дефиса и нижнего подчеркивания";
+    }
+    return "";
+  },
+  email: (value: string) => {
+    const validValue = value.match(/[a-zA-Z\-\d]*@[a-zA-Z]{2,6}\.[a-zA-Z]{2,4}/gm);
+    if (value !== validValue?.[0]) {
+      return "Неверный формат email";
+    }
+    return ""
+  },
+  password: (value: string) => {
+    if (value.length < 8 || value.length > 40) {
+      return "Пароль должен быть от 8 до 40 симловов";
+    }
+    const validValue = value.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/gm)
+    if (value !== validValue?.[0]) {
+      return "Нельзя использовать спецсимволы. Необходима хотя бы одна заглавная буква и цифра"
+    }
+    return ""
+  },
+  repeatPassword: (value, value2) => {
+    const error = validationRules.password(value2);
+    if (error) return error;
+    if (value !== value2) {
+      return "Введённые пароли не совпадают";
+    }
+    return ""
+  },
+  phone: (value: string) => {
+    const validValue = value.match(/^\+?\d{10,15}$/gm);
+    if (validValue?.[0] !== value) {
+      return "Телефон должен быть от 10 до 15 символов. Необходимо использовать только цифры"
+    }
+    return ""
+  },
+  message: (value: string) => {
+    if (value.length === 0) {
+      return "Сообщение не должно быть пустым";
+    }
+    return "";
+  }
 }
 
-export const Rules: ValidationRules = {
-  names: [
-    {
-      rule: /^[A-Z,А-Я][a-z,а-я,\-]*/gm,
-      error: "Значение должно начинаться с заглавной буквы. Нельзя использовать цифры и спецсимволы, кроме дефиса"
-    }
-  ],
-  email: [
-    {
-      rule: /[a-z,A-Z,\-]*@[a-z,A-Z]{2,6}\.[a-z,A-Z]{2,4}/gm,
-      error: "Нельзя использовать цифры и спецсимволы, кроме дефиса",
-
-    }
-  ],
-  login: [
-    {
-      rule: /\d{3,20}/gm,
-      error: "Логин не должен состоять только из цифр. "
-    },
-    {
-      rule: /[\d,a-z,A-Z,\-,_]{3,20}/gm,
-      error: "Используются недопустимые спецсимволы"
-    }
-  ]
-}
-
-export function validation({ value, rule }: { value: string, rule: keyof ValidationRules}) {
-  let error: string = "";
-  Rules[rule].forEach(validRule => {
-      const validationValue = value.match(validRule.rule);
-      if (validationValue?.[0] !== value) {
-        error += validRule.error;
-      }
-  })
-
-  return error;
+export function validation(type: ValidationKeys, ...args: string[]): string {
+  return validationRules[type](...args);
 }

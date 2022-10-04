@@ -8,9 +8,6 @@ import Profile from "./pages/profile";
 registerComponents();
 
 document.addEventListener('DOMContentLoaded', () => {
-  // let App: Component = new Login();
-  // let App = new SignIn();
-  let App = new Profile();
-  renderDOM(App)
+  renderDOM(new Login())
 })
 
