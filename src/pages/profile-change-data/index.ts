@@ -1,11 +1,11 @@
 import registerComponents from "../../helpers/registerComponents";
 import { renderDOM } from "../../core";
-import { Profile } from "./profile";
+import {ProfileChangeData} from "./profile-change-data";
 
 
 registerComponents();
 
 document.addEventListener('DOMContentLoaded', () => {
-  renderDOM(new Profile())
+  renderDOM(new ProfileChangeData())
 })
 

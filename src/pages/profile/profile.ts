@@ -19,177 +19,65 @@ export class Profile extends Component {
           currentPage: CurrentProfilePage.DEFAULT
         })
       },
-      onGoToSettingsPage: (event: MouseEvent) => {
-        event.preventDefault();
-        const { to } = (event.target as HTMLElement).dataset;
-        this.setProps({
-          currentPage: to,
-          isVisibleName: CurrentProfilePage.DEFAULT === to,
-        })
-      },
       onClickAvatar: () => {
         this.setProps({
           isVisibleModal: true
         })
       },
-      onClose: () => {
-        this.setProps({
-          isVisibleModal: false
-        })
-      },
       currentPage: CurrentProfilePage.DEFAULT,
-
       fields: [
         {
           label: "Почта",
-          name: "email",
           value: "pochta@yandex.ru",
-          ref: "emailRef",
-          modification: ["filled"],
-          inputProps: {
-            className: "text-field-profile__input"
-          },
-          labelProps: {
-            className: "text-field-profile__label"
-          },
         },
         {
           label: "Логин",
           value: "ivanivanov",
-          ref: "loginRef",
-          modification: ["filled"],
-          inputProps: {
-            className: "text-field-profile__input"
-          },
-          labelProps: {
-            className: "text-field-profile__label"
-          },
         },
         {
           label: "Имя",
           value: "Иван",
-          ref: "firstNameRef",
-          modification: ["filled"],
-          inputProps: {
-            className: "text-field-profile__input"
-          },
-          labelProps: {
-            className: "text-field-profile__label"
-          },
         },
         {
           label: "Фамилия",
           value: "Иванов",
-          ref: "lastNameRef",
-          modification: ["filled"],
-          inputProps: {
-            className: "text-field-profile__input"
-          },
-          labelProps: {
-            className: "text-field-profile__label"
-          },
         },
         {
           label: "Имя в чате",
           value: "Иван",
-          ref: "nameInChatRef",
-          modification: ["filled"],
-          inputProps: {
-            className: "text-field-profile__input"
-          },
-          labelProps: {
-            className: "text-field-profile__label"
-          },
+          ref: "nameInChatRef"
         },
         {
           label: "Телефон",
           value: "+7 (909) 967 30 30",
-          ref: "phoneRef",
-          inputProps: {
-            className: "text-field-profile__input"
-          },
-          labelProps: {
-            className: "text-field-profile__label"
-          },
         },
       ],
-      passwordFields: [
-        {
-          label: "Старый пароль",
-          name: "old-password",
-          value: "1234",
-          type: "password",
-          ref: "oldPasswordRef",
-          modification: ["filled"],
-          inputProps: {
-            className: "text-field-profile__input"
-          },
-          labelProps: {
-            className: "text-field-profile__label"
-          },
-        },
-        {
-          label: "Новый пароль",
-          name: "new-password",
-          value: "123456",
-          type: "password",
-          ref: "newPasswordRef",
-          modification: ["filled"],
-          inputProps: {
-            className: "text-field-profile__input"
-          },
-          labelProps: {
-            className: "text-field-profile__label"
-          },
-        },
-        {
-          label: "Повторите новый пароль",
-          name: "repeat-new-password",
-          value: "1234",
-          type: "password",
-          ref: "repeatNewPasswordRef",
-          inputProps: {
-            className: "text-field-profile__input"
-          },
-          labelProps: {
-            className: "text-field-profile__label"
-          },
-        },
-      ],
-      isVisibleName: true,
       isVisibleModal: false,
       name: "",
+      fileUpload: null,
+      onUploadFile: (event: Event) => {
+        const file = (event.target as HTMLInputElement).files?.[0];
+        if (file) {
+          this.setProps({
+            fileUpload: file
+          })
+        }
+      },
+      onSendFile: (event: SubmitEvent) => {
+        event.preventDefault();
+        if (!this.props.fileUpload) {
+          this.refs.modalRef.getRefs().modalFormRef.getRefs().errorRef.setProps({
+            message: "Нужно выбрать файл"
+          })
+          return;
+        }
+        console.log(this.props.fileUpload);
+        this.setProps({
+          isVisibleModal: false,
+          fileUpload: null,
+        })
+      }
     });
-  }
-
-  renderText() {
-    return `
-      {{#each fields}}
-        {{{Text 
-          label=this.label 
-          value=this.value 
-          ref=this.ref
-        }}}
-      {{/each}}
-    `
-  }
-
-  renderChangeData() {
-    return `
-      {{#each fields}}
-        {{{ControlledTextField 
-          name=this.name 
-          type=this.type 
-          label=this.label 
-          value=this.value
-          ref=this.ref
-          className="text-field-profile"
-          modifications=this.modification
-          inputProps=this.inputProps
-          labelProps=this.labelProps
-        }}}
-      {{/each}}
-    `
   }
 
   renderChangePassword() {
@@ -216,20 +104,8 @@ export class Profile extends Component {
     })
   }
 
-  getContentByPage(): string {
-    switch (this.props.currentPage) {
-      case CurrentProfilePage.CHANGE_DATA:
-        return this.renderChangeData();
-      case CurrentProfilePage.CHANGE_PASSWORD:
-        return this.renderChangePassword();
-      default:
-        return this.renderText()
-    }
-  }
-
   protected render(): string {
     console.log(this.props);
-    let content = this.getContentByPage();
     return `
       <div class="wrapper wrapper_profile">
         <div class="back-to-chats-content">
@@ -238,18 +114,41 @@ export class Profile extends Component {
         <div class="main-content">
             <div class="content">
               {{{ Avatar profileMode=true changeAvatarAction=true onClick=onClickAvatar }}}
-              {{#if isVisibleName}}<h3 class="name">{{ name }}</h3>{{/if}}
+              <h3 class="name">{{ name }}</h3>
               {{#ProfileForm 
                   onSubmit=onSubmit
                   onGoToSettingsPage=onGoToSettingsPage
                   currentPage=currentPage
               }}
-                ${content}
+                {{#each fields}}
+                  {{{Text 
+                    label=this.label 
+                    value=this.value 
+                    ref=this.ref
+                  }}}
+                {{/each}}
               {{/ProfileForm}}
             </div>
           </div>
           {{#if isVisibleModal}}
-            {{{ Modal title="13324" buttonText="4321" onClose=onClose }}}
+            {{# Modal 
+                title="Загрузите файл" 
+                buttonText="Поменять" 
+                ref="modalRef"
+                onSubmit=onSendFile
+            }}
+              {{#if fileUpload}}
+                  <div class="upload-file">
+                      ${this.props.fileUpload?.name}
+                  </div
+              {{else}}
+                  {{{ InputDownload 
+                      name="file-download" 
+                      label="Выбрать файл на компьютере"
+                      onChange=onUploadFile
+                  }}}
+              {{/if}}
+            {{/Modal}}
           {{/if}}
       </div>
     `

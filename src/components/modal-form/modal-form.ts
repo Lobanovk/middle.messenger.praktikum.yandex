@@ -19,6 +19,9 @@ export class ModalForm extends Component {
         <h4 class="pane__title">{{ title }}</h4>
         <div class="pane__content" data-layout="1"></div>
         {{{ Button text=buttonText }}}
+        <div class="pane__error">
+            {{{Error ref="errorRef" }}}
+        </div>
       </form>
     `
   }

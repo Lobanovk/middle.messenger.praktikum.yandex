@@ -10,29 +10,23 @@ interface ProfileFormProps {
 }
 
 export class ProfileForm extends Component{
-  constructor({ onSubmit, currentPage, onGoToSettingsPage }: ProfileFormProps) {
+  constructor({ onSubmit, currentPage }: ProfileFormProps) {
     super({
       actions: [
         {
-          href: "#",
+          href: "/profile-change-data.html",
           text: "Изменить данные",
           modification:" actions__link_custom",
-          to: CurrentProfilePage.CHANGE_DATA,
-          onClick: onGoToSettingsPage,
         },
         {
-          href: "#",
+          href: "/profile-change-password.html",
           text: "Изменить пароль",
           modification:" actions__link_custom",
-          to: CurrentProfilePage.CHANGE_PASSWORD,
-          onClick: onGoToSettingsPage,
         },
         {
-          href: "#",
+          href: "./",
           text: "Выйти",
           modification: "link_attention actions__link_custom",
-          to: CurrentProfilePage.EXIT,
-          onClick: onGoToSettingsPage,
         }
       ],
       currentPage,

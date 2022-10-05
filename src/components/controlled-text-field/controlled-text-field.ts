@@ -21,8 +21,11 @@ export class ControlledTextField extends Component {
 
   inputValidation(el: HTMLInputElement) {
     let type = el.name;
-    if (["firstName", "lastName"].includes(el.name)) {
-      type = "names"
+    if (["firstName", "lastName", "nameInChat"].includes(el.name)) {
+      type = "names";
+    }
+    if ('oldPassword' === el.name) {
+      type = "password";
     }
     const error = validation((type as ValidationKeys), el.value);
     this.refs.errorRef.setProps({

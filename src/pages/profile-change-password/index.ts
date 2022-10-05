@@ -1,11 +1,11 @@
 import registerComponents from "../../helpers/registerComponents";
 import { renderDOM } from "../../core";
-import { Profile } from "./profile";
+import {ProfileChangePassword} from "./profile-change-password";
 
 
 registerComponents();
 
 document.addEventListener('DOMContentLoaded', () => {
-  renderDOM(new Profile())
+  renderDOM(new ProfileChangePassword())
 })
 

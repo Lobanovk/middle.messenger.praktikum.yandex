@@ -15,6 +15,7 @@ import ProfileActions from "components/profile-actions";
 import ProfileForm from "components/profile-form";
 import Modal from "components/modal";
 import ModalForm from "components/modal-form";
+import InputDownload from "components/input-download";
 
 
 export default () => {
@@ -33,4 +34,5 @@ export default () => {
   registerComponent(ProfileForm)
   registerComponent(Modal);
   registerComponent(ModalForm);
+  registerComponent(InputDownload)
 }

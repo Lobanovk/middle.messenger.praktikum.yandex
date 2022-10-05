@@ -54,6 +54,7 @@ export class Login extends Component {
       onSubmit: (event: SubmitEvent) => {
         event.preventDefault();
         const isValid = Object.keys(this.refs).every(key => this.refs[key].getProps().value === "admin");
+        console.log(this.refs);
         if (!isValid) {
           this.refs.passwordInput.getRefs().errorRef.setProps({
             message: "Неверный логин или пароль"
@@ -66,6 +67,7 @@ export class Login extends Component {
             login: this.refs.loginInput.getProps().value,
             password: this.refs.passwordInput.getProps().value,
           })
+          window.location.replace('profile.html')
         }
       },
     });

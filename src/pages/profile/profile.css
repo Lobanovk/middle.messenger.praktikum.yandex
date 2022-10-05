@@ -23,3 +23,9 @@
         font-weight: inherit;
     }
 }
+
+.upload-file {
+    font-size: 14px;
+    text-align: center;
+    color: var(--secondary-text-color);
+}
