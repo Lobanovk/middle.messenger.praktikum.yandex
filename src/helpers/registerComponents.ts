@@ -18,6 +18,11 @@ import ModalForm from "components/modal-form";
 import InputDownload from "components/input-download";
 import SvgIcon from "components/icons";
 import CardError from "components/card-error";
+import MiniChat from "components/mini-chat";
+import FormChatContent from "components/form-chat-content";
+import ChatContent from "components/chat-content";
+import CardMessage from "components/card-message";
+import Messages from "components/messages";
 
 
 export default () => {
@@ -38,5 +43,10 @@ export default () => {
   registerComponent(ModalForm);
   registerComponent(InputDownload);
   registerComponent(SvgIcon);
-  registerComponent(CardError)
+  registerComponent(CardError);
+  registerComponent(MiniChat);
+  registerComponent(FormChatContent);
+  registerComponent(ChatContent);
+  registerComponent(CardMessage);
+  registerComponent(Messages);
 }

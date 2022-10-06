@@ -67,7 +67,7 @@ export class Login extends Component {
             login: this.refs.loginInput.getProps().value,
             password: this.refs.passwordInput.getProps().value,
           })
-          window.location.replace('profile.html')
+          window.location.replace('chat.html')
         }
       },
     });

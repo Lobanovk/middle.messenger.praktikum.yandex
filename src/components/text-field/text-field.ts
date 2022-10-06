@@ -19,7 +19,7 @@ export interface TextFieldProps extends InputProps {
 export class TextField extends Component {
   static componentName = "TextField";
 
-  constructor({ type = "text", onInput, ...props }: TextFieldProps) {
+  constructor({ type = "text", ...props }: TextFieldProps) {
     super({ ...props, type });
   }
 
@@ -38,7 +38,9 @@ export class TextField extends Component {
             className="text-field__input ${this.props?.inputProps?.className}"
             modifications=modifications
       }}}
-      <label class="text-field__label {{ labelProps.className }}" for="{{ name }}">{{ label }}</label>
+      {{#if label}} 
+              <label class="text-field__label {{ labelProps.className }}" for="{{ name }}">{{ label }}</label>
+      {{/if}}
     </div>`
   }
 }

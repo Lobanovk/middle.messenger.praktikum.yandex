@@ -1,9 +1,0 @@
-@import "../../styles/vars.css";
-
-.wrapper_login {
-    background: url("../../asserts/login.gif") no-repeat center;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}

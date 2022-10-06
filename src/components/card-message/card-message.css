@@ -1,3 +1,5 @@
+@import "../../styles/vars.css";
+
 .message-pane {
     display: flex;
 
@@ -50,9 +52,9 @@
         font-weight: 500;
         color:  var(--secondary-text-color);
         font-style: italic;
-    }
 
-    &__time-svg {
-        stroke: var(--double-check-color);
+        & > svg {
+            stroke: var(--double-check-color);
+        }
     }
 }

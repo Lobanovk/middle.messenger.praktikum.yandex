@@ -1,15 +1,11 @@
+@import "normalize.css/normalize.css";
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,300;0,400;0,600;1,100&display=swap');
 @import "./vars.css";
-
-@import "normalize.css/normalize.css";
-
-* {
-    font-family: 'Exo 2', sans-serif;
-}
 
 body {
     margin: 0;
     overflow: hidden;
+    font-family: 'Exo 2', sans-serif;
 }
 
 p, h1, h2, h3, h4, h5, h6 {
@@ -32,16 +28,23 @@ a {
     height: 100vh;
     width: 100%;
     overflow: hidden;
-    &__profile {
+    &_login {
+        background: url("../asserts/login.gif") no-repeat center;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &_profile {
         display: flex;
     }
-    &__error-404 {
+    &_error-404 {
         background: url("../asserts/404.gif") no-repeat center;
     }
-    &__error-505 {
+    &_error-505 {
         background: url("../asserts/505.gif") no-repeat center;
     }
-    &__error {
+    &_error {
         height: 100vh;
         width: 100%;
         background-size: cover;
@@ -49,6 +52,9 @@ a {
         align-items: center;
         justify-content: center;
         overflow: hidden;
+    }
+    &_chat {
+        display: flex;
     }
 }
 
@@ -88,4 +94,62 @@ a {
     margin-top: 21px;
 }
 
+
+.chats-list {
+    box-sizing: border-box;
+    height: 100%;
+    flex: 0;
+    flex-basis: 311px;
+    background: var(--background-chats-color);
+    display: flex;
+    flex-direction: column;
+    &__header {
+        padding: 21px 0 14px;
+        margin: 0 10px;
+        flex: 0;
+        border-bottom: 1px solid var(--chat-divider-color);
+    }
+    &__link {
+        text-align: right;
+    }
+    &__input-container {
+        margin-top: 23px;
+    }
+
+    &__input-search {
+        padding: 10px 20px !important;
+
+        &::placeholder {
+            text-align: center;
+        }
+
+        &::-webkit-search-cancel-button,
+        &::-webkit-search-decoration,
+        &::-webkit-search-results-button,
+        &::-webkit-search-results-decoration {
+            -webkit-appearance: none;
+        }
+    }
+
+    &__content {
+        flex: 1;
+        overflow-y: auto;
+    }
+}
+
+.chat {
+    position: relative;
+    flex: 1;
+    height: 100%;
+    background: rgb(128,61,226);
+    background: linear-gradient(115deg, rgba(128,61,226,1) 0%, rgba(238,134,99,1) 67%, rgba(251,246,227,1) 100%);
+    &__empty {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        color: var(--white-color);
+    }
+}
 

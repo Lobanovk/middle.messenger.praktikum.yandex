@@ -14,7 +14,7 @@ export class ErrorPage404 extends Component{
 
   protected render(): string {
     return `
-      <div class="wrapper wrapper__error wrapper__error-404">
+      <div class="wrapper wrapper_error wrapper_error-404">
         {{{CardError
             title=title
             description=description

@@ -84,7 +84,7 @@ export class ProfileChangePassword extends Component{
 
   protected render(): string {
     return `
-      <div class="wrapper wrapper__profile">
+      <div class="wrapper wrapper_profile">
         <div class="back-to-chats-content">
             {{#FabButton modification="fab-button_exit fab-button_small fab-button_white-icon" onClick=onGoToChat}}
                 {{{SvgIcon type="arrow-right"}}}
