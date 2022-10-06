@@ -1,6 +1,5 @@
 import {Component} from "../../core";
 
-import './layout-login.css'
 
 interface LayoutLoginFormProps {
   title: string;

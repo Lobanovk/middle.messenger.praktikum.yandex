@@ -1,4 +1,4 @@
-import {Component} from "../../core";
+import {Component} from "core";
 import {TextFieldProps} from "../text-field/text-field";
 import {validation, ValidationKeys} from "../../helpers/validation";
 

@@ -1,35 +1,36 @@
 @import "../../styles/vars.css";
 
 .text-field-profile {
-    display: flex;
-    align-items: center;
-    font-size: 13px;
-    &__input {
-        color: var(--main-text-color);
-        box-sizing: border-box;
-        width: 100%;
-        font-size: inherit;
-        background: transparent;
-        text-align: right;
-        outline: none;
-        padding: 10px 0;
-        font-weight: 500;
-    }
+  display: flex;
+  align-items: center;
+  font-size: 13px;
 
-    &__label {
-        min-width: 163px;
-        font-size: inherit;
-        color: var(--white-color);
-        font-weight: inherit;
-    }
+  &__input {
+    color: var(--main-text-color);
+    box-sizing: border-box;
+    width: 100%;
+    font-size: inherit;
+    background: transparent;
+    text-align: right;
+    outline: none;
+    padding: 10px 0;
+    font-weight: 500;
+  }
+
+  &__label {
+    min-width: 163px;
+    font-size: inherit;
+    color: var(--white-color);
+    font-weight: inherit;
+  }
 }
 
 .upload-file {
-    font-size: 14px;
-    text-align: center;
-    color: var(--secondary-text-color);
+  font-size: 14px;
+  text-align: center;
+  color: var(--secondary-text-color);
 }
 
 .avatar-icon {
-    fill: var(--main-text-color)
+  fill: var(--main-text-color);
 }

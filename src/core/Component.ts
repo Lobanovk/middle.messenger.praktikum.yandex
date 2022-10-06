@@ -4,10 +4,6 @@ import EventBus from "./EventBus";
 
 type Events = Values<typeof Component.EVENTS>
 
-interface MetaComponent<P = any> {
-  props: P
-}
-
 export default class Component<P extends {[key: string]: any} = any> {
   static EVENTS = {
     INIT: 'init',
@@ -61,15 +57,14 @@ export default class Component<P extends {[key: string]: any} = any> {
   }
 
   private _makePropsProxy(props: P) {
-    const self = this;
     return new Proxy(props as unknown as object, {
       get(target: Record<string, unknown> , p: string): any {
         const value = target[p];
         return typeof value === 'function' ? value.bind(target) : value
       },
-      set(target: Record<string, unknown>, p: string, newValue: any): boolean {
+      set: (target: Record<string, unknown>, p: string, newValue: any): boolean => {
         target[p] = newValue;
-        self.eventBus().emit(Component.EVENTS.FLOW_CDU, {...target}, target);
+        this.eventBus().emit(Component.EVENTS.FLOW_CDU, {...target}, target);
         return true;
       },
       deleteProperty() {

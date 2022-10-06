@@ -1,11 +1,11 @@
 @import "../../styles/vars.css";
 
 .messages {
-    &__time {
-        text-align: center;
-        font-size: 14px;
-        color: var(--time-info-chat-color);
-        font-weight: 500;
-        padding: 30px 0;
-    }
+  &__time {
+    text-align: center;
+    font-size: 14px;
+    color: var(--time-info-chat-color);
+    font-weight: 500;
+    padding: 30px 0;
+  }
 }

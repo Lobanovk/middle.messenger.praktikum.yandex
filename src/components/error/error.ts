@@ -14,7 +14,7 @@ export class Error extends Component {
   }
 
   protected render(): string {
-    let content = this.props.message ? '<p class="error_message">{{ message }}</p>' : '';
+    const content = this.props.message ? '<p class="error_message">{{ message }}</p>' : '';
     return `
       <div class="error">
         ${content}

@@ -1,51 +1,52 @@
 @import "../../styles/vars.css";
 
 .card {
-    box-sizing: border-box;
-    max-width: 340px;
-    width: 100%;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 12px;
-    background: var(--white-color);
+  box-sizing: border-box;
+  max-width: 340px;
+  width: 100%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  background: var(--white-color);
 
-    &_login {
-        min-height: 450px;
-    }
+  &_login {
+    min-height: 450px;
+  }
 
-    &_sign {
-        min-height: 615px;
-    }
+  &_sign {
+    min-height: 615px;
+  }
 }
 
 .content {
-    width: 100%;
-    flex: 1
+  width: 100%;
+  flex: 1;
 }
 
 .inputs_container {
-    width: 100%;
-    margin-top: 40px;
+  width: 100%;
+  margin-top: 40px;
 
-    &_login {
-        &>div:not(:last-child) {
-            margin-bottom: 18px;
-        }
+  &_login {
+    & > div:not(:last-child) {
+      margin-bottom: 18px;
     }
+  }
 
-    &_sign {
-        &>div:not(:last-child) {
-            margin-bottom: 16px;
-        }
+  &_sign {
+    & > div:not(:last-child) {
+      margin-bottom: 16px;
     }
+  }
 }
 
 .actions-login {
-    flex: 0;
-    text-align: center;
-    padding-top: 20px;
-    &>button {
-        margin-bottom: 18px;
-    }
+  flex: 0;
+  text-align: center;
+  padding-top: 20px;
+
+  & > button {
+    margin-bottom: 18px;
+  }
 }

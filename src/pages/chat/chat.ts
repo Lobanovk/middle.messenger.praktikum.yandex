@@ -12,8 +12,8 @@ export class Chat extends Component{
     }
     super({
       chats: chatsData.map((chat: Record<string, any>, index: number) => ({...chat, onClick: onSelectChat, id: index})),
-      person: personData,
-      isSelectedIndexChat: 1,
+      person: null,
+      isSelectedIndexChat: null,
       profileLinkProps: {
         href: "./profile.html",
         text: "Профиль",

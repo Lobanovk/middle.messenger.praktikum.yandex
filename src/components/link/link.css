@@ -1,16 +1,16 @@
 @import "../../styles/vars.css";
 
 .link {
-    box-sizing: border-box;
-    text-decoration: none;
-    font-size: 12px;
-    color: var(--main-action-color);
+  box-sizing: border-box;
+  text-decoration: none;
+  font-size: 12px;
+  color: var(--main-action-color);
 
-    &_profile {
-        color: var(--link-chats-color)
-    }
+  &_profile {
+    color: var(--link-chats-color);
+  }
 
-    &_attention {
-        color: var(--attention-color)
-    }
+  &_attention {
+    color: var(--attention-color);
+  }
 }

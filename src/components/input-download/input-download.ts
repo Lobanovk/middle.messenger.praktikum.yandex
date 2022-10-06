@@ -10,7 +10,7 @@ interface InputDownloadProps {
 }
 
 export class InputDownload extends Component{
-  constructor({onClick, ...props}: InputDownloadProps) {
+  constructor(props: InputDownloadProps) {
     super({
       ...props,
       value: "",
