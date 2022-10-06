@@ -16,7 +16,9 @@ export class Avatar extends Component{
   protected render(): string {
     return `
       <div class="avatar {{#if profileMode}}avatar_big{{/if}}">
-          {{#if profileMode}}icon{{/if}}
+          {{#if profileMode}}
+            <div data-slot="1"></div>
+          {{/if}}
           {{#if changeAvatarAction}} <div class="avatar__change">Поменять аватар</div> {{/if}}
       </div>
     `

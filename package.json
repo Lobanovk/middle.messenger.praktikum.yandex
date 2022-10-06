@@ -28,6 +28,7 @@
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "1.0.9",
     "@babel/core": "7.19.3",
+    "@parcel/transformer-inline-string": "2.7.0",
     "@types/node": "18.7.23",
     "babel-preset-es2015": "6.24.1",
     "babel-preset-stage-0": "6.24.1",

@@ -74,15 +74,21 @@ export class ProfileChangePassword extends Component{
         }))
         console.log(body);
         window.location.replace('/profile.html');
+      },
+      onGoToChat: (event: MouseEvent) => {
+        event.preventDefault();
+        window.location.replace("/chat.html")
       }
     });
   }
 
   protected render(): string {
     return `
-      <div class="wrapper wrapper_profile">
+      <div class="wrapper wrapper__profile">
         <div class="back-to-chats-content">
-            but
+            {{#FabButton modification="fab-button_exit fab-button_small fab-button_white-icon" onClick=onGoToChat}}
+                {{{SvgIcon type="arrow-right"}}}
+            {{/FabButton}}
         </div>
         <div class="main-content">
             <div class="content">

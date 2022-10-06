@@ -16,6 +16,8 @@ import ProfileForm from "components/profile-form";
 import Modal from "components/modal";
 import ModalForm from "components/modal-form";
 import InputDownload from "components/input-download";
+import SvgIcon from "components/icons";
+import CardError from "components/card-error";
 
 
 export default () => {
@@ -34,5 +36,7 @@ export default () => {
   registerComponent(ProfileForm)
   registerComponent(Modal);
   registerComponent(ModalForm);
-  registerComponent(InputDownload)
+  registerComponent(InputDownload);
+  registerComponent(SvgIcon);
+  registerComponent(CardError)
 }

@@ -1,3 +1,5 @@
+@import "../../styles/vars.css";
+
 .fab-button {
     background: var(--main-action-color);
     border: none;
@@ -8,18 +10,16 @@
     align-items: center;
     justify-content: center;
 
-    & > svg {
+    &__icon {
         fill: var(--main-action-color);
     }
 
-    &_white-icon > svg {
+    &_white-icon {
         fill: var(--white-color);
     }
 
     &_exit {
-        & > svg {
-            transform: rotate(180deg);
-        }
+        transform: rotate(180deg);
     }
 
     &_small {

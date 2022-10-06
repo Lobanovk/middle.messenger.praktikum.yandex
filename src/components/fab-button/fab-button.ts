@@ -2,16 +2,23 @@ import {Component} from "../../core";
 
 import './fab-button.css';
 
+interface FabButtonProps {
+  modification: string;
+  role: string;
+  onClick: () => void;
+}
+
 export class FabButton extends Component {
-  constructor({}) {
-    super({});
+  constructor({ onClick, ...props }: FabButtonProps) {
+    super({...props, events: {
+        click: onClick
+      }});
   }
 
   protected render(): string {
-    debugger;
     return `
     <button class="fab-button {{ modification }}" role="{{ role }}">
-        {{{ children }}}
+        <div data-slot="1"></div>
     </button>
     `
   }

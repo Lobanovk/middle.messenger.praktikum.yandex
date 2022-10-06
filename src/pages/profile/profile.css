@@ -29,3 +29,7 @@
     text-align: center;
     color: var(--secondary-text-color);
 }
+
+.avatar-icon {
+    fill: var(--main-text-color)
+}

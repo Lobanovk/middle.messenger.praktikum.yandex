@@ -76,26 +76,12 @@ export class Profile extends Component {
           isVisibleModal: false,
           fileUpload: null,
         })
+      },
+      onGoToChat: (event: MouseEvent) => {
+        event.preventDefault();
+        window.location.replace("/chat.html")
       }
     });
-  }
-
-  renderChangePassword() {
-    return `
-      {{#each passwordFields}}
-        {{{ControlledTextField 
-          name=this.name 
-          type=this.type 
-          label=this.label 
-          value=this.value
-          ref=this.ref
-          className="text-field-profile"
-          modifications=this.modification
-          inputProps=this.inputProps
-          labelProps=this.labelProps
-        }}}
-      {{/each}}
-    `
   }
 
   componentDidMount(props: any) {
@@ -105,15 +91,18 @@ export class Profile extends Component {
   }
 
   protected render(): string {
-    console.log(this.props);
     return `
-      <div class="wrapper wrapper_profile">
+      <div class="wrapper wrapper__profile">
         <div class="back-to-chats-content">
-            but
+            {{#FabButton modification="fab-button_exit fab-button_small fab-button_white-icon" onClick=onGoToChat}}
+                {{{SvgIcon type="arrow-right"}}}
+            {{/FabButton}}
         </div>
         <div class="main-content">
             <div class="content">
-              {{{ Avatar profileMode=true changeAvatarAction=true onClick=onClickAvatar }}}
+              {{# Avatar profileMode=true changeAvatarAction=true onClick=onClickAvatar }}
+                {{{SvgIcon type="big-avatar" className="avatar-icon" }}}
+              {{/Avatar}}
               <h3 class="name">{{ name }}</h3>
               {{#ProfileForm 
                   onSubmit=onSubmit

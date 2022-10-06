@@ -191,9 +191,15 @@ export default class Component<P extends {[key: string]: any} = any> {
       stub.replaceWith(content);
 
       const layoutContent = content.querySelector(`[data-layout="1"]`);
+      const slotContent = content.querySelector(`[data-slot="1"]`);
 
       if (layoutContent && stubChild.length) {
         layoutContent.append(...stubChild);
+      }
+
+      if (slotContent && stubChild.length) {
+        slotContent.parentNode?.append(...stubChild);
+        slotContent.remove();
       }
     })
 
