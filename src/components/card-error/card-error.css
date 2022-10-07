@@ -1,0 +1,18 @@
+@import "../../styles/vars.css";
+
+.card-error {
+  box-sizing: border-box;
+  border-radius: 15px;
+  background: var(--pane-error-backgorund);
+  padding: 30px;
+  width: 250px;
+
+  &__content {
+    text-align: center;
+  }
+
+  &__footer {
+    margin-top: 68px;
+    text-align: center;
+  }
+}

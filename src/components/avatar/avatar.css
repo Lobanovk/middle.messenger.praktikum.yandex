@@ -1,0 +1,39 @@
+@import "../../styles/vars.css";
+
+.avatar {
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  background: var(--default-avatar-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__change {
+    display: none;
+    position: absolute;
+    background: #00000090;
+    color: white;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+
+  &_big {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    background: var(--profile-avatar-color);
+
+    &:hover .avatar__change {
+      display: flex;
+      cursor: pointer;
+    }
+  }
+
+
+}
