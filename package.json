@@ -27,6 +27,11 @@
     "helpers": "./src/helpers",
     "pages": "./src/pages"
   },
+  "@parcel/transformer-css": {
+    "cssModules": {
+      "dashedIdents": true
+    }
+  },
   "devDependencies": {
     "@babel/core": "7.19.3",
     "@parcel/transformer-inline-string": "2.7.0",
