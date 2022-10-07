@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel src/**/*.html --no-cache",
-    "build": "parcel build src/pages/*.hbs",
+    "build": "parcel build src/**/*.html",
     "start": "npm run build && node server.js",
     "lint": "eslint '**/*.ts'",
     "lint:fix": "eslint --fix '**/*.ts'"
@@ -43,10 +43,6 @@
     "postcss-css-variables": "^0.18.0",
     "postcss-import": "^14.1.0",
     "postcss-nested": "^5.0.6",
-    "stylelint": "14.13.0",
-    "stylelint-config-prettier": "9.0.3",
-    "stylelint-config-standard": "28.0.0",
-    "stylelint-selector-bem-pattern": "2.1.1",
     "typescript": "^4.8.4"
   },
   "dependencies": {
