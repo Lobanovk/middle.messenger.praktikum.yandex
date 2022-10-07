@@ -7,10 +7,10 @@
 
   &:hover {
     background: var(--selected-chat-color);
+  }
 
-    &__time {
-      color: white;
-    }
+  &__time {
+    color: white;
   }
 
   &_selected {
