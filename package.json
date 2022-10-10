@@ -27,11 +27,6 @@
     "helpers": "./src/helpers",
     "pages": "./src/pages"
   },
-  "@parcel/transformer-css": {
-    "cssModules": {
-      "dashedIdents": true
-    }
-  },
   "devDependencies": {
     "@babel/core": "7.19.3",
     "@parcel/transformer-inline-string": "2.7.0",
@@ -48,6 +43,7 @@
     "postcss-css-variables": "^0.18.0",
     "postcss-import": "^14.1.0",
     "postcss-nested": "^5.0.6",
+    "postcss-preset-env": "6.7.0",
     "stylelint": "14.13.0",
     "stylelint-config-standard": "28.0.0",
     "stylelint-selector-bem-pattern": "2.1.1",
