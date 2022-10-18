@@ -26,7 +26,7 @@ export class Login extends Component {
             className: "text-field-login__input"
           },
           onFocus: () => {},
-          onBlur: (event: FocusEvent, el: HTMLInputElement, component: Component) => {
+          onBlur: (_event: FocusEvent, el: HTMLInputElement, component: Component) => {
             component.setProps({
               value: el.value
             })
@@ -44,7 +44,7 @@ export class Login extends Component {
             className: "text-field-login__input"
           },
           onFocus: () => {},
-          onBlur: (event: FocusEvent, el: HTMLInputElement, component: Component) => {
+          onBlur: (_event: FocusEvent, el: HTMLInputElement, component: Component) => {
             component.setProps({
               value: el.value
             })

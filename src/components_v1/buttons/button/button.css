@@ -1,0 +1,29 @@
+@import "../../../styles/vars.css";
+
+.button {
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 12px;
+  max-width: 280px;
+  width: 100%;
+  text-decoration: none;
+  font-size: 13px;
+  color: var(--white-color);
+  line-height: 13px;
+  border: 1px solid var(--main-action-color);
+
+  &__primary {
+    background: var(--main-action-color);
+
+    &:hover {
+      cursor: pointer;
+      background: var(--main-action-hover-color);
+    }
+
+    &:active {
+      border: 1px solid var(--main-action-color);
+      background: var(--white-color);
+      color: var(--main-action-color);
+    }
+  }
+}

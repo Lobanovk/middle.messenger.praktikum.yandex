@@ -4,12 +4,14 @@ import EventBus from "./EventBus";
 
 type Events = Values<typeof Component.EVENTS>
 
-export default class Component<P extends {[key: string]: any} = any> {
+type Props = { [key: string]: any }
+
+export default class Component<P extends Props, Refs extends Record<string, Component<any>> = any> {
   static EVENTS = {
-    INIT: 'init',
-    FLOW_CDM: 'flow:component-did-mount',
-    FLOW_CDU: 'flow:component-did-update',
-    FLOW_RENDER: 'flow:render',
+    INIT: "init",
+    FLOW_CDM: "flow:component-did-mount",
+    FLOW_CDU: "flow:component-did-update",
+    FLOW_RENDER: "flow:render",
   } as const;
 
   static componentName: string;
@@ -19,11 +21,12 @@ export default class Component<P extends {[key: string]: any} = any> {
   protected _element: Nullable<HTMLElement> = null;
 
   readonly props: P;
-  protected children: {[id: string]: Component} = {};
+  protected children: {[id: string]: Component<object>} = {};
 
-  eventBus: () => EventBus<Events>
+  eventBus: () => EventBus<Events>;
 
-  refs: { [key: string]: Component } = {};
+  // @ts-expect-error Тип {} не соответствует типу Record<string, Block<any>
+  protected refs: Refs = {};
 
   constructor(props?: P) {
     const eventBus = new EventBus<Events>();
@@ -56,11 +59,11 @@ export default class Component<P extends {[key: string]: any} = any> {
     eventBus.on(Component.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  private _makePropsProxy(props: P) {
+  private _makePropsProxy(props: P): P & Props {
     return new Proxy(props as unknown as object, {
       get(target: Record<string, unknown> , p: string): any {
         const value = target[p];
-        return typeof value === 'function' ? value.bind(target) : value
+        return typeof value === "function" ? value.bind(target) : value;
       },
       set: (target: Record<string, unknown>, p: string, newValue: any): boolean => {
         target[p] = newValue;
@@ -68,9 +71,9 @@ export default class Component<P extends {[key: string]: any} = any> {
         return true;
       },
       deleteProperty() {
-        throw new Error('Нет доступа')
+        throw new Error("Нет доступа");
       }
-    }) as unknown as P
+    }) as unknown as P & Props;
   }
 
   init() {
@@ -79,7 +82,7 @@ export default class Component<P extends {[key: string]: any} = any> {
   }
 
   private _createResources() {
-    this._element = this._createDocumentElement('div');
+    this._element = this._createDocumentElement("div");
   }
 
   private _createDocumentElement(tagName: string) {
@@ -87,10 +90,10 @@ export default class Component<P extends {[key: string]: any} = any> {
   }
 
   private _componentDidMount(props: P) {
-    this.componentDidMount(props)
+    this.componentDidMount(props);
   }
 
-  componentDidMount(props: P): void {
+  componentDidMount(_props: P): void {
 
   }
 
@@ -103,7 +106,7 @@ export default class Component<P extends {[key: string]: any} = any> {
     this._render();
   }
 
-  componentDidUpdate(oldProps: P, newProps: P): boolean {
+  componentDidUpdate(_oldProps: P, _newProps: P): boolean {
     return true;
   }
 
@@ -127,7 +130,7 @@ export default class Component<P extends {[key: string]: any} = any> {
     this._addEvents();
   }
 
-   private _removeEvents(): void {
+  private _removeEvents(): void {
     const events: Record<string, () => void> = (this.props as any).events;
 
     if (!events || !this._element) {
@@ -136,7 +139,7 @@ export default class Component<P extends {[key: string]: any} = any> {
 
     Object.entries(events).forEach(([event, listener]) => {
       this._element!.removeEventListener(event, listener);
-    })
+    });
   }
 
   private _addEvents(): void {
@@ -148,11 +151,11 @@ export default class Component<P extends {[key: string]: any} = any> {
 
     Object.entries(events).forEach(([event, listener]) => {
       this._element!.addEventListener(event, listener);
-    })
+    });
   }
 
   protected render(): string {
-    return ''
+    return "";
   }
 
   getContent(): HTMLElement {
@@ -161,16 +164,17 @@ export default class Component<P extends {[key: string]: any} = any> {
         if (this.element?.parentNode?.nodeType !== Node.DOCUMENT_FRAGMENT_NODE) {
           this.eventBus().emit(Component.EVENTS.FLOW_CDM);
         }
-      }, 100)
+      }, 100);
     }
 
     return this.element!;
   }
 
   _compile() {
-    const fragment = document.createElement('template');
+    const fragment = document.createElement("template");
 
     const template = Handlebars.compile(this.render());
+
     fragment.innerHTML = template({ ...this.props, children: this.children, refs: this.refs });
 
     Object.entries(this.children).forEach(([id, component]) => {
@@ -185,8 +189,8 @@ export default class Component<P extends {[key: string]: any} = any> {
       const content = component.getContent();
       stub.replaceWith(content);
 
-      const layoutContent = content.querySelector(`[data-layout="1"]`);
-      const slotContent = content.querySelector(`[data-slot="1"]`);
+      const layoutContent = content.querySelector("[data-layout=\"1\"]");
+      const slotContent = content.querySelector("[data-slot=\"1\"]");
 
       if (layoutContent && stubChild.length) {
         layoutContent.append(...stubChild);
@@ -196,17 +200,17 @@ export default class Component<P extends {[key: string]: any} = any> {
         slotContent.parentNode?.append(...stubChild);
         slotContent.remove();
       }
-    })
+    });
 
     return fragment.content;
   }
 
   show() {
-    this.getContent().style.display = 'block';
+    this.getContent().style.display = "block";
   }
 
   hide() {
-    this.getContent().style.display = 'none';
+    this.getContent().style.display = "none";
   }
 
 }
