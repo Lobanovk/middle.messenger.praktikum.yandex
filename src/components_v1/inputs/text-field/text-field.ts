@@ -2,12 +2,12 @@ import { Component } from "core";
 import { InputProps } from "../input";
 
 export type IncomingProps = {
-  label: string;
+  label?: string;
   value: string;
   className?: string;
   inputClassName?: string;
   labelClassName?: string;
-  type: string
+  type?: string
 } & InputProps;
 
 export class TextField extends Component<IncomingProps> {
@@ -28,7 +28,7 @@ export class TextField extends Component<IncomingProps> {
             name=name
             placeholder=placeholder
             value=value
-            className="text-field__input {{inputClassName}}"
+            className="text-field__input ${this.props.inputClassName}"
             modification=modification
         }}}
         {{#if label}}

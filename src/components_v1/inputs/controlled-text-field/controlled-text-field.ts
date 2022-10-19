@@ -3,15 +3,16 @@ import { validation, ValidationKeys } from "../../../helpers/validation";
 import { TextFieldProps } from "../text-field";
 import ErrorComponent from "../../error-component";
 
-type IncomingProps = {
-  onFocus: (event: FocusEvent, el: HTMLInputElement, component?: Component<Props>) => void;
-  onBlur: (event: FocusEvent, el: HTMLInputElement, component?: Component<Props>) => void;
+export type IncomingProps = {
+  onFocus?: (event: FocusEvent, el: HTMLInputElement, component?: Component<Props>) => void;
+  onBlur?: (event: FocusEvent, el: HTMLInputElement, component?: Component<Props>) => void;
 } & TextFieldProps;
 
-type Props = Partial<
+export type Props = Partial<
   Omit<IncomingProps, "onFocus" | "onBlur"> & {
   onFocus?: (event: FocusEvent) => void;
   onBlur?: (event: FocusEvent) => void;
+  ref: "errorRef"
 }>
 
 type Refs = {
@@ -44,7 +45,8 @@ export class ControlledTextField extends Component<Props, Refs> {
         }
         this.setProps({ value: el.value });
         this.valid(el);
-      }
+      },
+      ref: "errorRef"
     });
   }
 
@@ -80,7 +82,7 @@ export class ControlledTextField extends Component<Props, Refs> {
             inputClassName=inputClassName
             labelClassName=labelClassName
         }}}
-        {{{Error ref="errorRef" }}}
+        {{{ErrorComponent ref="errorRef" }}}
       </div>
     `;
   }

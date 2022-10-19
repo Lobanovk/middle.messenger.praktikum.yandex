@@ -1,21 +1,12 @@
 import { registerComponent } from "../core";
 
-import Button from "components/button";
 import LayoutLogin from "components/layout-login";
 import LoginForm from "components/login-form";
-import Link from "components_v1/link";
-import TextField from "components/text-field";
-import Input from "components/input";
-import ControlledTextField from "components/controlled-text-field";
-import ErrorComponent from "components/error";
-import FabButton from "components/fab-button";
-import Avatar from "components/avatar";
-import Text from "components_v1/text";
+import Link from "../components_v1/link";
+import Text from "../components_v1/text";
 import ProfileActions from "components/profile-actions";
 import ProfileForm from "components/profile-form";
-import Modal from "components/modal";
 import ModalForm from "components/modal-form";
-import InputDownload from "components/input-download";
 import SvgIcon from "components/icons";
 import CardError from "components/card-error";
 import MiniChat from "components/mini-chat";
@@ -23,6 +14,19 @@ import FormChatContent from "components/form-chat-content";
 import ChatContent from "components/chat-content";
 import CardMessage from "components/card-message";
 import Messages from "components/messages";
+import Input from "../components_v1/inputs/input";
+import Button from "../components_v1/buttons/button";
+import TextField from "../components_v1/inputs/text-field";
+import ControlledTextField from "../components_v1/inputs/controlled-text-field";
+import DownloadField from "../components_v1/inputs/download-field";
+import ErrorComponent from "../components_v1/error-component";
+import FabButton from "../components_v1/buttons/fab-button";
+import Avatar from "../components_v1/avatar";
+import Modal from "../components_v1/layouts/modal";
+import { Wrapper } from "../components_v1/layouts/wrapper/wrapper";
+import Form from "../components_v1/form";
+import { LoginFormInputsWrapper } from "../components_v1/layouts/login-form-inputs-wrapper/login-form-inputs-wrapper";
+import { LoginFormActions } from "../components_v1/layouts/login-form-actions/login-form-actions";
 
 
 export default () => {
@@ -38,10 +42,10 @@ export default () => {
   registerComponent(Avatar);
   registerComponent(Text);
   registerComponent(ProfileActions);
-  registerComponent(ProfileForm)
+  registerComponent(ProfileForm);
   registerComponent(Modal);
   registerComponent(ModalForm);
-  registerComponent(InputDownload);
+  registerComponent(DownloadField);
   registerComponent(SvgIcon);
   registerComponent(CardError);
   registerComponent(MiniChat);
@@ -49,4 +53,8 @@ export default () => {
   registerComponent(ChatContent);
   registerComponent(CardMessage);
   registerComponent(Messages);
-}
+  registerComponent(Wrapper);
+  registerComponent(Form);
+  registerComponent(LoginFormInputsWrapper);
+  registerComponent(LoginFormActions);
+};

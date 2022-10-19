@@ -1,0 +1,9 @@
+.actions-login {
+    flex: 0;
+    text-align: center;
+    padding-top: 20px;
+
+    & > button {
+        margin-bottom: 18px;
+    }
+}

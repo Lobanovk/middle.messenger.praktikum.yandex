@@ -2,6 +2,22 @@
 @import "https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,300;0,400;0,600;1,100&display=swap";
 @import "./vars.css";
 
+@import "../components_v1/avatar/avatar.css";
+@import "../components_v1/buttons/button/button.css";
+@import "../components_v1/buttons/fab-button/fab-button.css";
+@import "../components_v1/inputs/input/input.css";
+@import "../components_v1/inputs/text-field/text-field.css";
+@import "../components_v1/inputs/download-field/download-field.css";
+@import "../components_v1/link/link.css";
+@import "../components_v1/text/text.css";
+@import "../components_v1/error-component/error-component.css";
+@import "../components_v1/layouts/wrapper/wrapper.css";
+@import "../components_v1/layouts/modal/modal.css";
+@import "../components_v1/layouts/login-form-actions/login-form-actions.css";
+@import "../components_v1/layouts/login-form-inputs-wrapper/login-form-inputs-wrapper.css";
+
+@import "../pages_v1/login/login.css";
+
 body {
   margin: 0;
   overflow: hidden;
@@ -28,46 +44,6 @@ a {
   font-weight: 500;
   color: var(--main-text-color);
   text-align: center;
-}
-
-.wrapper {
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-
-  &_login {
-    background: url("../asserts/login.gif") no-repeat center;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &_profile {
-    display: flex;
-  }
-
-  &_error-404 {
-    background: url("../asserts/404.gif") no-repeat center;
-  }
-
-  &_error-505 {
-    background: url("../asserts/505.gif") no-repeat center;
-  }
-
-  &_error {
-    height: 100vh;
-    width: 100%;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  &_chat {
-    display: flex;
-  }
 }
 
 .back-to-chats-content {

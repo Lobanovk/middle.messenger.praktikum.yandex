@@ -34,7 +34,7 @@ export class Input extends Component<Props> {
   protected render(): string {
     return `
       <input 
-        class="input {{#if modification}}input_{{modification}}{{/if}}"
+        class="input {{#if modification}}input_{{modification}}{{/if}} {{className}}"
         type="{{type}}"
         name="{{name}}"
         placeholder="{{placeholder}}"

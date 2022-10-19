@@ -1,0 +1,21 @@
+.content {
+    width: 100%;
+    flex: 1;
+}
+
+.inputs_container {
+    width: 100%;
+    margin-top: 40px;
+
+    &_login {
+        & > div:not(:last-child) {
+            margin-bottom: 18px;
+        }
+    }
+
+    &_sign {
+        & > div:not(:last-child) {
+            margin-bottom: 16px;
+        }
+    }
+}

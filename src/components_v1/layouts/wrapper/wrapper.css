@@ -1,0 +1,39 @@
+.wrapper {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+
+    &_login {
+        background: url("../asserts/login.gif") no-repeat center;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &_profile {
+        display: flex;
+    }
+
+    &_error-404 {
+        background: url("../asserts/404.gif") no-repeat center;
+    }
+
+    &_error-505 {
+        background: url("../asserts/505.gif") no-repeat center;
+    }
+
+    &_error {
+        height: 100vh;
+        width: 100%;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    &_chat {
+        display: flex;
+    }
+}
