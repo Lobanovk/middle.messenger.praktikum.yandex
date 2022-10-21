@@ -3,7 +3,7 @@ import { Component } from "core";
 type IncomingProps = {
   title: string;
   description: string;
-  linkProps: {
+  link: {
     text: string;
     href: string;
   }
@@ -28,7 +28,7 @@ export class CardError extends Component<IncomingProps>{
           </p>
       </div>
       <div class="card-error__footer">
-          {{{Link href=linkProps.href text=linkProps.text}}}
+          {{{Link href=link.href text=link.text}}}
       </div>
     </div>
     `;

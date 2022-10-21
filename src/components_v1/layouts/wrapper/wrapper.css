@@ -19,8 +19,8 @@
         background: url("../asserts/404.gif") no-repeat center;
     }
 
-    &_error-505 {
-        background: url("../asserts/505.gif") no-repeat center;
+    &_error-500 {
+        background: url("../asserts/500.gif") no-repeat center;
     }
 
     &_error {

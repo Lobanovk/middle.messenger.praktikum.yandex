@@ -19,6 +19,7 @@
 @import "../components_v1/back-to-chats/back-to-chats.css";
 @import "../components_v1/profile-form-actions/profile-form-actions.css";
 @import "../components_v1/profile-modal/profile-modal.css";
+@import "../components_v1/card-error/card-error.css";
 
 @import "../pages_v1/login/login.css";
 @import "../pages_v1/profile/profile.css";
