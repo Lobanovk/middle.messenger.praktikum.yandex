@@ -1,14 +1,8 @@
 import { registerComponent } from "../core";
 
-import LayoutLogin from "components/layout-login";
-import LoginForm from "components/login-form";
 import Link from "../components_v1/link";
 import Text from "../components_v1/text";
-import ProfileActions from "components/profile-actions";
-import ProfileForm from "components/profile-form";
-import ModalForm from "components/modal-form";
-import SvgIcon from "components/icons";
-import CardError from "components/card-error";
+import CardError from "components_v1/card-error";
 import MiniChat from "components/mini-chat";
 import FormChatContent from "components/form-chat-content";
 import ChatContent from "components/chat-content";
@@ -25,15 +19,24 @@ import Avatar from "../components_v1/avatar";
 import Modal from "../components_v1/layouts/modal";
 import { Wrapper } from "../components_v1/layouts/wrapper/wrapper";
 import Form from "../components_v1/form";
-import { LoginFormInputsWrapper } from "../components_v1/layouts/login-form-inputs-wrapper/login-form-inputs-wrapper";
-import { LoginFormActions } from "../components_v1/layouts/login-form-actions/login-form-actions";
+import { LoginFormInputsWrapper } from "../components_v1/login-form-inputs-wrapper/login-form-inputs-wrapper";
+import { LoginFormActions } from "../components_v1/login-form-actions/login-form-actions";
+import {
+  ArrowRightIcon,
+  AttachmentsIcon, BigAvatarIcon,
+  ClipIcon,
+  DoubleCheckIcon,
+  LocationIcon, MediaIcon, MoreVertIcon
+} from "../components_v1/icons";
+import { BackToChats } from "../components_v1/back-to-chats/back-to-chats";
+import { ChatWrapper } from "../components_v1/layouts/chat-wrapper/chat-wrapper";
+import ProfileFormActions from "../components_v1/profile-form-actions";
+import { ProfileModal } from "../components_v1/profile-modal/profile-modal";
 
 
 export default () => {
   registerComponent(Input);
   registerComponent(Button);
-  registerComponent(LayoutLogin);
-  registerComponent(LoginForm);
   registerComponent(Link);
   registerComponent(TextField);
   registerComponent(ControlledTextField);
@@ -41,12 +44,8 @@ export default () => {
   registerComponent(FabButton);
   registerComponent(Avatar);
   registerComponent(Text);
-  registerComponent(ProfileActions);
-  registerComponent(ProfileForm);
   registerComponent(Modal);
-  registerComponent(ModalForm);
   registerComponent(DownloadField);
-  registerComponent(SvgIcon);
   registerComponent(CardError);
   registerComponent(MiniChat);
   registerComponent(FormChatContent);
@@ -57,4 +56,16 @@ export default () => {
   registerComponent(Form);
   registerComponent(LoginFormInputsWrapper);
   registerComponent(LoginFormActions);
+  registerComponent(ArrowRightIcon);
+  registerComponent(MediaIcon);
+  registerComponent(LocationIcon);
+  registerComponent(ClipIcon);
+  registerComponent(DoubleCheckIcon);
+  registerComponent(BigAvatarIcon);
+  registerComponent(AttachmentsIcon);
+  registerComponent(MoreVertIcon);
+  registerComponent(BackToChats);
+  registerComponent(ChatWrapper);
+  registerComponent(ProfileFormActions);
+  registerComponent(ProfileModal);
 };

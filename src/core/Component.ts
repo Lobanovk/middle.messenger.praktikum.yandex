@@ -110,7 +110,7 @@ export default class Component<P extends Props, Refs extends Record<string, Comp
     return true;
   }
 
-  setProps(nextProps: P): void {
+  setProps(nextProps: Partial<P>): void {
     if(!nextProps) {
       return;
     }

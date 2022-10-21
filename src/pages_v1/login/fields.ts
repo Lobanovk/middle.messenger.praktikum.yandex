@@ -1,5 +1,5 @@
-import { LoginFormActionsProps } from "../../components_v1/layouts/login-form-actions";
-import { LoginFormInputsWrapperProps } from "../../components_v1/layouts/login-form-inputs-wrapper";
+import { LoginFormActionsProps } from "../../components_v1/login-form-actions";
+import { LoginFormInputsWrapperProps } from "../../components_v1/login-form-inputs-wrapper";
 import { TextFieldProps } from "./login";
 
 export const LoginFormActionsFields: LoginFormActionsProps = {
@@ -15,7 +15,7 @@ export const LoginFormInputsWrapper: LoginFormInputsWrapperProps = {
   type: "login"
 };
 
-export const LoginFormInputs: TextFieldProps = [
+export const LoginFormInputs: TextFieldProps[] = [
   {
     name: "login",
     type: "text",

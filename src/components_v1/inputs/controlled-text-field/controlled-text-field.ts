@@ -32,7 +32,7 @@ export class ControlledTextField extends Component<Props, Refs> {
           props.onFocus(event, el, this);
           return;
         }
-        if (!this.firstFocusOnEl) {
+        if (this.firstFocusOnEl) {
           this.valid(el);
         }
         this.firstFocusOnEl = true;

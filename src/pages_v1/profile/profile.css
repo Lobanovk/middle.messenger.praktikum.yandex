@@ -1,0 +1,54 @@
+@import "../../styles/vars.css";
+
+.text-field-profile {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+
+    &__input {
+        color: var(--main-text-color);
+        box-sizing: border-box;
+        width: 100%;
+        font-size: inherit;
+        background: transparent;
+        text-align: right;
+        outline: none;
+        padding: 10px 0;
+        font-weight: 500;
+    }
+
+    &__label {
+        min-width: 163px;
+        font-size: inherit;
+        color: var(--white-color);
+        font-weight: inherit;
+    }
+}
+
+.avatar-icon {
+    fill: var(--main-text-color);
+}
+
+.content {
+    max-width: 530px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.text-fields-wrapper {
+    width: 100%;
+}
+
+
+
+.profile-information {
+    margin-top: 60px;
+    width: 100%;
+
+    &_data-settings {
+        margin-top: 97px;
+    }
+}

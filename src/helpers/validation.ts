@@ -4,11 +4,11 @@ const validationRules: Record<ValidationKeys, (...args: string[]) => string> = {
   names: (value: string) => {
     const firstLetterIsUpper = value.match(/^[A-ZА-Я]/gm);
     if (firstLetterIsUpper?.[0] !== value[0]) {
-      return "Первая буква должна быть заглавной"
+      return "Первая буква должна быть заглавной";
     }
     const validValue = value.match(/^[A-ZА-Я][a-zа-я\-]*/gm);
     if (value !== validValue?.[0]) {
-      return "Нельзя использовать цифры, спецсимволы, пробелы, кроме дефиса"
+      return "Нельзя использовать цифры, спецсимволы, пробелы, кроме дефиса";
     }
     return "";
   },
@@ -31,17 +31,17 @@ const validationRules: Record<ValidationKeys, (...args: string[]) => string> = {
     if (value !== validValue?.[0]) {
       return "Неверный формат email";
     }
-    return ""
+    return "";
   },
   password: (value: string) => {
     if (value.length < 8 || value.length > 40) {
       return "Пароль должен быть от 8 до 40 симловов";
     }
-    const validValue = value.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/gm)
+    const validValue = value.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/gm);
     if (value !== validValue?.[0]) {
-      return "Нельзя использовать спецсимволы. Необходима хотя бы одна заглавная буква и цифра"
+      return "Нельзя использовать спецсимволы. Необходима хотя бы одна заглавная буква и цифра";
     }
-    return ""
+    return "";
   },
   repeatPassword: (value, value2) => {
     const error = validationRules.password(value2);
@@ -49,14 +49,14 @@ const validationRules: Record<ValidationKeys, (...args: string[]) => string> = {
     if (value !== value2) {
       return "Введённые пароли не совпадают";
     }
-    return ""
+    return "";
   },
   phone: (value: string) => {
     const validValue = value.match(/^\+?\d{10,15}$/gm);
     if (validValue?.[0] !== value) {
-      return "Телефон должен быть от 10 до 15 символов. Необходимо использовать только цифры"
+      return "Телефон должен быть от 10 до 15 символов. Необходимо использовать только цифры";
     }
-    return ""
+    return "";
   },
   message: (value: string) => {
     if (value.length === 0) {
@@ -64,8 +64,9 @@ const validationRules: Record<ValidationKeys, (...args: string[]) => string> = {
     }
     return "";
   }
-}
+};
 
 export function validation(type: ValidationKeys, ...args: string[]): string {
+  console.log(type);
   return validationRules[type](...args);
 }

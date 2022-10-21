@@ -1,6 +1,6 @@
 import { Component } from "core";
-import { LoginFormActionsProps } from "components_v1/layouts/login-form-actions";
-import { LoginFormInputsWrapperProps } from "components_v1/layouts/login-form-inputs-wrapper";
+import { LoginFormActionsProps } from "components_v1/login-form-actions";
+import { LoginFormInputsWrapperProps } from "components_v1/login-form-inputs-wrapper";
 import ControlledTextField, { ControlledTextFieldProps, ControlledTextFieldIncomingProps } from "components_v1/inputs/controlled-text-field";
 import {
   LoginFormActionsFields,
@@ -8,10 +8,10 @@ import {
   LoginFormInputs
 } from "./fields";
 
-export type TextFieldProps = (Partial<ControlledTextFieldIncomingProps> & { ref: string })[]
+export type TextFieldProps = (Partial<ControlledTextFieldIncomingProps> & { ref: string })
 
 type Props = {
-  inputs: TextFieldProps,
+  inputs: TextFieldProps[],
   loginInputsWrapper: LoginFormInputsWrapperProps,
   loginFormActions: LoginFormActionsProps,
   onSubmit: (event: SubmitEvent) => void;
@@ -35,7 +35,7 @@ export class Login extends Component<Props, Refs> {
         value: el.value
       });
     }
-    const inputs = LoginFormInputs.map(item => ({...item, onBlur})) as TextFieldProps;
+    const inputs = LoginFormInputs.map(item => ({...item, onBlur}) as TextFieldProps) ;
     super({
       loginFormActions: LoginFormActionsFields,
       loginInputsWrapper: LoginFormInputsWrapper,
