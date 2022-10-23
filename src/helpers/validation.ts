@@ -67,6 +67,5 @@ const validationRules: Record<ValidationKeys, (...args: string[]) => string> = {
 };
 
 export function validation(type: ValidationKeys, ...args: string[]): string {
-  console.log(type);
   return validationRules[type](...args);
 }

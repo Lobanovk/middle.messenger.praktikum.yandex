@@ -24,7 +24,6 @@
   "alias": {
     "core": "./src/core",
     "components": "./src/components",
-    "components_v1": "./src/components_v1",
     "helpers": "./src/helpers",
     "pages": "./src/pages"
   },

@@ -2,27 +2,32 @@
 @import "https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,300;0,400;0,600;1,100&display=swap";
 @import "./vars.css";
 
-@import "../components_v1/avatar/avatar.css";
-@import "../components_v1/buttons/button/button.css";
-@import "../components_v1/buttons/fab-button/fab-button.css";
-@import "../components_v1/inputs/input/input.css";
-@import "../components_v1/inputs/text-field/text-field.css";
-@import "../components_v1/inputs/download-field/download-field.css";
-@import "../components_v1/link/link.css";
-@import "../components_v1/text/text.css";
-@import "../components_v1/error-component/error-component.css";
-@import "../components_v1/layouts/wrapper/wrapper.css";
-@import "../components_v1/layouts/modal/modal.css";
-@import "../components_v1/layouts/chat-wrapper/chat-wraperr.css";
-@import "../components_v1/login-form-actions/login-form-actions.css";
-@import "../components_v1/login-form-inputs-wrapper/login-form-inputs-wrapper.css";
-@import "../components_v1/back-to-chats/back-to-chats.css";
-@import "../components_v1/profile-form-actions/profile-form-actions.css";
-@import "../components_v1/profile-modal/profile-modal.css";
-@import "../components_v1/card-error/card-error.css";
+@import "../components/avatar/avatar.css";
+@import "../components/buttons/button/button.css";
+@import "../components/buttons/fab-button/fab-button.css";
+@import "../components/inputs/text-field/text-field.css";
+@import "../components/inputs/input/input.css";
+@import "../components/inputs/download-field/download-field.css";
+@import "../components/link/link.css";
+@import "../components/text/text.css";
+@import "../components/error-component/error-component.css";
+@import "../components/layouts/wrapper/wrapper.css";
+@import "../components/layouts/modal/modal.css";
+@import "../components/layouts/chat-wrapper/chat-wraperr.css";
+@import "../components/login-form-actions/login-form-actions.css";
+@import "../components/login-form-inputs-wrapper/login-form-inputs-wrapper.css";
+@import "../components/back-to-chats/back-to-chats.css";
+@import "../components/settings-form-actions/settings-form-actions.css";
+@import "../components/settings-modal/settings-modal.css";
+@import "../components/card-error/card-error.css";
+@import "../components/person/person.css";
+@import "../components/message-content/message-content.css";
+@import "../components/message-form/message-form.css";
+@import "../components/message-data/message-data.css";
+@import "../components/message-data-item/message-data-item.css";
 
-@import "../pages_v1/login/login.css";
-@import "../pages_v1/profile/profile.css";
+@import "../pages/login/login.css";
+@import "../pages/settings/settings.css";
 
 body {
   margin: 0;
@@ -113,12 +118,6 @@ a {
 }
 
 .chat {
-  position: relative;
-  flex: 1;
-  height: 100%;
-  background: rgb(128 61 226);
-  background: linear-gradient(115deg, rgb(128 61 226 / 100%) 0%, rgb(238 134 99 / 100%) 67%, rgb(251 246 227 / 100%) 100%);
-
   &__empty {
     display: flex;
     justify-content: center;

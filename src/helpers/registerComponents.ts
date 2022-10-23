@@ -1,37 +1,37 @@
-import { registerComponent } from "../core";
+import { registerComponent } from "core";
 
-import Link from "../components_v1/link";
-import Text from "../components_v1/text";
-import CardError from "components_v1/card-error";
-import MiniChat from "components/mini-chat";
-import FormChatContent from "components/form-chat-content";
-import ChatContent from "components/chat-content";
-import CardMessage from "components/card-message";
-import Messages from "components/messages";
-import Input from "../components_v1/inputs/input";
-import Button from "../components_v1/buttons/button";
-import TextField from "../components_v1/inputs/text-field";
-import ControlledTextField from "../components_v1/inputs/controlled-text-field";
-import DownloadField from "../components_v1/inputs/download-field";
-import ErrorComponent from "../components_v1/error-component";
-import FabButton from "../components_v1/buttons/fab-button";
-import Avatar from "../components_v1/avatar";
-import Modal from "../components_v1/layouts/modal";
-import { Wrapper } from "../components_v1/layouts/wrapper/wrapper";
-import Form from "../components_v1/form";
-import { LoginFormInputsWrapper } from "../components_v1/login-form-inputs-wrapper/login-form-inputs-wrapper";
-import { LoginFormActions } from "../components_v1/login-form-actions/login-form-actions";
+import Link from "components/link";
+import Text from "components/text";
+import CardError from "components/card-error";
+import Input from "components/inputs/input";
+import Button from "components/buttons/button";
+import TextField from "components/inputs/text-field";
+import ControlledTextField from "components/inputs/controlled-text-field";
+import DownloadField from "components/inputs/download-field";
+import ErrorComponent from "components/error-component";
+import FabButton from "components/buttons/fab-button";
+import Avatar from "components/avatar";
+import Modal from "components/layouts/modal";
+import Wrapper from "components/layouts/wrapper";
+import Form from "components/form";
+import LoginFormInputsWrapper from "components/login-form-inputs-wrapper";
+import LoginFormActions from "components/login-form-actions";
 import {
   ArrowRightIcon,
   AttachmentsIcon, BigAvatarIcon,
   ClipIcon,
   DoubleCheckIcon,
   LocationIcon, MediaIcon, MoreVertIcon
-} from "../components_v1/icons";
-import { BackToChats } from "../components_v1/back-to-chats/back-to-chats";
-import { ChatWrapper } from "../components_v1/layouts/chat-wrapper/chat-wrapper";
-import ProfileFormActions from "../components_v1/profile-form-actions";
-import { ProfileModal } from "../components_v1/profile-modal/profile-modal";
+} from "components/icons";
+import BackToChats from "components/back-to-chats";
+import ChatWrapper from "components/layouts/chat-wrapper";
+import ProfileFormActions from "components/settings-form-actions";
+import SettingsModal from "components/settings-modal";
+import Person from "components/person";
+import MessageContent from "components/message-content";
+import MessageForm from "components/message-form";
+import MessageData from "components/message-data";
+import MessageDataItem from "components/message-data-item";
 
 
 export default () => {
@@ -47,11 +47,6 @@ export default () => {
   registerComponent(Modal);
   registerComponent(DownloadField);
   registerComponent(CardError);
-  registerComponent(MiniChat);
-  registerComponent(FormChatContent);
-  registerComponent(ChatContent);
-  registerComponent(CardMessage);
-  registerComponent(Messages);
   registerComponent(Wrapper);
   registerComponent(Form);
   registerComponent(LoginFormInputsWrapper);
@@ -67,5 +62,10 @@ export default () => {
   registerComponent(BackToChats);
   registerComponent(ChatWrapper);
   registerComponent(ProfileFormActions);
-  registerComponent(ProfileModal);
+  registerComponent(SettingsModal);
+  registerComponent(Person);
+  registerComponent(MessageContent);
+  registerComponent(MessageForm);
+  registerComponent(MessageData);
+  registerComponent(MessageDataItem);
 };
