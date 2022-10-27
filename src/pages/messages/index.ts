@@ -1,3 +1,3 @@
-import { Messages } from "./messages";
+import { default as Messages } from "./messages";
 
 export default Messages;

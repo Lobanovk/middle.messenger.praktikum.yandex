@@ -25,7 +25,7 @@ import {
 } from "components/icons";
 import BackToChats from "components/back-to-chats";
 import ChatWrapper from "components/layouts/chat-wrapper";
-import ProfileFormActions from "components/settings-form-actions";
+import SettingsFormActions from "components/settings-form-actions";
 import SettingsModal from "components/settings-modal";
 import Person from "components/person";
 import MessageContent from "components/message-content";
@@ -61,7 +61,7 @@ export default () => {
   registerComponent(MoreVertIcon);
   registerComponent(BackToChats);
   registerComponent(ChatWrapper);
-  registerComponent(ProfileFormActions);
+  registerComponent(SettingsFormActions);
   registerComponent(SettingsModal);
   registerComponent(Person);
   registerComponent(MessageContent);

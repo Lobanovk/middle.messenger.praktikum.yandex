@@ -1,26 +1,41 @@
-import { Component } from "core";
+import { Component, Router } from "core";
 import TextField from "components/inputs/text-field";
 import chatsData from "../../data/chats.json";
 import Person from "../../components/person";
+import { withRouter } from "../../helpers/withRouter";
+import { Screens } from "../../helpers/screenList";
+import { withStore } from "../../helpers/withStore";
+import { Store } from "../../core/Store";
+
+type PageProps = {
+  router: Router;
+  store: Store<AppState>;
+}
 
 type Props = {
   person: any;
   onEmpty: () => void;
   isSelectedInputChat?: number;
-  chats: Record<string, string>[]
-}
+  chats: Record<string, string>[];
+  onGoToSettings: (event: MouseEvent) => void;
+} & PageProps;
 
 type Refs = {
   searchInputRef: TextField
 }
 
-export class Messages extends Component<Props, Refs> {
-  constructor() {
+class Messages extends Component<Props, Refs> {
+  constructor(props: PageProps) {
     super({
+      ...props,
       chats: [],
       isSelectedInputChat: undefined,
       onEmpty: () => {},
-      person: 1
+      person: 1,
+      onGoToSettings: event => {
+        event.preventDefault();
+        this.props.router.go(Screens.Settings);
+      }
     });
   }
 
@@ -49,8 +64,9 @@ export class Messages extends Component<Props, Refs> {
             <div class="chats-list__link">
               {{{Link 
                 text="Профиль"
-                href="/"
+                href="/settings"
                 modification="link_profile"
+                onClick=onGoToSettings
               }}}
             </div>
             <div class="chats-list__input-container">
@@ -88,3 +104,5 @@ export class Messages extends Component<Props, Refs> {
     `;
   }
 }
+
+export default withRouter(withStore(Messages));

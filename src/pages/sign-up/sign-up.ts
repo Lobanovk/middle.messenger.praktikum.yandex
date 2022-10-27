@@ -1,17 +1,26 @@
-import { Component } from "core";
+import { Component, Router } from "core";
 import { TextFieldProps } from "../login/login";
 import { LoginFormInputsWrapperProps } from "../../components/login-form-inputs-wrapper";
 import { LoginFormActionsProps } from "../../components/login-form-actions";
 import { LoginFormActionsFields, LoginFormInputs, LoginFormInputsWrapper } from "./fields";
 import { validation, ValidationKeys } from "../../helpers/validation";
 import ControlledTextField, { ControlledTextFieldProps } from "../../components/inputs/controlled-text-field";
+import { withStore } from "../../helpers/withStore";
+import { Store } from "../../core/Store";
+
+type PageProps = {
+  router: Router;
+  store: Store<AppState>;
+}
+
 
 type Props = {
   inputs: TextFieldProps[],
   loginInputsWrapper: LoginFormInputsWrapperProps,
   loginFormActions: LoginFormActionsProps,
   onSubmit: (event: SubmitEvent) => void;
-}
+  router: Router;
+} & PageProps;
 
 type KeysRefs =
   "emailRef" |
@@ -26,10 +35,11 @@ type Refs = Record<KeysRefs, ControlledTextField>;
 export class SignUp extends Component<Props, Refs> {
   static componentName = "SignUp";
 
-  constructor() {
+  constructor(props: PageProps) {
     const inputs = LoginFormInputs;
     const lastInput = inputs.pop();
     super({
+      ...props,
       inputs: [
         ...inputs,
         {
@@ -65,7 +75,7 @@ export class SignUp extends Component<Props, Refs> {
   protected render(): string {
     return `
       {{#Wrapper type="login"}}
-        {{#Form className="card card_login" onSubmit=onSubmit}}
+        {{#Form className="card card_sign" onSubmit=onSubmit}}
           {{#LoginFormInputsWrapper
             type=loginInputsWrapper.type
             title=loginInputsWrapper.title
@@ -94,3 +104,5 @@ export class SignUp extends Component<Props, Refs> {
     `;
   }
 }
+
+export default withStore(SignUp);

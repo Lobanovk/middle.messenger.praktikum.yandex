@@ -6,15 +6,21 @@ type Events = Values<typeof Component.EVENTS>
 
 type Props = { [key: string]: any }
 
+export interface ComponentClass<P extends Props> extends Function {
+  new (props: P): Component<P>;
+  componentName?: string;
+}
+
 export default class Component<P extends Props, Refs extends Record<string, Component<any>> = any> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
     FLOW_CDU: "flow:component-did-update",
+    FLOW_CWU: "flow:component-will-unmount",
     FLOW_RENDER: "flow:render",
   } as const;
 
-  static componentName: string;
+  public static componentName: string;
 
   public readonly id = nanoid(6);
 
@@ -66,6 +72,9 @@ export default class Component<P extends Props, Refs extends Record<string, Comp
         return typeof value === "function" ? value.bind(target) : value;
       },
       set: (target: Record<string, unknown>, p: string, newValue: any): boolean => {
+        if (target[p] === newValue) {
+          return true;
+        }
         target[p] = newValue;
         this.eventBus().emit(Component.EVENTS.FLOW_CDU, {...target}, target);
         return true;
@@ -89,7 +98,20 @@ export default class Component<P extends Props, Refs extends Record<string, Comp
     return document.createElement(tagName);
   }
 
+  _checkInDom() {
+    const elementInDOM = document.body.contains(this._element);
+
+    if (elementInDOM) {
+      setTimeout(() => this._checkInDom(), 1000);
+      return;
+    }
+
+    this.eventBus().emit(Component.EVENTS.FLOW_CWU, this.props);
+  }
+
   private _componentDidMount(props: P) {
+    this._checkInDom();
+
     this.componentDidMount(props);
   }
 
@@ -109,6 +131,13 @@ export default class Component<P extends Props, Refs extends Record<string, Comp
   componentDidUpdate(_oldProps: P, _newProps: P): boolean {
     return true;
   }
+
+  _componentWillUnmount() {
+    this.eventBus().destroy();
+    this.componentWillUnmount();
+  }
+
+  componentWillUnmount() {}
 
   setProps(nextProps: Partial<P>): void {
     if(!nextProps) {

@@ -51,7 +51,7 @@ export class ControlledTextField extends Component<Props, Refs> {
   }
 
   private valid(el: HTMLInputElement) {
-    const names = ["firstName", "lastName", "nameInChat"];
+    const names = ["firstName", "secondName", "displayName"];
     const password = ["password", "oldPassword"];
     let type = el.name;
     if (names.includes(type)) {

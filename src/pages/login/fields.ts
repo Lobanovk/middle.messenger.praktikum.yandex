@@ -6,7 +6,7 @@ export const LoginFormActionsFields: LoginFormActionsProps = {
   buttonText: "Авторизоваться",
   link: {
     text: "Нет аккаунта?",
-    href: "#"
+    href: "/sign-up",
   },
 };
 

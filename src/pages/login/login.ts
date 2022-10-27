@@ -1,4 +1,4 @@
-import { Component } from "core";
+import { Component, Router } from "core";
 import { LoginFormActionsProps } from "components/login-form-actions";
 import { LoginFormInputsWrapperProps } from "components/login-form-inputs-wrapper";
 import ControlledTextField, { ControlledTextFieldProps, ControlledTextFieldIncomingProps } from "components/inputs/controlled-text-field";
@@ -7,15 +7,23 @@ import {
   LoginFormInputsWrapper,
   LoginFormInputs
 } from "./fields";
+import { Store } from "../../core/Store";
+import { withStore } from "../../helpers/withStore";
+import { login } from "../../services/auth";
 
 export type TextFieldProps = (Partial<ControlledTextFieldIncomingProps> & { ref: string })
+
+type PageProps = {
+  router: Router;
+  store: Store<AppState>;
+}
 
 type Props = {
   inputs: TextFieldProps[],
   loginInputsWrapper: LoginFormInputsWrapperProps,
   loginFormActions: LoginFormActionsProps,
   onSubmit: (event: SubmitEvent) => void;
-}
+} & PageProps;
 
 type Refs = {
   loginRef: ControlledTextField,
@@ -25,7 +33,7 @@ type Refs = {
 export class Login extends Component<Props, Refs> {
   static componentName = "Login";
 
-  constructor() {
+  constructor(props: PageProps) {
     function onBlur(
       _event: FocusEvent,
       el: HTMLInputElement,
@@ -35,27 +43,34 @@ export class Login extends Component<Props, Refs> {
         value: el.value
       });
     }
-    const inputs = LoginFormInputs.map(item => ({...item, onBlur}) as TextFieldProps) ;
+
+    const inputs = LoginFormInputs.map(item => ({...item, onBlur}) as TextFieldProps);
     super({
+      ...props,
       loginFormActions: LoginFormActionsFields,
       loginInputsWrapper: LoginFormInputsWrapper,
       inputs,
       onSubmit: event => {
         event.preventDefault();
-        const isValid =
-          this.refs.passwordRef.getProps().value === "admin" &&
-          this.refs.loginRef.getProps().value === "admin";
-        if (isValid) {
-          console.log({
-            login: this.refs.loginRef.getProps().value,
-            password: this.refs.passwordRef.getProps().value,
-          });
-          return;
-        }
-        console.log(this.refs.passwordRef.getRefs());
-        this.refs.passwordRef.getRefs().errorRef.setProps({
-          message: "Неверный логин или пароль"
-        });
+        const loginData = {
+          login: this.refs.loginRef.getProps().value,
+          password: this.refs.passwordRef.getProps().value,
+        };
+        this.props.store.dispatch(login, loginData);
+        // const isValid =
+        //   this.refs.passwordRef.getProps().value === "admin" &&
+        //   this.refs.loginRef.getProps().value === "admin";
+        // if (isValid) {
+        //   console.log({
+        //     login: this.refs.loginRef.getProps().value,
+        //     password: this.refs.passwordRef.getProps().value,
+        //   });
+        //   return;
+        // }
+        // console.log(this.refs.passwordRef.getRefs());
+        // this.refs.passwordRef.getRefs().errorRef.setProps({
+        //   message: "Неверный логин или пароль"
+        // });
       },
     });
   }
@@ -92,3 +107,5 @@ export class Login extends Component<Props, Refs> {
     `;
   }
 }
+
+export default withStore(Login);

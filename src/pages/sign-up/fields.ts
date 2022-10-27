@@ -6,7 +6,7 @@ export const LoginFormActionsFields: LoginFormActionsProps = {
   buttonText: "Зарегистрироваться",
   link: {
     text: "Войти",
-    href: "#"
+    href: "/"
   },
 };
 

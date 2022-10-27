@@ -1,15 +1,24 @@
-import { Component } from "core";
+import { Component, Router } from "core";
+import { withRouter } from "../../helpers/withRouter";
+import { Screens } from "../../helpers/screenList";
+
+type IncomingProps = {
+  router: Router;
+}
 
 type Props = {
   onGoToChats: () => void;
-}
+} & IncomingProps
 
-export class BackToChats extends Component<Props> {
+class BackToChats extends Component<Props> {
   static componentName = "BackToChats";
 
-  constructor() {
+  constructor(props: IncomingProps) {
     super({
-      onGoToChats: () => {}
+      ...props,
+      onGoToChats: () => {
+        this.props.router.go(Screens.Messenger);
+      }
     });
   }
 
@@ -23,3 +32,5 @@ export class BackToChats extends Component<Props> {
     `;
   }
 }
+
+export default withRouter(BackToChats);

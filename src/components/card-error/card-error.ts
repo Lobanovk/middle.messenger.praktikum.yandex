@@ -1,4 +1,6 @@
-import { Component } from "core";
+import { Component, Router } from "core";
+import { withRouter } from "../../helpers/withRouter";
+import { Screens } from "../../helpers/screenList";
 
 type IncomingProps = {
   title: string;
@@ -6,14 +8,25 @@ type IncomingProps = {
   link: {
     text: string;
     href: string;
-  }
+  },
+  router: Router,
 }
 
-export class CardError extends Component<IncomingProps>{
+type Props = IncomingProps & {
+  onGoToChats: (event: MouseEvent) => void;
+}
+
+class CardError extends Component<Props>{
   static componentName = "CardError";
 
   constructor(props: IncomingProps) {
-    super(props);
+    super({
+      ...props,
+      onGoToChats: event => {
+        event.preventDefault();
+        this.props.router.go(Screens.Messenger);
+      }
+    });
   }
 
   protected render(): string {
@@ -28,9 +41,11 @@ export class CardError extends Component<IncomingProps>{
           </p>
       </div>
       <div class="card-error__footer">
-          {{{Link href=link.href text=link.text}}}
+          {{{Link href=link.href text=link.text onClick=onGoToChats}}}
       </div>
     </div>
     `;
   }
 }
+
+export default withRouter(CardError);

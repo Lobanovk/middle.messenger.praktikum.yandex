@@ -1,25 +1,32 @@
 import { Component } from "core";
 import ErrorComponent from "../error-component";
+import { withStore } from "../../helpers/withStore";
+import { Store } from "../../core/Store";
+import { changeUserAvatar } from "../../services/user";
 
 type IncomingProps = {
   onClose: () => void;
+  store: Store<AppState>;
 }
 
 type Props = {
   onSubmit: (event: SubmitEvent) => void;
   file: File | null,
   onUploadFile: (event: Event) => void;
+  onClick: (event: MouseEvent) => void;
+  store: IncomingProps["store"]
 }
 
 type Refs = {
   errorRef: ErrorComponent
 }
 
-export class SettingsModal extends Component<Props, Refs> {
+class SettingsModal extends Component<Props, Refs> {
   static componentName = "SettingsModal";
 
-  constructor({ onClose }: IncomingProps) {
+  constructor({ onClose, ...props }: IncomingProps) {
     super({
+      ...props,
       file: null,
       onSubmit: event => {
         event.preventDefault();
@@ -27,7 +34,7 @@ export class SettingsModal extends Component<Props, Refs> {
           this.refs.errorRef.setProps({ message: "Нужно выбрать файл" });
           return;
         }
-        console.log(this.props.file, "submit");
+        this.props.store.dispatch(changeUserAvatar, this.props.file);
         onClose();
       },
       onUploadFile: (event) => {
@@ -37,13 +44,18 @@ export class SettingsModal extends Component<Props, Refs> {
             file
           });
         }
+      },
+      onClick: (event) => {
+        if (event.target === event.currentTarget) {
+          onClose();
+        }
       }
     });
   }
 
   protected render(): string {
     return `
-      {{#Modal}}
+      {{#Modal onClick=onClick}}
         {{#Form className="pane" onSubmit=onSubmit}}
           <h4 class="pane__title">Загрузите файл</h4>
           <div class="pane__content">
@@ -66,3 +78,6 @@ export class SettingsModal extends Component<Props, Refs> {
     `;
   }
 }
+
+// @ts-expect-error onClose must be in Props
+export default withStore(SettingsModal);

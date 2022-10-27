@@ -1,12 +1,6 @@
-import Component from "./Component";
 import Handlebars, { HelperOptions } from "handlebars";
 
-interface ComponentConstructable<Props = any> {
-  new(props: Props): Component<any>;
-  componentName: string;
-}
-
-export default function registerComponent<Props extends any>(Component: ComponentConstructable<Props>) {
+export default function registerComponent<Props extends any>(Component: any) {
   Handlebars.registerHelper(Component.componentName || Component.name, function (this: Props, { hash: { ref, ...hash }, data, fn }: HelperOptions) {
 
     if (!data.root.children) {

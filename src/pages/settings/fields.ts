@@ -4,7 +4,7 @@ export const Fields: TextFieldProps[] = [
   {
     label: "Почта",
     name: "email",
-    value: "pochta@yandex.ru",
+    value: "",
     ref: "emailRef",
     modification: "filled",
     inputClassName: "text-field-profile__input",
@@ -13,7 +13,7 @@ export const Fields: TextFieldProps[] = [
   {
     label: "Логин",
     name: "login",
-    value: "ivanivanov",
+    value: "",
     ref: "loginRef",
     modification: "filled",
     inputClassName: "text-field-profile__input",
@@ -21,7 +21,7 @@ export const Fields: TextFieldProps[] = [
   },
   {
     label: "Имя",
-    value: "Иван",
+    value: "",
     name: "firstName",
     ref: "firstNameRef",
     modification: "filled",
@@ -30,25 +30,25 @@ export const Fields: TextFieldProps[] = [
   },
   {
     label: "Фамилия",
-    value: "Иванов",
-    name: "lastName",
-    ref: "lastNameRef",
+    value: "",
+    name: "secondName",
+    ref: "secondNameRef",
     modification: "filled",
     inputClassName: "text-field-profile__input",
     labelClassName: "text-field-profile__label",
   },
   {
     label: "Имя в чате",
-    value: "Иван",
-    name: "nameInChat",
-    ref: "nameInChatRef",
+    value: "",
+    name: "displayName",
+    ref: "displayNameRef",
     modification: "filled",
     inputClassName: "text-field-profile__input",
     labelClassName: "text-field-profile__label",
   },
   {
     label: "Телефон",
-    value: "+79099673030",
+    value: "",
     name: "phone",
     ref: "phoneRef",
     inputClassName: "text-field-profile__input",
@@ -60,7 +60,7 @@ export const FieldsPassword: TextFieldProps[] = [
   {
     label: "Старый пароль",
     name: "oldPassword",
-    value: "A1qwerty",
+    value: "",
     type: "password",
     ref: "oldPasswordRef",
     modification: "filled",
@@ -70,7 +70,7 @@ export const FieldsPassword: TextFieldProps[] = [
   {
     label: "Новый пароль",
     name: "password",
-    value: "A1qwerty",
+    value: "",
     type: "password",
     ref: "passwordRef",
     modification: "filled",
@@ -79,10 +79,10 @@ export const FieldsPassword: TextFieldProps[] = [
   },
   {
     label: "Повторите новый пароль",
-    name: "repeatPassword",
-    value: "A1qwerty",
+    name: "newPassword",
+    value: "",
     type: "password",
-    ref: "repeatPasswordRef",
+    ref: "newPasswordRef",
     inputClassName: "text-field-profile__input",
     labelClassName: "text-field-profile__label",
     onFocus: () => {},
@@ -91,17 +91,17 @@ export const FieldsPassword: TextFieldProps[] = [
 
 export const Links: Record<string, string>[] = [
   {
-    href: "/profile-change-data.html",
+    href: "/settings/change-data",
     text: "Изменить данные",
     modification:" actions__link_custom",
   },
   {
-    href: "/profile-change-password.html",
+    href: "/settings/change-password",
     text: "Изменить пароль",
     modification:" actions__link_custom",
   },
   {
-    href: "./",
+    href: "/",
     text: "Выйти",
     modification: "link_attention actions__link_custom",
   }

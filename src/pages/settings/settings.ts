@@ -1,7 +1,14 @@
 import { Component } from "core";
-import ControlledTextField, { ControlledTextFieldIncomingProps } from "../../components/inputs/controlled-text-field";
+import ControlledTextField, {
+  ControlledTextFieldIncomingProps
+} from "../../components/inputs/controlled-text-field";
 import { Fields, FieldsPassword, Links } from "./fields";
 import { validation, ValidationKeys } from "../../helpers/validation";
+import { withStore } from "../../helpers/withStore";
+import { Store } from "../../core/Store";
+import { changeUserPassword, changeUserProfile } from "../../services/user";
+import { Screens } from "../../helpers/screenList";
+import { UserPasswordRequestData } from "../../api/users";
 
 export enum PageType {
   DEFAULT = "DEFAULT",
@@ -13,6 +20,7 @@ export type TextFieldProps = (Partial<ControlledTextFieldIncomingProps> & { ref:
 
 type IncomingProps = {
   type: PageType,
+  store: Store<AppState>,
 }
 
 type Props = IncomingProps & {
@@ -22,25 +30,27 @@ type Props = IncomingProps & {
   links?: Record<string, string>[];
   fields?: TextFieldProps[];
   isVisibleModal: boolean;
+  name: string;
 }
 
 type KeysRefs =
   "emailRef" |
   "loginRef" |
-  "firstNameRef" |
+  "secondNameRef" |
   "lastNameRef" |
-  "nameInChatRef" |
+  "displayNameRef" |
   "phoneRef" |
   "oldPasswordRef" |
   "passwordRef" |
-  "repeatPasswordRef";
+  "newPasswordRef";
 
 type Refs = Record<KeysRefs, ControlledTextField>;
 
-const getFields = (type: PageType, onBlur?: TextFieldProps["onBlur"]): TextFieldProps[] => {
+const getFields = (type: PageType, user: User | null, onBlur?: TextFieldProps["onBlur"]): TextFieldProps[] => {
+  let fields = Fields;
   if (type === PageType.CHANGE_PASSWORD) {
     const lastInput = FieldsPassword.pop();
-    return [
+    fields = [
       ...FieldsPassword,
       {
         ...lastInput,
@@ -48,7 +58,15 @@ const getFields = (type: PageType, onBlur?: TextFieldProps["onBlur"]): TextField
       } as TextFieldProps
     ];
   }
-  return Fields;
+  return fields.map(field => {
+    const body = { ...field };
+    if (user && body.name) {
+      if (user[body.name as keyof User]) {
+        body.value = String(user[body.name as keyof User]);
+      }
+    }
+    return body;
+  });
 };
 
 export class Settings extends Component<Props, Refs> {
@@ -68,7 +86,7 @@ export class Settings extends Component<Props, Refs> {
       ...props,
       isVisibleModal: false,
       links: Links,
-      fields: getFields(props.type, onBlur as TextFieldProps["onBlur"]),
+      fields: getFields(props.type, props.store.getState().user, onBlur as TextFieldProps["onBlur"]),
       onClickAvatar: () => this.setProps({ isVisibleModal: true }),
       onSubmit: event => {
         event.preventDefault();
@@ -76,13 +94,16 @@ export class Settings extends Component<Props, Refs> {
           .map(ref => ref.getRefs().errorRef.getProps().message)
           .filter(Boolean);
         if (errors.length) return;
-
         const body = Object.values(this.refs)
-          .map(ref => ({ [ref.getProps().name as string]: ref.getProps().value }));
-        console.log(body);
-        console.log("go to back");
+          .reduce((acc, ref) => ({ ...acc, [ref.getProps().name as string]: ref.getProps().value }), {});
+        if (this.props.store.getState().screen === Screens.SettingsChangePassword) {
+          changeUserPassword(body as UserPasswordRequestData);
+        } else {
+          this.props.store.dispatch(changeUserProfile, body);
+        }
       },
       onCloseModal: () => this.setProps({ isVisibleModal: false }),
+      name: props.store.getState().user?.displayName || "",
     });
   }
 
@@ -91,7 +112,7 @@ export class Settings extends Component<Props, Refs> {
       {{#Avatar profileMode=true changeAvatarAction=true onClick=onClickAvatar }}
         {{{BigAvatarIcon className="avatar-icon" }}}
       {{/Avatar}}
-      <h3 class="name">name</h3>
+      <h3 class="name">{{name}}</h3>
       <div class="text-fields-wrapper">
         <div class="profile-information">
           {{#each fields}}
@@ -102,7 +123,7 @@ export class Settings extends Component<Props, Refs> {
             }}}
           {{/each}}
         </div>
-        {{{ProfileFormActions type="links" links=links }}}
+        {{{SettingsFormActions type="links" links=links }}}
       </div>
     `;
   }
@@ -130,7 +151,7 @@ export class Settings extends Component<Props, Refs> {
               }}}
            {{/each}}
         </div>
-        {{{ProfileFormActions type="button"}}}
+        {{{SettingsFormActions type="button"}}}
       {{/Form}}
     `;
   }
@@ -161,5 +182,6 @@ export class Settings extends Component<Props, Refs> {
       {{/Wrapper}}
     `;
   }
-
 }
+
+export default withStore(Settings);
