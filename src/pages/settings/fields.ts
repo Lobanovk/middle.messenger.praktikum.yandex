@@ -89,7 +89,7 @@ export const FieldsPassword: TextFieldProps[] = [
   }
 ];
 
-export const Links: Record<string, string>[] = [
+export const Links: Record<string, any >[] = [
   {
     href: "/settings/change-data",
     text: "Изменить данные",
@@ -101,7 +101,7 @@ export const Links: Record<string, string>[] = [
     modification:" actions__link_custom",
   },
   {
-    href: "/",
+    href: "/logout",
     text: "Выйти",
     modification: "link_attention actions__link_custom",
   }

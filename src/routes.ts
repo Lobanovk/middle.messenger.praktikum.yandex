@@ -43,6 +43,11 @@ const routes = [
     component: Screens.SettingsChangeData,
     shouldAuthorized: true,
   },
+  {
+    path: Screens.Logout,
+    component: Screens.Logout,
+    shouldAuthorized: false,
+  }
 ];
 
 export function initRouter(router: Router, store: Store<AppState>) {

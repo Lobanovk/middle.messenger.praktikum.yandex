@@ -20,7 +20,6 @@
         position: absolute;
         top: 7px;
         left: 0;
-        height: 100%;
         transform-origin: 0 0;
         transition: color 0.15s ease-in-out, transform 0.15s ease-in-out;
     }

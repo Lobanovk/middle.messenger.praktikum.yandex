@@ -1,4 +1,4 @@
-import { Component, Router } from "core";
+import { Component } from "core";
 import { LoginFormActionsProps } from "components/login-form-actions";
 import { LoginFormInputsWrapperProps } from "components/login-form-inputs-wrapper";
 import ControlledTextField, { ControlledTextFieldProps, ControlledTextFieldIncomingProps } from "components/inputs/controlled-text-field";
@@ -14,7 +14,6 @@ import { login } from "../../services/auth";
 export type TextFieldProps = (Partial<ControlledTextFieldIncomingProps> & { ref: string })
 
 type PageProps = {
-  router: Router;
   store: Store<AppState>;
 }
 
@@ -57,20 +56,7 @@ export class Login extends Component<Props, Refs> {
           password: this.refs.passwordRef.getProps().value,
         };
         this.props.store.dispatch(login, loginData);
-        // const isValid =
-        //   this.refs.passwordRef.getProps().value === "admin" &&
-        //   this.refs.loginRef.getProps().value === "admin";
-        // if (isValid) {
-        //   console.log({
-        //     login: this.refs.loginRef.getProps().value,
-        //     password: this.refs.passwordRef.getProps().value,
-        //   });
-        //   return;
-        // }
-        // console.log(this.refs.passwordRef.getRefs());
-        // this.refs.passwordRef.getRefs().errorRef.setProps({
-        //   message: "Неверный логин или пароль"
-        // });
+        // TODO - обработка ошибок запроса
       },
     });
   }

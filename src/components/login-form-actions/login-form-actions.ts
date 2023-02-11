@@ -22,7 +22,6 @@ export class LoginFormActions extends Component<Props> {
       ...props,
       onGoToNextPage: event => {
         event.preventDefault();
-        console.log(this.props);
         this.props.router.go(this.props.link.href);
       }
     } as Props);

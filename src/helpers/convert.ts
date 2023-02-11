@@ -1,7 +1,6 @@
 import { isObject } from "./typeGards";
 
 function convertCamelCaseToSnakeCase(key: string): string {
-  console.log(key, key.replace(/[A-D]/gm, value => `_${value.toLowerCase()}`));
   return key.replace(/[A-Z]/gm, value => `_${value.toLowerCase()}`);
 }
 

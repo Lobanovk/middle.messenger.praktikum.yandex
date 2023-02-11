@@ -1,4 +1,4 @@
-import { Component, Router } from "core";
+import { Component } from "core";
 import { TextFieldProps } from "../login/login";
 import { LoginFormInputsWrapperProps } from "../../components/login-form-inputs-wrapper";
 import { LoginFormActionsProps } from "../../components/login-form-actions";
@@ -7,9 +7,9 @@ import { validation, ValidationKeys } from "../../helpers/validation";
 import ControlledTextField, { ControlledTextFieldProps } from "../../components/inputs/controlled-text-field";
 import { withStore } from "../../helpers/withStore";
 import { Store } from "../../core/Store";
+import { create } from "../../services/auth";
 
 type PageProps = {
-  router: Router;
   store: Store<AppState>;
 }
 
@@ -19,7 +19,6 @@ type Props = {
   loginInputsWrapper: LoginFormInputsWrapperProps,
   loginFormActions: LoginFormActionsProps,
   onSubmit: (event: SubmitEvent) => void;
-  router: Router;
 } & PageProps;
 
 type KeysRefs =
@@ -64,10 +63,11 @@ export class SignUp extends Component<Props, Refs> {
           .filter(value => Boolean(value));
         console.log(errors);
         if (errors.length) return;
-        const body = Object.values(this.refs).map(ref => ({
+        const body = Object.values(this.refs).reduce((acc, ref) => ({
+          ...acc,
           [ref.getProps().name as string]: ref.getProps().value
-        }));
-        console.log(body);
+        }), {});
+        this.props.store.dispatch(create, body);
       }
     });
   }

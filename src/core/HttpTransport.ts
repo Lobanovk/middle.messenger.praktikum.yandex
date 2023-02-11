@@ -76,7 +76,6 @@ class HttpTransport {
       xhr.responseType = "json";
 
       xhr.onload = function() {
-        console.log(xhr.response);
         res(xhr.response as T);
       };
 

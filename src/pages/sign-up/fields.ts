@@ -47,7 +47,7 @@ export const LoginFormInputs: TextFieldProps[] = [
     inputClassName: "text-field-login__input",
   },
   {
-    name: "lastName",
+    name: "secondName",
     type: "text",
     label: "Фамилия",
     placeholder: "Фамилия",
