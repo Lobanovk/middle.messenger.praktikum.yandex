@@ -63,6 +63,7 @@ export default class Component<P extends Props, Refs extends Record<string, Comp
     eventBus.on(Component.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Component.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Component.EVENTS.FLOW_RENDER, this._render.bind(this));
+    eventBus.on(Component.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
   }
 
   private _makePropsProxy(props: P): P & Props {
@@ -147,6 +148,13 @@ export default class Component<P extends Props, Refs extends Record<string, Comp
     Object.assign(this.props, nextProps);
   }
 
+  private _checkChildrenInDOM() {
+    for (const key in this.children) {
+      if (!document.body.contains(this.children[key].element)) {
+        delete this.children[key];
+      }
+    }
+  }
   private _render(): void {
     const fragment = this._compile();
 
@@ -157,6 +165,8 @@ export default class Component<P extends Props, Refs extends Record<string, Comp
 
     this._element = newEl as HTMLElement;
     this._addEvents();
+
+    this._checkChildrenInDOM();
   }
 
   private _removeEvents(): void {
