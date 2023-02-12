@@ -8,7 +8,7 @@ import { withStore } from "../../helpers/withStore";
 import { Store } from "../../core/Store";
 import { changeUserPassword, changeUserProfile } from "../../services/user";
 import { Screens } from "../../helpers/screenList";
-import { UserPasswordRequestData } from "../../api/users";
+import { UserPasswordRequestData } from "../../api/user";
 
 export enum PageType {
   DEFAULT = "DEFAULT",
@@ -27,10 +27,11 @@ type Props = IncomingProps & {
   onClickAvatar: () => void;
   onCloseModal: () => void;
   onSubmit: (event: SubmitEvent) => void;
-  links?: Record<string, string>[];
+  links?: Record<string, any>[];
   fields?: TextFieldProps[];
   isVisibleModal: boolean;
   name: string;
+  user: User | null;
 }
 
 type KeysRefs =
@@ -85,7 +86,13 @@ export class Settings extends Component<Props, Refs> {
     super({
       ...props,
       isVisibleModal: false,
-      links: Links,
+      links: Links.map((link: Record<string, string>) => ({
+        ...link,
+        onClick: (event: MouseEvent) => {
+          event.preventDefault();
+          window.router.go(link.href);
+        }
+      })),
       fields: getFields(props.type, props.store.getState().user, onBlur as TextFieldProps["onBlur"]),
       onClickAvatar: () => this.setProps({ isVisibleModal: true }),
       onSubmit: event => {
@@ -104,13 +111,18 @@ export class Settings extends Component<Props, Refs> {
       },
       onCloseModal: () => this.setProps({ isVisibleModal: false }),
       name: props.store.getState().user?.displayName || "",
+      user: props.store.getState().user,
     });
   }
 
   protected renderContentDefault(): string {
+    const avatar = this.props.user?.avatar ? `https://ya-praktikum.tech/api/v2/resources${this.props.user.avatar}` : "";
+    const component = `<div style="background: url('${avatar}'); width: 100%; height: 100%; background-size: cover; border-radius: inherit;"></div>`;
     return `
       {{#Avatar profileMode=true changeAvatarAction=true onClick=onClickAvatar }}
-        {{{BigAvatarIcon className="avatar-icon" }}}
+        ${avatar ? component :
+    "{{{ BigAvatarIcon className=\"avatar-icon\" }}}"
+}
       {{/Avatar}}
       <h3 class="name">{{name}}</h3>
       <div class="text-fields-wrapper">

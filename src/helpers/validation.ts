@@ -1,5 +1,5 @@
 
-export type ValidationKeys = "names" | "login" | "email" | "password" | "repeatPassword" | "phone" | "message"
+export type ValidationKeys = "names" | "login" | "email" | "password" | "repeatPassword" | "newPassword" | "phone" | "message"
 const validationRules: Record<ValidationKeys, (...args: string[]) => string> = {
   names: (value: string) => {
     const firstLetterIsUpper = value.match(/^[A-ZА-Я]/gm);
@@ -51,6 +51,7 @@ const validationRules: Record<ValidationKeys, (...args: string[]) => string> = {
     }
     return "";
   },
+  newPassword: (...args) => validationRules.repeatPassword(...args),
   phone: (value: string) => {
     const validValue = value.match(/^\+?\d{10,15}$/gm);
     if (validValue?.[0] !== value) {

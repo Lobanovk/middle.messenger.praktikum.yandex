@@ -13,7 +13,7 @@ export type UserPasswordRequestData = {
   newPassword: string;
 }
 
-export const usersApi = {
+export const userApi = {
   profile: (data: UserProfileRequestData) =>
     httpTransport.put<UserDTO | ApiError>(
       `${BASE_URL}/profile`,
@@ -22,6 +22,8 @@ export const usersApi = {
   avatar: (data: File) => {
     const body = new FormData();
     body.append("avatar", data);
+
+    console.log(body.get('avatar'));
 
     return httpTransport.put<UserDTO | ApiError>(
       `${BASE_URL}/profile/avatar`,

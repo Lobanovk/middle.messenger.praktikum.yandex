@@ -26,7 +26,6 @@ const map: Record<Screens, ComponentClass<any>> = {
   [Screens.SignUp]: SignUp,
   // @ts-expect-error is missing the following properties from type 'ComponentClass<any>': apply, call, bind, prototype, and 5 more.
   [Screens.Messenger]: Messages,
-  // @ts-expect-error is missing the following properties from type 'ComponentClass<any>': apply, call, bind, prototype, and 5 more.
   [Screens.Logout]: Logout,
   [Screens.Settings]: Settings,
   [Screens.SettingsChangeData]: Settings,

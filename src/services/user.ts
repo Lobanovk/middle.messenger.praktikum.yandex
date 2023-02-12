@@ -1,5 +1,5 @@
 import { Dispatch } from "../core/Store";
-import { UserPasswordRequestData, UserProfileRequestData, usersApi } from "../api/users";
+import { UserPasswordRequestData, UserProfileRequestData, userApi } from "../api/user";
 import { apiHasError } from "../helpers/typeGards";
 import { convertResponseToData } from "../helpers/convert";
 import { Screens } from "../helpers/screenList";
@@ -9,7 +9,7 @@ export const changeUserProfile = (
   _: AppState,
   action: UserProfileRequestData
 ) => {
-  usersApi.profile(action)
+  userApi.profile(action)
     .then(response => {
       if (apiHasError(response)) {
         throw new Error(response.reason);
@@ -24,7 +24,7 @@ export const changeUserProfile = (
 };
 
 export const changeUserPassword = (data: UserPasswordRequestData) => {
-  usersApi.password({
+  userApi.password({
     oldPassword: data.oldPassword,
     newPassword: data.newPassword
   })
@@ -40,9 +40,10 @@ export const changeUserPassword = (data: UserPasswordRequestData) => {
 export const changeUserAvatar = (
   dispatch: Dispatch<AppState>,
   _: AppState,
-  action: File
+  payload: File
 ) => {
-  usersApi.avatar(action)
+  console.log(payload, 'payload');
+  userApi.avatar(payload)
     .then(response => {
       if (apiHasError(response)) {
         throw new Error(response.reason);
@@ -50,6 +51,7 @@ export const changeUserAvatar = (
       return response;
     })
     .then(result => {
+      console.log(result);
       dispatch({ user: convertResponseToData<User>(result as PlainObject) });
     })
     .catch(err => console.error(err));
