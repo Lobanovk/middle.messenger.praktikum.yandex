@@ -1,6 +1,6 @@
 import { ApiError, UserDTO } from "./types";
 import { httpTransport } from "../core/HttpTransport";
-import { applicationJson, formData } from "./headers";
+import { applicationJson } from "./headers";
 import { convertDataForRequest } from "../helpers/convert";
 
 const BASE_URL = "/user";
@@ -23,11 +23,9 @@ export const userApi = {
     const body = new FormData();
     body.append("avatar", data);
 
-    console.log(body.get('avatar'));
-
     return httpTransport.put<UserDTO | ApiError>(
       `${BASE_URL}/profile/avatar`,
-      { data: body, headers: { ...formData } }
+      { data: body }
     );
   },
   password: (data: Omit<UserPasswordRequestData, "password">) =>
