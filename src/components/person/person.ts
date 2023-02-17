@@ -1,14 +1,14 @@
 import { Component } from "core";
+import { withStore } from "../../helpers/withStore";
+import { Dispatch } from "../../core/Store";
 
 type IncomingProps = {
-  onClick: (event: MouseEvent, component: Person) => void;
   name: string;
-  time: string;
-  lastMessageIsYour: boolean;
+  lastMessage: Record<string, any>;
   messageCount: string;
-  previewMessage: string;
   id: number;
-  selectedId: number;
+  selectedIdChat: number | null;
+  setSelectedIdChat: (id: number) => Dispatch<AppState>
 }
 
 type Props = {
@@ -17,20 +17,20 @@ type Props = {
   }
 } & Omit<IncomingProps, "onClick">
 
-export class Person extends Component<Props>{
+class Person extends Component<Props>{
   static componentName = "Person";
 
-  constructor({onClick, ...props}: IncomingProps) {
+  constructor(props: IncomingProps) {
     super({
       ...props,
       events: {
-        click: event => onClick(event, this)
+        click: () => props?.setSelectedIdChat(props.id)
       }
     });
   }
 
   protected render(): string {
-    const isSelected = this.props.id === this.props.selectedId ? "person__selected" : "";
+    const isSelected = this.props.id === this.props.selectedIdChat ? "person__selected" : "";
     return `
       <div class="divider">
         <div class="person ${isSelected}">
@@ -58,3 +58,13 @@ export class Person extends Component<Props>{
     `;
   }
 }
+
+
+export default withStore(Person)(
+  store => ({
+    selectedIdChat: store.getState().selectedIdChat
+  }),
+  store => ({
+    setSelectedIdChat: (id: number) => store.dispatch(({ selectedIdChat: id }))
+  })
+);

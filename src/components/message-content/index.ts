@@ -1,3 +1,3 @@
-import { MessageContent } from "./message-content";
+import MessageContent from "./message-content";
 
 export default MessageContent;

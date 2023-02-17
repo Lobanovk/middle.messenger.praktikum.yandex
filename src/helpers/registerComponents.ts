@@ -25,6 +25,7 @@ import {
 } from "components/icons";
 import BackToChats from "components/back-to-chats";
 import ChatWrapper from "components/layouts/chat-wrapper";
+import Pane from "components/layouts/pane";
 import SettingsFormActions from "components/settings-form-actions";
 import SettingsModal from "components/settings-modal";
 import Person from "components/person";
@@ -32,6 +33,8 @@ import MessageContent from "components/message-content";
 import MessageForm from "components/message-form";
 import MessageData from "components/message-data";
 import MessageDataItem from "components/message-data-item";
+import Chats from "components/chats";
+import ChatModal from "components/chat-modal";
 
 
 export default () => {
@@ -68,4 +71,7 @@ export default () => {
   registerComponent(MessageForm);
   registerComponent(MessageData);
   registerComponent(MessageDataItem);
+  registerComponent(Chats);
+  registerComponent(Pane);
+  registerComponent(ChatModal);
 };

@@ -10,11 +10,13 @@ import {
 import { Store } from "../../core/Store";
 import { withStore } from "../../helpers/withStore";
 import { login } from "../../services/auth";
+import { Screens } from "../../helpers/screenList";
 
 export type TextFieldProps = (Partial<ControlledTextFieldIncomingProps> & { ref: string })
 
 type PageProps = {
-  store: Store<AppState>;
+  appIsInit: AppState["appIsInit"],
+  login: (data: Record<string, string>) => Store<AppState>
 }
 
 type Props = {
@@ -51,14 +53,23 @@ export class Login extends Component<Props, Refs> {
       inputs,
       onSubmit: event => {
         event.preventDefault();
-        const loginData = {
-          login: this.refs.loginRef.getProps().value,
-          password: this.refs.passwordRef.getProps().value,
+        const loginData: Record<string, string> = {
+          login: this.refs.loginRef.getProps().value as string,
+          password: this.refs.passwordRef.getProps().value as string,
         };
-        this.props.store.dispatch(login, loginData);
+        this.props.login(loginData);
         // TODO - обработка ошибок запроса
       },
     });
+  }
+
+  componentDidMount(_props: Props) {
+    if (this.props.appIsInit) {
+      window.router.go(Screens.Messenger);
+    }
+    // if (this.props.store.getState().appIsInit) {
+    //   window.router.go(Screens.Messenger);
+    // }
   }
 
   protected render(): string {
@@ -94,4 +105,11 @@ export class Login extends Component<Props, Refs> {
   }
 }
 
-export default withStore(Login);
+export default withStore(Login)(
+  store => ({
+    appIsInit: store.getState().appIsInit,
+  }),
+  store => ({
+    login: (data: Record<string, string>) => store.dispatch(login, data)
+  })
+);

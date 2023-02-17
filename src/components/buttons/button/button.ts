@@ -3,6 +3,8 @@ import { Component } from "core";
 type IncomingProps = {
   text: string;
   onClick?: () => void;
+
+  type: string;
 }
 
 type ButtonProps = Omit<IncomingProps, "onClick"> & ComponentEvents
@@ -10,13 +12,13 @@ type ButtonProps = Omit<IncomingProps, "onClick"> & ComponentEvents
 export class Button extends Component<ButtonProps>{
   static componentName = "Button";
 
-  constructor({ onClick, ...props }: IncomingProps) {
-    super({ ...props, events: { click: onClick } });
+  constructor({ onClick, type = "primary", ...props }: IncomingProps) {
+    super({ ...props, type, events: { click: onClick } });
   }
 
   protected render(): string {
     return `
-      <button class="button button__primary" type="submit">
+      <button class="button button__{{type}}" type="submit">
           {{text}}
       </button>
     `;

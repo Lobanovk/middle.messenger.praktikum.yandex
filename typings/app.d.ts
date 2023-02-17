@@ -1,5 +1,5 @@
 import { Store } from "../src/core/Store";
-import { Router } from "express";
+import e, { Router } from "express";
 import { Screens } from "../src/helpers/screenList";
 
 declare global {
@@ -13,6 +13,8 @@ declare global {
     screen: Screens | null;
     appIsInit: boolean;
     user: User | null;
+    chats: Chat[];
+    selectedIdChat: number | null;
   };
 
   export type User = {
@@ -24,6 +26,19 @@ declare global {
     avatar: string;
     phone: string;
     email: string;
+  };
+
+  export type Chat = {
+    id: number;
+    title: string;
+    avatar: string;
+    createdBy: number;
+    unreadCount: number;
+    lastMessage?: {
+      user: Pick<User, 'firstName' | 'secondName' | 'avatar' | 'email' | 'login' | 'phone'>;
+      time: string;
+      content: string
+    }
   };
 
   export type PlainObject<T = any> = {

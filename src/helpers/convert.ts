@@ -24,6 +24,8 @@ export function convertResponseToData<C extends PlainObject>(response: PlainObje
   }
 
   return Object.entries(response)
-    .reduce((acc, [key, value]) => ({ ...acc, [convertSnakeCaseToCamelCase(key)]: value }),
+    .reduce((acc, [key, value]) => ({
+        ...acc,
+        [convertSnakeCaseToCamelCase(key)]: isObject(value) ? convertResponseToData(value) : value }),
       {}) as C;
 }

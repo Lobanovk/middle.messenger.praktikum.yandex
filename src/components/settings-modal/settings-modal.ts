@@ -1,20 +1,19 @@
 import { Component } from "core";
 import ErrorComponent from "../error-component";
 import { withStore } from "../../helpers/withStore";
-import { Store } from "../../core/Store";
 import { changeUserAvatar } from "../../services/user";
+import { Dispatch } from "../../core/Store";
 
 type IncomingProps = {
   onClose: () => void;
-  store: Store<AppState>;
+  changeUserAvatar: (data: File) => Dispatch<AppState>
 }
 
-type Props = {
+type Props = Omit<IncomingProps, "onClose"> & {
   onSubmit: (event: SubmitEvent) => void;
   file: File | null,
   onUploadFile: (event: Event) => void;
   onClick: (event: MouseEvent) => void;
-  store: IncomingProps["store"]
 }
 
 type Refs = {
@@ -34,7 +33,7 @@ class SettingsModal extends Component<Props, Refs> {
           this.refs.errorRef.setProps({ message: "Нужно выбрать файл" });
           return;
         }
-        this.props.store.dispatch(changeUserAvatar, this.props.file);
+        this.props.changeUserAvatar(this.props.file);
         onClose();
       },
       onUploadFile: (event) => {
@@ -79,5 +78,9 @@ class SettingsModal extends Component<Props, Refs> {
   }
 }
 
-// @ts-expect-error onClose must be in Props
-export default withStore(SettingsModal);
+export default withStore(SettingsModal)(
+  () => ({}),
+  store => ({
+    changeUserAvatar: (data: File) => store.dispatch(changeUserAvatar, data),
+  })
+);

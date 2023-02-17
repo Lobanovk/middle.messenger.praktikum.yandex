@@ -14,6 +14,7 @@
 @import "../components/layouts/wrapper/wrapper.css";
 @import "../components/layouts/modal/modal.css";
 @import "../components/layouts/chat-wrapper/chat-wraperr.css";
+@import "../components/layouts/pane/pane.css";
 @import "../components/login-form-actions/login-form-actions.css";
 @import "../components/login-form-inputs-wrapper/login-form-inputs-wrapper.css";
 @import "../components/back-to-chats/back-to-chats.css";
@@ -93,11 +94,16 @@ a {
   }
 
   &__input-container {
-    margin-top: 23px;
+    margin-top: 15px;
+    display: flex;
   }
 
+  &__text-field {
+      flex: 1;
+   }
+
   &__input-search {
-    padding: 10px 20px !important;
+    padding: 10px 20px;
 
     &::placeholder {
       text-align: center;

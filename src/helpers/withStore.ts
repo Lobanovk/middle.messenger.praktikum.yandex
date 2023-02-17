@@ -1,17 +1,19 @@
 import { Store } from "../core/Store";
 import { ComponentClass } from "../core";
 
-type WithStateProps = { store: Store<AppState> };
 
-export function withStore<P extends WithStateProps>(WrappedBlock: ComponentClass<P>) {
+type MapStateToProps = (store: Store<AppState>) => Partial<AppState>;
+type MapDispatchToProps = (store: Store<AppState>) => any;
+export function withStore(WrappedBlock: ComponentClass<any>) {
+
   // @ts-expect-error No base constructor has the specified
-  return class extends WrappedBlock<P> {
+  return (mapStateToProps: MapStateToProps, mapDispatchToProps?: MapDispatchToProps) => class extends WrappedBlock<P> {
     public static componentName = WrappedBlock.componentName || WrappedBlock.name;
 
-    constructor(props: P) {
+    constructor(props: any) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      super({ ...props, store: window.store });
+      super({ ...props, ...mapStateToProps(window.store), ...(mapDispatchToProps ? mapDispatchToProps(window.store) : null) });
     }
 
     __onChangeStoreCallback = () => {
@@ -21,10 +23,10 @@ export function withStore<P extends WithStateProps>(WrappedBlock: ComponentClass
        * с помощью метода mapStateToProps
        */
       // @ts-expect-error не подтягивается типизация Component
-      this.setProps({ ...this.props, store: window.store });
+      this.setProps({ ...this.props, ...mapStateToProps(window.store) });
     };
 
-    componentDidMount(props: P) {
+    componentDidMount(props: any) {
       super.componentDidMount(props);
       window.store.on("changed", this.__onChangeStoreCallback);
     }
@@ -34,5 +36,5 @@ export function withStore<P extends WithStateProps>(WrappedBlock: ComponentClass
       window.store.off("changed", this.__onChangeStoreCallback);
     }
 
-  } as ComponentClass<Omit<P, "store">>;
+  } as ComponentClass<any>;
 }

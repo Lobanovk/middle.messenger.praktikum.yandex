@@ -1,10 +1,10 @@
 import { Component } from "../../core";
 import { withStore } from "../../helpers/withStore";
-import { Store } from "../../core/Store";
 import { logout } from "../../services/auth";
+import { Store } from "../../core/Store";
 
 type PageProps = {
-  store: Store<AppState>;
+  logout: () => Store<AppState>;
 }
 class Logout extends Component<PageProps> {
   constructor(props: PageProps) {
@@ -12,7 +12,7 @@ class Logout extends Component<PageProps> {
   }
 
   componentDidMount() {
-    this.props.store.dispatch(logout);
+    this.props.logout();
   }
 
   protected render(): string {
@@ -20,4 +20,6 @@ class Logout extends Component<PageProps> {
   }
 }
 
-export default withStore(Logout);
+export default withStore(Logout)(() => ({}), (store) => ({
+  logout: () => store.dispatch(logout)
+}));

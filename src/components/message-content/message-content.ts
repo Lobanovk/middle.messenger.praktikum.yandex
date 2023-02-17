@@ -1,8 +1,9 @@
 import { Component } from "core";
 import personData from "../../data/person.json";
+import { withStore } from "../../helpers/withStore";
 
 type IncomingProps = {
-  id: number;
+  selectedIdChat: number | null;
 }
 
 type Props = IncomingProps & {
@@ -10,7 +11,7 @@ type Props = IncomingProps & {
   messages?: Record<string, any>[]
 }
 
-export class MessageContent extends Component<Props> {
+class MessageContent extends Component<Props> {
   static componentName = "MessageContent";
 
   constructor(props: IncomingProps) {
@@ -29,6 +30,9 @@ export class MessageContent extends Component<Props> {
   }
 
   protected render(): string {
+    if (!this.props.selectedIdChat) {
+      return "<p class=\"chat__empty\">Выберите чат чтобы отправить сообщение</p>";
+    }
     return `
       <div class="message-content">
         <div class="message-content__header">
@@ -55,3 +59,9 @@ export class MessageContent extends Component<Props> {
     `;
   }
 }
+
+export default withStore(MessageContent)(
+  store => ({
+    selectedIdChat: store.getState().selectedIdChat
+  })
+);

@@ -110,10 +110,10 @@ export default class Component<P extends Props, Refs extends Record<string, Comp
     this.eventBus().emit(Component.EVENTS.FLOW_CWU, this.props);
   }
 
-  private _componentDidMount(props: P) {
+  private _componentDidMount() {
     this._checkInDom();
 
-    this.componentDidMount(props);
+    this.componentDidMount(this.props);
   }
 
   componentDidMount(_props: P): void {

@@ -17,10 +17,11 @@ function queryStringify(data: Record<string, any>) {
 }
 
 type OptionsRequest = {
-    data?: Document | XMLHttpRequestBodyInit | null,
-    method: METHODS,
-    headers?: Record<string, string>,
-    timeout?: number
+  data?: Document | XMLHttpRequestBodyInit | null,
+  queryParams?: Record<string, any>,
+  method: METHODS,
+  headers?: Record<string, string>,
+  timeout?: number
 }
 
 type Options = Omit<OptionsRequest, "method">
@@ -53,7 +54,7 @@ class HttpTransport {
   }
 
   request<T>(url: string, options: OptionsRequest, timeout = 5000): Promise<T> {
-    const { method, data, headers } = options;
+    const { method, data, queryParams, headers } = options;
 
     url = `${this.baseUrl}${url}`;
 
@@ -65,8 +66,7 @@ class HttpTransport {
       xhr.withCredentials = true;
 
 
-      xhr.open(method, isGetMethod && !!data ? `${url}${queryStringify(data as Record<string, any>)}` : url, true);
-
+      xhr.open(method, isGetMethod && !!queryParams ? `${url}${queryStringify(queryParams as Record<string, any>)}` : url, true);
       if (headers) {
         Object.keys(headers).forEach(header => {
           xhr.setRequestHeader(header, headers[header]);

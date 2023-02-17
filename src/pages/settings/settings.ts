@@ -5,10 +5,9 @@ import ControlledTextField, {
 import { Fields, FieldsPassword, Links } from "./fields";
 import { validation, ValidationKeys } from "../../helpers/validation";
 import { withStore } from "../../helpers/withStore";
-import { Store } from "../../core/Store";
 import { changeUserPassword, changeUserProfile } from "../../services/user";
 import { Screens } from "../../helpers/screenList";
-import { UserPasswordRequestData } from "../../api/user";
+import { UserPasswordRequestData, UserProfileRequestData } from "../../api/user";
 
 export enum PageType {
   DEFAULT = "DEFAULT",
@@ -20,7 +19,9 @@ export type TextFieldProps = (Partial<ControlledTextFieldIncomingProps> & { ref:
 
 type IncomingProps = {
   type: PageType,
-  store: Store<AppState>,
+  user: User,
+  screen: Screens,
+  changeUserProfile: (data: UserProfileRequestData) => void;
 }
 
 type Props = IncomingProps & {
@@ -31,7 +32,6 @@ type Props = IncomingProps & {
   fields?: TextFieldProps[];
   isVisibleModal: boolean;
   name: string;
-  user: User | null;
 }
 
 type KeysRefs =
@@ -93,7 +93,7 @@ export class Settings extends Component<Props, Refs> {
           window.router.go(link.href);
         }
       })),
-      fields: getFields(props.type, props.store.getState().user, onBlur as TextFieldProps["onBlur"]),
+      fields: getFields(props.type, props.user, onBlur as TextFieldProps["onBlur"]),
       onClickAvatar: () => this.setProps({ isVisibleModal: true }),
       onSubmit: event => {
         event.preventDefault();
@@ -103,15 +103,14 @@ export class Settings extends Component<Props, Refs> {
         if (errors.length) return;
         const body = Object.values(this.refs)
           .reduce((acc, ref) => ({ ...acc, [ref.getProps().name as string]: ref.getProps().value }), {});
-        if (this.props.store.getState().screen === Screens.SettingsChangePassword) {
+        if (this.props.screen === Screens.SettingsChangePassword) {
           changeUserPassword(body as UserPasswordRequestData);
         } else {
-          this.props.store.dispatch(changeUserProfile, body);
+          this.props.changeUserProfile(body as UserProfileRequestData);
         }
       },
       onCloseModal: () => this.setProps({ isVisibleModal: false }),
-      name: props.store.getState().user?.displayName || "",
-      user: props.store.getState().user,
+      name: props.user?.displayName || "",
     });
   }
 
@@ -196,4 +195,11 @@ export class Settings extends Component<Props, Refs> {
   }
 }
 
-export default withStore(Settings);
+export default withStore(Settings)(
+  (store) => ({
+    user: store.getState().user,
+    screen: store.getState().screen,
+  }),
+  store => ({
+    changeUserProfile: (data: UserProfileRequestData) => store.dispatch(changeUserProfile, data),
+  }));

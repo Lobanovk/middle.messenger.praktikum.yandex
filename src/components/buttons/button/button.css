@@ -26,4 +26,15 @@
       color: var(--main-action-color);
     }
   }
+
+  &__action {
+    background: transparent;
+    color: white;
+    padding: 2px 0 0;
+    margin-top: 2px;
+    border: unset;
+      &:hover {
+         cursor: pointer;
+       }
+   }
 }
