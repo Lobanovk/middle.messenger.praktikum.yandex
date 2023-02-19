@@ -4,4 +4,7 @@ export const defaultState: AppState = {
   user: null,
   chats: [],
   selectedIdChat: null,
+  messages: [],
+  usersList: [],
+  selectedUser: null,
 };

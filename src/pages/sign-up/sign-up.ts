@@ -6,11 +6,11 @@ import { LoginFormActionsFields, LoginFormInputs, LoginFormInputsWrapper } from 
 import { validation, ValidationKeys } from "../../helpers/validation";
 import ControlledTextField, { ControlledTextFieldProps } from "../../components/inputs/controlled-text-field";
 import { withStore } from "../../helpers/withStore";
-import { Store } from "../../core/Store";
+import { Dispatch } from "../../core/Store";
 import { create } from "../../services/auth";
 
 type PageProps = {
-  store: Store<AppState>;
+  create: (data: any) => Dispatch<AppState>
 }
 
 
@@ -61,13 +61,12 @@ export class SignUp extends Component<Props, Refs> {
         const errors = Object.values(this.refs)
           .map(ref => ref.getRefs().errorRef.getProps().message)
           .filter(value => Boolean(value));
-        console.log(errors);
         if (errors.length) return;
         const body = Object.values(this.refs).reduce((acc, ref) => ({
           ...acc,
           [ref.getProps().name as string]: ref.getProps().value
         }), {});
-        this.props.store.dispatch(create, body);
+        this.props.create(body);
       }
     });
   }
@@ -105,4 +104,9 @@ export class SignUp extends Component<Props, Refs> {
   }
 }
 
-export default withStore(SignUp);
+export default withStore(SignUp)(
+  () => ({}),
+  store => ({
+    create: (data: any) => store.dispatch(create, data)
+  })
+);

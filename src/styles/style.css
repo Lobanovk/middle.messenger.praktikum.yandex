@@ -26,6 +26,10 @@
 @import "../components/message-form/message-form.css";
 @import "../components/message-data/message-data.css";
 @import "../components/message-data-item/message-data-item.css";
+@import "../components/searh-users-by-login/search-users-by-login.css";
+@import "../components/add-user-by-id/style.css";
+@import "../components/users-list/users-list.css";
+@import "../components/user-item/user-item.css";
 
 @import "../pages/login/login.css";
 @import "../pages/settings/settings.css";

@@ -33,3 +33,7 @@ export type ChatDTO = {
 }
 
 export type ChatsDTO = ChatDTO[];
+
+export type TokenDTO = {
+  token: string;
+}

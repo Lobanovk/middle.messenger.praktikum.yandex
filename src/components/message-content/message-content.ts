@@ -8,7 +8,12 @@ type IncomingProps = {
 
 type Props = IncomingProps & {
   name?: string,
-  messages?: Record<string, any>[]
+  DOMRect: DOMRect | null;
+  setDOMRect: (event: MouseEvent) => void;
+  onAddUser: () => void;
+  onCloseUserModal: () => void;
+  onDeleteChat: () => void;
+  isVisibleAddUserModal: boolean;
 }
 
 class MessageContent extends Component<Props> {
@@ -18,14 +23,31 @@ class MessageContent extends Component<Props> {
     super({
       ...props,
       name: "",
-      messages: [],
+      DOMRect: null,
+      isVisibleAddUserModal: false,
+      setDOMRect: event => {
+        const el = event.target as HTMLElement;
+        if (this.props.DOMRect) {
+          this.setProps({ DOMRect: null });
+        } else {
+          this.setProps({ DOMRect: el.getBoundingClientRect() });
+        }
+      },
+      onAddUser: () => {
+        this.setProps({ isVisibleAddUserModal: true, DOMRect: null });
+      },
+      onCloseUserModal: () => {
+        this.setProps({ isVisibleAddUserModal: false });
+      },
+      onDeleteChat: () => {
+
+      }
     });
   }
 
   componentDidMount() {
     this.setProps({
       name: personData.personName,
-      messages: personData.messages
     });
   }
 
@@ -41,20 +63,30 @@ class MessageContent extends Component<Props> {
             <h2 class="message-content__person-name">{{name}}</h2>
           </div>
           <div class="message-content__header-actions">
-            {{#FabButton modification="fab-button_transparent fab-button_small"}}
+            {{#FabButton onClick=setDOMRect modification="fab-button_transparent fab-button_small"}}
               {{{MoreVertIcon className="chat-content__icon"}}}
             {{/FabButton}}
+            {{#if DOMRect}}
+              {{# Pane DOMRect=DOMRect type="right"  }}
+                {{{Button
+                    text="Добавить пользователя"
+                    onClick=onAddUser
+                    type="action"
+                }}}
+                {{{Button
+                    text="Удалить чат"
+                    onClick=onDeleteChat
+                    type="action"
+                }}}
+              {{/ Pane}}
+               {{/if}}
           </div>
         </div>
-        <div class="message-content__main">
-          {{#each messages}}
-            {{{MessageData
-                time=this.time
-                messages=this.messages
-            }}}
-          {{/each}}
-        </div>
+        {{{MessageContentData}}}
         {{{MessageForm}}}
+        {{#if isVisibleAddUserModal}}
+          {{{AddUserModal onClose=onCloseUserModal}}}
+        {{/if}}
       </div>
     `;
   }

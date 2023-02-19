@@ -42,7 +42,6 @@ export const changeUserAvatar = (
   _: AppState,
   payload: File
 ) => {
-  console.log(payload, 'payload');
   userApi.avatar(payload)
     .then(response => {
       if (apiHasError(response)) {
@@ -55,4 +54,22 @@ export const changeUserAvatar = (
       dispatch({ user: convertResponseToData<User>(result as PlainObject) });
     })
     .catch(err => console.error(err));
+};
+
+export const getUsersList = (
+  dispatch: Dispatch<AppState>,
+  _: AppState,
+  payload: { login: string }
+) => {
+  userApi.searchUser(payload)
+    .then(response => {
+      if(apiHasError(response)) {
+        throw new Error(response.reason);
+      }
+      return response;
+    })
+    .then(result => {
+      dispatch({ usersList: result.map(convertResponseToData<User>) });
+    })
+    .catch(error => console.error(error));
 };

@@ -35,6 +35,12 @@ import MessageData from "components/message-data";
 import MessageDataItem from "components/message-data-item";
 import Chats from "components/chats";
 import ChatModal from "components/chat-modal";
+import MessageContentData from "components/message-content-data";
+import AddUserModal from "components/add-user-modal";
+import SearchUsersByLogin from "components/searh-users-by-login";
+import UserItem from "../components/user-item";
+import AddUserById from "../components/add-user-by-id";
+import UsersList from "../components/users-list";
 
 
 export default () => {
@@ -74,4 +80,10 @@ export default () => {
   registerComponent(Chats);
   registerComponent(Pane);
   registerComponent(ChatModal);
+  registerComponent(MessageContentData);
+  registerComponent(AddUserModal);
+  registerComponent(SearchUsersByLogin);
+  registerComponent(UserItem);
+  registerComponent(AddUserById);
+  registerComponent(UsersList);
 };

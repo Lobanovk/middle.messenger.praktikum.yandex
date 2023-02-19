@@ -71,7 +71,7 @@ class Chats extends Component<Props, Refs> {
                 {{{MoreVertIcon className="chat-content__icon"}}}
               {{/FabButton}}
               {{#if DOMRect}}
-              {{# Pane DOMRect=DOMRect  }}
+              {{# Pane DOMRect=DOMRect type="left"  }}
                 {{{Link
                   text="Профиль"
                   href="/settings"
@@ -94,7 +94,8 @@ class Chats extends Component<Props, Refs> {
                 id=${chat.id}
                 name="${chat.title}"
                 messageCount=${chat.unreadCount}
-                lastMessage=${chat.lastMessage}
+                lastMessageContent="${chat.lastMessage?.content}"
+                lastMessageUser="${chat.lastMessage?.user?.login}"
               }}}
               `, "") }
           </div>

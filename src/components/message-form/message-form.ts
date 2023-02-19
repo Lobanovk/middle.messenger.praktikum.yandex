@@ -1,5 +1,6 @@
 import { Component } from "core";
 import ControlledTextField from "../inputs/controlled-text-field";
+import webSocketTransport from "../../core/WebSocketTransport";
 
 type Props = {
   onSubmit: (event: SubmitEvent) => void;
@@ -22,6 +23,10 @@ export class MessageForm extends Component<Props, Refs> {
           return;
         }
         console.log(this.refs.messageRef.getProps().value);
+        webSocketTransport.sendMessage({
+          type: "message",
+          content: this.refs.messageRef.getProps().value as string
+        });
       }
     });
   }

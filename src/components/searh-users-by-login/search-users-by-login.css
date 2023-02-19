@@ -1,0 +1,11 @@
+.search-users-by-login {
+  margin-top: 35px;
+  display: flex;
+  position: relative;
+
+  &__button {
+    padding: 0;
+    width: 100px;
+    margin-left: 25px;
+  }
+}

@@ -3,8 +3,10 @@ import { withStore } from "../../helpers/withStore";
 import { Dispatch } from "../../core/Store";
 
 type IncomingProps = {
+  user: User;
   name: string;
-  lastMessage: Record<string, any>;
+  lastMessageContent: string;
+  lastMessageUser: string;
   messageCount: string;
   id: number;
   selectedIdChat: number | null;
@@ -31,6 +33,9 @@ class Person extends Component<Props>{
 
   protected render(): string {
     const isSelected = this.props.id === this.props.selectedIdChat ? "person__selected" : "";
+    const lastMessageYours =
+      this.props.lastMessageUser === this.props.user.login ?
+        "<span class=\"person__prefix\">Вы: </span>" : "";
     return `
       <div class="divider">
         <div class="person ${isSelected}">
@@ -45,7 +50,7 @@ class Person extends Component<Props>{
                 </div>
                 <div class="person__row">
                   <p class="person__preview-message">
-                    {{#if lastMessageIsYour}}<span class="person__prefix">Вы: </span>{{/if}}{{previewMessage}}
+                    ${lastMessageYours}{{lastMessageContent}}
                   </p>
                   {{#if messageCount}}
                     <p class="person__message-count">{{messageCount}}</p>
@@ -62,7 +67,8 @@ class Person extends Component<Props>{
 
 export default withStore(Person)(
   store => ({
-    selectedIdChat: store.getState().selectedIdChat
+    selectedIdChat: store.getState().selectedIdChat,
+    user: store.getState().user
   }),
   store => ({
     setSelectedIdChat: (id: number) => store.dispatch(({ selectedIdChat: id }))

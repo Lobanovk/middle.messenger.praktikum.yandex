@@ -6,7 +6,7 @@ type Events = Values<typeof Component.EVENTS>
 
 type Props = { [key: string]: any }
 
-export interface ComponentClass<P extends Props> extends Function {
+export interface ComponentClass<P extends Props> {
   new (props: P): Component<P>;
   componentName?: string;
 }
@@ -135,10 +135,12 @@ export default class Component<P extends Props, Refs extends Record<string, Comp
 
   _componentWillUnmount() {
     this.eventBus().destroy();
-    this.componentWillUnmount();
+    this.componentWillUnmount(this.props);
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount(_props: P) {
+
+  }
 
   setProps(nextProps: Partial<P>): void {
     if(!nextProps) {

@@ -15,6 +15,10 @@ declare global {
     user: User | null;
     chats: Chat[];
     selectedIdChat: number | null;
+    messages: Message[];
+
+    usersList: User[];
+    selectedUser: User | null;
   };
 
   export type User = {
@@ -40,6 +44,14 @@ declare global {
       content: string
     }
   };
+
+  export type Message = {
+    id: string;
+    time: string;
+    userId: string;
+    content: string;
+    type: string;
+  }
 
   export type PlainObject<T = any> = {
     [k in string]: T;

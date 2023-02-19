@@ -10,6 +10,9 @@
   background: var(--chats-background-color);
 
   &_hide {
-     display: none;
+    background: transparent;
+   & > button, a {
+        color: transparent;
+     }
   }
 }

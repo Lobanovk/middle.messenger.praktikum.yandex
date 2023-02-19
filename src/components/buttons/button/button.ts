@@ -5,6 +5,7 @@ type IncomingProps = {
   onClick?: () => void;
 
   type: string;
+  className: string
 }
 
 type ButtonProps = Omit<IncomingProps, "onClick"> & ComponentEvents
@@ -18,7 +19,7 @@ export class Button extends Component<ButtonProps>{
 
   protected render(): string {
     return `
-      <button class="button button__{{type}}" type="submit">
+      <button class="button button__{{type}} {{className}}" type="submit">
           {{text}}
       </button>
     `;

@@ -7,7 +7,7 @@ type MapDispatchToProps = (store: Store<AppState>) => any;
 export function withStore(WrappedBlock: ComponentClass<any>) {
 
   // @ts-expect-error No base constructor has the specified
-  return (mapStateToProps: MapStateToProps, mapDispatchToProps?: MapDispatchToProps) => class extends WrappedBlock<P> {
+  return (mapStateToProps: MapStateToProps, mapDispatchToProps?: MapDispatchToProps) => class extends WrappedBlock<any> {
     public static componentName = WrappedBlock.componentName || WrappedBlock.name;
 
     constructor(props: any) {

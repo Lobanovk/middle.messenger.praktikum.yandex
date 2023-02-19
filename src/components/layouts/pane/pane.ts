@@ -3,6 +3,7 @@ import "./pane.css";
 
 type IncomingProps = {
   DOMRect: DOMRect | null;
+  type: "left" | "right";
 }
 
 type Props = IncomingProps;
@@ -24,7 +25,11 @@ export class Pane extends Component<Props> {
         indent = _props.DOMRect.y - element.clientHeight - 10;
       }
       element.style.top = indent + "px";
-      element.style.left = _props.DOMRect.left + "px";
+      if (this.props.type === "right") {
+        element.style.left = (_props.DOMRect.left - element.clientWidth - 24) + "px";
+      } else {
+        element.style.left = _props.DOMRect.left + "px";
+      }
       element.classList.remove("pane-abs_hide");
     }
   }
