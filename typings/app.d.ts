@@ -1,6 +1,7 @@
 import { Store } from "../src/core/Store";
 import e, { Router } from "express";
 import { Screens } from "../src/helpers/screenList";
+import WebSocketTransport from "../src/core/WebSocketTransport";
 
 declare global {
   export type Nullable<T> = T | null;
@@ -19,6 +20,8 @@ declare global {
 
     usersList: User[];
     selectedUser: User | null;
+
+    socket: WebSocketTransport | null;
   };
 
   export type User = {

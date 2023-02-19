@@ -41,6 +41,8 @@ import SearchUsersByLogin from "components/searh-users-by-login";
 import UserItem from "../components/user-item";
 import AddUserById from "../components/add-user-by-id";
 import UsersList from "../components/users-list";
+import MessageContentInfo from "../components/message-content-info";
+import MessagesList from "../components/messages-list";
 
 
 export default () => {
@@ -86,4 +88,6 @@ export default () => {
   registerComponent(UserItem);
   registerComponent(AddUserById);
   registerComponent(UsersList);
+  registerComponent(MessageContentInfo);
+  registerComponent(MessagesList);
 };

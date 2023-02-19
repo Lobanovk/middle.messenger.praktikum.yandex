@@ -1,3 +1,3 @@
-import { MessageForm } from "./message-form";
+import MessageForm from "./message-form";
 
 export default MessageForm;

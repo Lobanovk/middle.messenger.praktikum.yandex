@@ -3,7 +3,7 @@ import { ChatRequestData, chatsApi } from "../api/chats";
 
 import { apiHasError } from "../helpers/typeGards";
 import { convertResponseToData } from "../helpers/convert";
-import webSocketTransport from "../core/WebSocketTransport";
+
 
 
 export const getList = (
@@ -65,30 +65,4 @@ export const addUserInChat = (
       })
       .catch(error => console.error(error));
   }
-};
-export const getToken = (
-  dispatch: Dispatch<AppState>,
-  state: AppState,
-) => {
-  const { user, selectedIdChat, messages } = state;
-  chatsApi.getToken({ id: selectedIdChat as number })
-    .then(response => {
-      if (apiHasError(response)) {
-        throw new Error(response.reason);
-      }
-      return response;
-    })
-    .then(result => {
-
-      webSocketTransport.openConnection({
-        userId: user?.id as number,
-        chatId: selectedIdChat as number,
-        token: result.token
-      }, (event) => {
-        if (event.data.type === "message") {
-
-        }
-      });
-    })
-    .catch(error => console.error(error));
 };

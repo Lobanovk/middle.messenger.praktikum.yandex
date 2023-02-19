@@ -20,14 +20,22 @@ class WebSocketTransport {
 
   eventBus: EventBus<Events>;
   private socket: WebSocket | null;
-  url: string;
+  private readonly url = "wss://ya-praktikum.tech/ws/chats";
+  private static _instance: WebSocketTransport | null = null;
   intervalId: ReturnType<typeof setInterval> | null = null;
-  constructor(url: string) {
+  constructor() {
     this.eventBus = new EventBus<Events>();
-    this.url = url;
     this.socket = null;
 
     this._registerEvents(this.eventBus);
+  }
+
+  static get instance() {
+    if (this._instance) {
+      return this._instance;
+    }
+    this._instance = new this();
+    return this._instance;
   }
 
   private _registerEvents(eventBus: EventBus<Events>) {
@@ -48,22 +56,32 @@ class WebSocketTransport {
     socket.removeEventListener("error", this._error.bind(this));
   }
 
-  openConnection(options: OptionsOpenConnection, callback: (message: MessageEvent) => void) {
+  openConnection(options: OptionsOpenConnection, callbacks: {
+    getMessage: (message: MessageEvent) => void;
+    clear: () => void;
+  }) {
+    if (this.socket?.readyState === WebSocket.OPEN) {
+      this.closeConnection(callbacks.clear);
+    }
     this.socket = new WebSocket(`${this.url}/${options.userId}/${options.chatId}/${options.token}`);
     this._registerListeners(this.socket);
-    this._getMessage = callback;
+    this._getMessage = callbacks.getMessage;
     this.socket.addEventListener("message", this._getMessage);
+
   }
 
   sendMessage(message: Message) {
     this.eventBus.emit(WebSocketTransport.EVENTS.SEND_MESSAGE, message);
   }
 
-  closeConnection(callback: any) {
-    if (this.socket !== null) {
-      this.socket.close();
-      callback();
-    }
+  getOldMessages() {
+    this.eventBus.emit(WebSocketTransport.EVENTS.SEND_MESSAGE, { content: "0", type: "get old" });
+  }
+
+  closeConnection(callback: () => void) {
+    this.socket?.close();
+    callback();
+    this._destroy();
   }
 
   _destroy() {
@@ -82,6 +100,7 @@ class WebSocketTransport {
 
   private _openConnection() {
     this.eventBus.emit(WebSocketTransport.EVENTS.SEND_PING);
+    this.eventBus.emit(WebSocketTransport.EVENTS.SEND_MESSAGE, { content: "0", type: "get old" });
   }
 
   private _sendPing() {
@@ -109,10 +128,8 @@ class WebSocketTransport {
       console.log("Обрыв соединения");
     }
     console.log(`Код: ${event.code} | Причина: ${event.reason}`);
-    this._destroy();
   }
 
 }
 
-const webSocketTransport = new WebSocketTransport("wss://ya-praktikum.tech/ws/chats");
-export default webSocketTransport;
+export default WebSocketTransport;

@@ -1,6 +1,7 @@
 import { getDefaultPropsComponent, getScreenComponent, Screens } from "./helpers/screenList";
 import { renderDOM, Router } from "core";
 import { Store } from "./core/Store";
+import { changePage } from "./services/router";
 
 const routes = [
   {
@@ -57,12 +58,12 @@ export function initRouter(router: Router, store: Store<AppState>) {
       const currentScreen = !!store.getState().screen;
 
       if (isAuthorized || !route.shouldAuthorized) {
-        store.dispatch({ screen: route.component });
+        store.dispatch(changePage, { screen: route.component });
         return;
       }
 
       if (!currentScreen) {
-        store.dispatch({ screen: Screens.Login });
+        store.dispatch(changePage, { screen: Screens.Login });
       }
     });
   });

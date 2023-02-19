@@ -1,32 +1,45 @@
 import { Component } from "core";
-import { withWebSocket } from "../../helpers/withWebSocket";
+import { withStore } from "../../helpers/withStore";
+import { createSocketConnection } from "../../services/socket";
+import { Dispatch } from "../../core/Store";
 
-type IncomingProps = any;
-
-type Props = IncomingProps & {
-  messages?: Record<string, any>[]
+type IncomingProps = {
+  createConnection: () => Dispatch<AppState>
 };
+
+type Props = IncomingProps;
 class MessageContentData extends Component<Props> {
   static componentName = "MessageContentData";
   constructor(props: IncomingProps) {
     super({
       ...props,
-      messages: []
     });
-  };
+  }
+
+  componentDidMount(_props: Props) {
+    super.componentDidMount(_props);
+    _props.createConnection();
+  }
 
   protected render(): string {
     return `
       <div class="message-content__main">
-        {{#each messages}}
-          {{{MessageData
-              time=this.time
-              messages=this.messages
-          }}}
-        {{/each}}
+        {{{MessagesList}}}
       </div>
     `;
   }
 }
 
-export default withWebSocket(MessageContentData);
+export default withStore(MessageContentData)(
+  () => ({}),
+  store => ({
+    createConnection: () => store.dispatch(createSocketConnection),
+  })
+);
+
+//        {{#each messages}}
+//           {{{MessageData
+//               time=this.time
+//               messages=this.messages
+//           }}}
+//         {{/each}}

@@ -7,4 +7,5 @@ export const defaultState: AppState = {
   messages: [],
   usersList: [],
   selectedUser: null,
+  socket: null,
 };
