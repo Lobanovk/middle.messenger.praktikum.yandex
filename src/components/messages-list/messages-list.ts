@@ -13,7 +13,6 @@ class MessagesList extends Component<Props> {
   }
 
   protected render(): string {
-    console.log(this.props.messages);
     return `
     <div>
         {{#each messages}}

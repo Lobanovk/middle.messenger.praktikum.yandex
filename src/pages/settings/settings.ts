@@ -119,9 +119,7 @@ export class Settings extends Component<Props, Refs> {
     const component = `<div style="background: url('${avatar}'); width: 100%; height: 100%; background-size: cover; border-radius: inherit;"></div>`;
     return `
       {{#Avatar profileMode=true changeAvatarAction=true onClick=onClickAvatar }}
-        ${avatar ? component :
-    "{{{ BigAvatarIcon className=\"avatar-icon\" }}}"
-}
+        ${avatar ? component : "{{{ BigAvatarIcon className=\"avatar-icon\" }}}"}
       {{/Avatar}}
       <h3 class="name">{{name}}</h3>
       <div class="text-fields-wrapper">

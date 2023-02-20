@@ -1,5 +1,4 @@
 import { Store } from "../src/core/Store";
-import e, { Router } from "express";
 import { Screens } from "../src/helpers/screenList";
 import WebSocketTransport from "../src/core/WebSocketTransport";
 
@@ -16,6 +15,9 @@ declare global {
     user: User | null;
     chats: Chat[];
     selectedIdChat: number | null;
+    selectedNameChat: string | null;
+    selectedAvatarChat: string | null;
+    chat: Chat | null;
     messages: Message[];
 
     usersList: User[];

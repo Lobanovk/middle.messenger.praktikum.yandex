@@ -137,3 +137,14 @@ a {
     color: var(--white-color);
   }
 }
+
+.pane-button {
+  color: var(--main-text-color);
+  padding: 3px 5px;
+  border-radius: unset;
+  &:hover {
+    cursor: pointer;
+    color: var(--secondary-text-color);
+    background: var(--link-chats-color);
+  }
+}

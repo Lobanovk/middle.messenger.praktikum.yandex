@@ -2,7 +2,7 @@ import { Dispatch } from "../core/Store";
 import { chatsApi } from "../api/chats";
 import { apiHasError } from "../helpers/typeGards";
 import WebSocketTransport from "../core/WebSocketTransport";
-import { convertResponseToData } from "../helpers/convert";
+import { convertResponseToData, parseDate } from "../helpers/convert";
 const parseMessage = (
   dispatch: Dispatch<AppState>,
   state: AppState,
@@ -10,10 +10,16 @@ const parseMessage = (
 ) => {
   const { messages } = state;
   if (Array.isArray(payload)) {
-    dispatch({ messages: payload.map(convertResponseToData<Message>).reverse() });
+    dispatch({ messages: payload.map( value => ({
+      ...convertResponseToData<Message>(value),
+      time: parseDate(value.time)
+    })).reverse() });
   } else {
     if (payload.type === "message") {
-      const newMessages = [...messages, convertResponseToData<Message>(payload)];
+      const newMessages = [...messages, {
+        ...convertResponseToData<Message>(payload),
+        time: parseDate(payload.time)
+      }];
       dispatch({ messages: newMessages });
     }
   }

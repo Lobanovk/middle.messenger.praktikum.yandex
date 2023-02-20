@@ -8,9 +8,10 @@ type IncomingProps = {
   lastMessageContent: string;
   lastMessageUser: string;
   messageCount: string;
+  avatar: string;
   id: number;
   selectedIdChat: number | null;
-  setSelectedIdChat: (id: number) => Dispatch<AppState>
+  setSelectedChatInformation: (data: { id: number, name: string, avatar: string }) => Dispatch<AppState>
 }
 
 type Props = {
@@ -26,7 +27,12 @@ class Person extends Component<Props>{
     super({
       ...props,
       events: {
-        click: () => props?.setSelectedIdChat(props.id)
+        click: () =>
+          props?.setSelectedChatInformation({
+            id: props.id,
+            name: props.name,
+            avatar: props.avatar,
+          })
       }
     });
   }
@@ -71,6 +77,7 @@ export default withStore(Person)(
     user: store.getState().user
   }),
   store => ({
-    setSelectedIdChat: (id: number) => store.dispatch(({ selectedIdChat: id }))
+    setSelectedChatInformation: (data: { id: number, name: string, avatar: string }) =>
+      store.dispatch(({ selectedIdChat: data.id, selectedNameChat: data.name, selectedAvatarChat: data.avatar }))
   })
 );

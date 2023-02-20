@@ -75,13 +75,14 @@ class Chats extends Component<Props, Refs> {
                 {{{Link
                   text="Профиль"
                   href="/settings"
-                  modification="link_profile"
+                  modification="pane-button"
                   onClick=onGoToSettings
                 }}}
                 {{{Button
                     text="Новый чат"
                     onClick=onCreateNewChat
                     type="action"
+                    className="pane-button"
                 }}}
               {{/ Pane}}
               {{/if}}
@@ -89,15 +90,16 @@ class Chats extends Component<Props, Refs> {
           </div>
           <div class="chats-list__content">
 <!--            // todo поменять в Person логику lastMessage-->
-            ${ this.props.chats.reduce((components, chat) => components += `
+            ${ this.props.chats.map(chat => `
               {{{Person
                 id=${chat.id}
                 name="${chat.title}"
+                avatar="${chat.avatar}"
                 messageCount=${chat.unreadCount}
-                lastMessageContent="${chat.lastMessage?.content}"
-                lastMessageUser="${chat.lastMessage?.user?.login}"
+                lastMessageContent="${chat.lastMessage?.content || ""}"
+                lastMessageUser="${chat.lastMessage?.user?.login || ""}"
               }}}
-              `, "") }
+              `).join("") }
           </div>
           {{#if isVisibleModal}}
             {{{ChatModal onClose=onClose}}}

@@ -25,7 +25,18 @@ export function convertResponseToData<C extends PlainObject>(response: PlainObje
 
   return Object.entries(response)
     .reduce((acc, [key, value]) => ({
-        ...acc,
-        [convertSnakeCaseToCamelCase(key)]: isObject(value) ? convertResponseToData(value) : value }),
-      {}) as C;
+      ...acc,
+      [convertSnakeCaseToCamelCase(key)]: isObject(value) ? convertResponseToData(value) : value }),
+    {}) as C;
+}
+
+export function parseDate(value: string) {
+  const date = new Date(value);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1 ;
+  const day = date.getDate();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+
+  return `${day}.${month < 10 ? "0" + month : month}.${year} ${hours}:${minutes}`;
 }

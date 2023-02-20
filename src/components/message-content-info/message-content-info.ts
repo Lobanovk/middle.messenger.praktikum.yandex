@@ -1,20 +1,25 @@
 import { Component } from "../../core";
+import { withStore } from "../../helpers/withStore";
+
+type IncomingProps = {
+  selectedNameChat?: string,
+  selectedAvatarChat?: string;
+}
 
 type Props = {
-  name?: string,
   DOMRect: DOMRect | null;
   setDOMRect: (event: MouseEvent) => void;
   onAddUser: () => void;
   onCloseUserModal: () => void;
   onDeleteChat: () => void;
   isVisibleAddUserModal: boolean;
-}
+} & IncomingProps
 class MessageContentInfo extends Component<Props>{
   static componentName = "MessageContentInfo";
 
-  constructor() {
+  constructor(props: IncomingProps) {
     super({
-      name: "",
+      ...props,
       DOMRect: null,
       isVisibleAddUserModal: false,
       setDOMRect: event => {
@@ -41,7 +46,7 @@ class MessageContentInfo extends Component<Props>{
       <div class="message-content__header">
         <div class="message-content__person">
           {{{Avatar}}}
-          <h2 class="message-content__person-name">{{name}}</h2>
+          <h2 class="message-content__person-name">{{selectedNameChat}}</h2>
         </div>
         <div class="message-content__header-actions">
           {{#FabButton onClick=setDOMRect modification="fab-button_transparent fab-button_small"}}
@@ -53,11 +58,13 @@ class MessageContentInfo extends Component<Props>{
                   text="Добавить пользователя"
                   onClick=onAddUser
                   type="action"
+                  className="pane-button"
               }}}
               {{{Button
                   text="Удалить чат"
                   onClick=onDeleteChat
                   type="action"
+                  className="pane-button"
               }}}
             {{/ Pane}}
              {{/if}}
@@ -70,4 +77,9 @@ class MessageContentInfo extends Component<Props>{
   }
 }
 
-export default MessageContentInfo;
+export default withStore(MessageContentInfo)(
+  store => ({
+    selectedNameChat: store.getState().selectedNameChat,
+    selectedAvatarChat: store.getState().selectedAvatarChat,
+  })
+);

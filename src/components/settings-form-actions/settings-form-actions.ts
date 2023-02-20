@@ -5,7 +5,6 @@ type IncomingProps = {
   links?: Record<string, any>[];
   className?: string;
 }
-// todo прервать перезагрузку по линкам, так как не соответвествует правильной работе
 export class SettingsFormActions extends Component<IncomingProps> {
   static componentName = "SettingsFormActions";
 

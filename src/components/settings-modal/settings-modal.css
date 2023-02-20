@@ -1,28 +1,28 @@
 @import "../../styles/vars.css";
 
 .pane {
-    box-sizing: border-box;
-    width: 340px;
-    border-radius: 12px;
-    background: var(--white-color);
-    padding: 40px 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  box-sizing: border-box;
+  width: 340px;
+  border-radius: 12px;
+  background: var(--white-color);
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    &__title {
-        color: var(--main-text-color);
-        font-size: 15px;
-        font-weight: 500;
-    }
+  &__title {
+    color: var(--main-text-color);
+    font-size: 15px;
+    font-weight: 500;
+  }
 
-    &__content {
-        margin: 45px 0;
-    }
+  &__content {
+    margin: 45px 0;
+  }
 
-    &__upload-file {
-        font-size: 14px;
-        text-align: center;
-        color: var(--secondary-text-color);
-    }
+  &__upload-file {
+    font-size: 14px;
+    text-align: center;
+    color: var(--secondary-text-color);
+  }
 }
