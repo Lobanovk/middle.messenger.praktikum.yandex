@@ -1,4 +1,4 @@
-@import "../../styles/vars.css";
+@import url("../../styles/vars.css");
 
 
 .card {
@@ -22,6 +22,7 @@
 
 .text-field-login {
     &__input {
+        /* stylelint-disable */
         &:focus ~ .text-field__label,
         &:not(:placeholder-shown) ~ .text-field__label {
             transform: scale(0.85) translateY(-15px);

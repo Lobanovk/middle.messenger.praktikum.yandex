@@ -1,7 +1,7 @@
 .users-list {
   max-height: 140px;
   background: white;
-  box-shadow: 4px 4px 15px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 15px 0 rgb(34 60 80 / 0.2);
   border-radius: 4px;
   position: absolute;
   width: 155px;

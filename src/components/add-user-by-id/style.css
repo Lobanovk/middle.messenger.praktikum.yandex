@@ -1,4 +1,4 @@
-@import "../../styles/vars.css";
+@import url("../../styles/vars.css");
 
 .add-user-by-id {
   margin-top: 40px;
@@ -6,6 +6,7 @@
   justify-content: space-between;
   min-height: 33px;
   width: 100%;
+
   &__user-login {
     font-size: 14px;
     font-weight: 500;

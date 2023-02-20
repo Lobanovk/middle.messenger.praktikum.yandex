@@ -1,39 +1,37 @@
-@import "normalize.css/normalize.css";
-@import "https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,300;0,400;0,600;1,100&display=swap";
-@import "./vars.css";
-
-@import "../components/avatar/avatar.css";
-@import "../components/buttons/button/button.css";
-@import "../components/buttons/fab-button/fab-button.css";
-@import "../components/inputs/text-field/text-field.css";
-@import "../components/inputs/input/input.css";
-@import "../components/inputs/download-field/download-field.css";
-@import "../components/link/link.css";
-@import "../components/text/text.css";
-@import "../components/error-component/error-component.css";
-@import "../components/layouts/wrapper/wrapper.css";
-@import "../components/layouts/modal/modal.css";
-@import "../components/layouts/chat-wrapper/chat-wraperr.css";
-@import "../components/layouts/pane/pane.css";
-@import "../components/login-form-actions/login-form-actions.css";
-@import "../components/login-form-inputs-wrapper/login-form-inputs-wrapper.css";
-@import "../components/back-to-chats/back-to-chats.css";
-@import "../components/settings-form-actions/settings-form-actions.css";
-@import "../components/settings-modal/settings-modal.css";
-@import "../components/card-error/card-error.css";
-@import "../components/person/person.css";
-@import "../components/message-content/message-content.css";
-@import "../components/message-form/message-form.css";
-@import "../components/message-data/message-data.css";
-@import "../components/message-data-item/message-data-item.css";
-@import "../components/searh-users-by-login/search-users-by-login.css";
-@import "../components/add-user-by-id/style.css";
-@import "../components/users-list/users-list.css";
-@import "../components/user-item/user-item.css";
-@import "../components/chat-users-list/chat-users-list.css";
-
-@import "../pages/login/login.css";
-@import "../pages/settings/settings.css";
+@import url("normalize.css/normalize.css");
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,300;0,400;0,600;1,100&display=swap");
+@import url("./vars.css");
+@import url("../components/avatar/avatar.css");
+@import url("../components/buttons/button/button.css");
+@import url("../components/buttons/fab-button/fab-button.css");
+@import url("../components/inputs/text-field/text-field.css");
+@import url("../components/inputs/input/input.css");
+@import url("../components/inputs/download-field/download-field.css");
+@import url("../components/link/link.css");
+@import url("../components/text/text.css");
+@import url("../components/error-component/error-component.css");
+@import url("../components/layouts/wrapper/wrapper.css");
+@import url("../components/layouts/modal/modal.css");
+@import url("../components/layouts/chat-wrapper/chat-wraperr.css");
+@import url("../components/layouts/pane/pane.css");
+@import url("../components/login-form-actions/login-form-actions.css");
+@import url("../components/login-form-inputs-wrapper/login-form-inputs-wrapper.css");
+@import url("../components/back-to-chats/back-to-chats.css");
+@import url("../components/settings-form-actions/settings-form-actions.css");
+@import url("../components/settings-modal/settings-modal.css");
+@import url("../components/card-error/card-error.css");
+@import url("../components/person/person.css");
+@import url("../components/message-content/message-content.css");
+@import url("../components/message-form/message-form.css");
+@import url("../components/message-data/message-data.css");
+@import url("../components/message-data-item/message-data-item.css");
+@import url("../components/searh-users-by-login/search-users-by-login.css");
+@import url("../components/add-user-by-id/style.css");
+@import url("../components/users-list/users-list.css");
+@import url("../components/user-item/user-item.css");
+@import url("../components/chat-users-list/chat-users-list.css");
+@import url("../pages/login/login.css");
+@import url("../pages/settings/settings.css");
 
 body {
   margin: 0;
@@ -66,9 +64,8 @@ a {
 .main-content {
   flex: 1;
   background: rgb(128 61 226);
-  background: linear-gradient(115deg, rgb(128 61 226 / 100%) 0%, rgb(238 134 99 / 100%) 67%, rgb(251 246 227 / 100%) 100%);
+  background: linear-gradient(115deg, rgb(128 61 226 / 1) 0%, rgb(238 134 99 / 1) 67%, rgb(251 246 227 / 1) 100%);
   height: 100vh;
-
 }
 
 .name {
@@ -143,6 +140,7 @@ a {
   color: var(--main-text-color);
   padding: 3px 5px;
   border-radius: unset;
+
   &:hover {
     cursor: pointer;
     color: var(--secondary-text-color);

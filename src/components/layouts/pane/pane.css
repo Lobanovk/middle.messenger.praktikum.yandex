@@ -1,4 +1,4 @@
-@import "../../../styles/vars.css";
+@import url("../../../styles/vars.css");
 
 .pane-abs {
   position: absolute;
@@ -11,6 +11,7 @@
 
   &_hide {
     background: transparent;
+
    & > button, a {
         color: transparent;
      }

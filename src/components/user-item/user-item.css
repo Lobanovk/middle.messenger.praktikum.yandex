@@ -1,17 +1,20 @@
-@import "../../styles/vars.css";
+@import url("../../styles/vars.css");
 
 .user-item {
   border-bottom: 1px solid var(--main-text-color);
   padding: 3px 0;
   cursor: pointer;
+
   &:hover {
     background: var(--background-chat-current-color);
   }
+
   &__login {
     font-size: 12px;
     font-weight: 500;
     color: var(--main-text-color);
   }
+
   &__name {
     font-size: 10px;
     color: var(--secondary-text-color);

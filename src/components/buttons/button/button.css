@@ -1,4 +1,4 @@
-@import "../../../styles/vars.css";
+@import url("../../../styles/vars.css");
 
 .button {
   border-radius: 8px;
@@ -32,6 +32,7 @@
     padding: 2px 0 0;
     margin-top: 2px;
     border: unset;
+
       &:hover {
          cursor: pointer;
        }

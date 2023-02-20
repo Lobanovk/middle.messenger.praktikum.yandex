@@ -1,4 +1,4 @@
-@import "../../styles/vars.css";
+@import url("../../styles/vars.css");
 
 .profile-information-row {
   box-sizing: border-box;

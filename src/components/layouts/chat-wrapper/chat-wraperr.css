@@ -3,7 +3,7 @@
     height: 100%;
     width: 100%;
     background: rgb(128 61 226);
-    background: linear-gradient(115deg, rgb(128 61 226 / 100%) 0%, rgb(238 134 99 / 100%) 67%, rgb(251 246 227 / 100%) 100%);
+    background: linear-gradient(115deg, rgb(128 61 226 / 1) 0%, rgb(238 134 99 / 1) 67%, rgb(251 246 227 / 1) 100%);
 
     &_center-content {
         display: flex;
