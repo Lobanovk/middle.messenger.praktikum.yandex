@@ -7,7 +7,7 @@
   color: var(--main-action-color);
 
   &_profile {
-    color: var(--link-chats-color);
+    color: white;
   }
 
   &_attention {

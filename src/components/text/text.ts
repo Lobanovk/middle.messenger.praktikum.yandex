@@ -1,23 +1,23 @@
-import {Component} from "core";
+import { Component } from "core";
 
-import './text.css';
-
-interface TextProps {
+type IncomingProps = {
   label: string;
   value: string;
 }
 
-export class Text extends Component {
-  constructor(props: TextProps) {
+export class Text extends Component<IncomingProps> {
+  static componentName = "Text";
+
+  constructor(props: IncomingProps) {
     super(props);
   }
 
   protected render(): string {
     return `
       <div class="profile-information-row">
-        <p class="profile-information-row__title">{{ label }}</p>
-        <p class="profile-information-row__content">{{ value }}</p>
+        <p class="profile-information-row__title">{{label}}</p>
+        <p class="profile-information-row__content">{{value}}</p>
       </div>
-    `
+    `;
   }
 }

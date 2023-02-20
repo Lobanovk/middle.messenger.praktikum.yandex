@@ -1,6 +1,6 @@
-import {Component} from "../../core";
+import { Component } from "core";
 
-interface LinkProps {
+type IncomingProps = {
   text: string;
   href: string;
   modification: string;
@@ -8,16 +8,18 @@ interface LinkProps {
   to: string;
 }
 
-import './link.css';
+type Props = Omit<IncomingProps, "onClick"> & ComponentEvents;
 
-export class Link extends Component {
+export class Link extends Component<Props> {
   static componentName = "Link";
 
-  constructor({ onClick, ...props }: LinkProps) {
+  constructor({ onClick, ...props }: IncomingProps) {
     super({...props, events: { click: onClick }});
   }
 
   protected render(): string {
-    return `<a class="link {{ modification }}" href="{{ href }}" data-to="{{ to }}">{{ text }}</a>`
+    return `
+        <a class="link {{modification}}" href="{{href}}" data-to="{{to}}">{{text}}</a>
+    `;
   }
 }

@@ -1,0 +1,13 @@
+.chat-wrapper {
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    background: rgb(128 61 226);
+    background: linear-gradient(115deg, rgb(128 61 226 / 100%) 0%, rgb(238 134 99 / 100%) 67%, rgb(251 246 227 / 100%) 100%);
+
+    &_center-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
