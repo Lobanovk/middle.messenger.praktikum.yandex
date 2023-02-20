@@ -2,9 +2,10 @@
   "name": "web-messenger",
   "version": "1.0.0",
   "description": "web-messenger",
-  "engine": {
-    "node": ">=16.14.0"
+  "engines": {
+    "node": ">12.0"
   },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel src/**/*.html --no-cache",
@@ -31,17 +32,13 @@
     "pages": "./src/pages"
   },
   "devDependencies": {
-    "@babel/core": "7.19.3",
     "@parcel/transformer-inline-string": "2.7.0",
     "@types/node": "18.7.23",
     "@typescript-eslint/eslint-plugin": "5.39.0",
     "@typescript-eslint/parser": "5.39.0",
-    "babel-preset-es2015": "6.24.1",
-    "babel-preset-stage-0": "6.24.1",
     "eslint": "8.24.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.26.0",
-    "parcel-plugin-handlebars-precompile": "^1.0.2",
     "postcss": "^8.4.16",
     "postcss-css-variables": "^0.18.0",
     "postcss-import": "^14.1.0",
@@ -52,11 +49,10 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
-    "babel-core": "6.26.3",
     "express": "4.18.1",
     "handlebars": "4.7.7",
     "nanoid": "3.3.1",
     "normalize.css": "8.0.1",
-    "parcel": "2.8.0"
+    "parcel": "^2.8.3"
   }
 }
