@@ -30,6 +30,7 @@
 @import "../components/add-user-by-id/style.css";
 @import "../components/users-list/users-list.css";
 @import "../components/user-item/user-item.css";
+@import "../components/chat-users-list/chat-users-list.css";
 
 @import "../pages/login/login.css";
 @import "../pages/settings/settings.css";
@@ -146,5 +147,9 @@ a {
     cursor: pointer;
     color: var(--secondary-text-color);
     background: var(--link-chats-color);
+  }
+
+  &_alert {
+    color: var(--attention-color)
   }
 }

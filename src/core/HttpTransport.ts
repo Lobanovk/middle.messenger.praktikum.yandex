@@ -78,7 +78,7 @@ class HttpTransport {
       xhr.onload = function() {
         res(xhr.response as T);
       };
-
+      console.log(data);
       xhr.onabort = rej;
       xhr.onerror = rej;
       xhr.ontimeout = rej;

@@ -1,7 +1,7 @@
 import { Component } from "core";
 
 type IncomingProps = {
-  profileMode?: boolean;
+  profileMode: boolean;
   changeAvatarAction?: boolean;
   onClick: () => void;
 }
@@ -22,9 +22,7 @@ export class Avatar extends Component<Props> {
   protected render(): string {
     return `
       <div class="avatar {{#if profileMode}}avatar_big{{/if}}">
-          {{#if profileMode}}
-            <div data-slot="1"></div>
-          {{/if}}
+          <div data-slot="1"></div>
           {{#if changeAvatarAction}} <div class="avatar__change">Поменять аватар</div> {{/if}}
       </div>
     `;

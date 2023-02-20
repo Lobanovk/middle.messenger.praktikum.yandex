@@ -186,7 +186,7 @@ export class Settings extends Component<Props, Refs> {
           </div>
         {{/ChatWrapper}}
         {{#if isVisibleModal}}
-            {{{SettingsModal onClose=onCloseModal}}}
+            {{{SettingsModal type="settings" onClose=onCloseModal}}}
         {{/if}}
       {{/Wrapper}}
     `;

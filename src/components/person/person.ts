@@ -42,12 +42,17 @@ class Person extends Component<Props>{
     const lastMessageYours =
       this.props.lastMessageUser === this.props.user.login ?
         "<span class=\"person__prefix\">Вы: </span>" : "";
+
+    const avatar = this.props.avatar ? `https://ya-praktikum.tech/api/v2/resources${this.props.avatar}` : "";
+    const component = `<div style="background: url('${avatar}'); width: 100%; height: 100%; background-size: cover; border-radius: inherit;"></div>`;
     return `
       <div class="divider">
         <div class="person ${isSelected}">
           <div class="person__content">
             <div class="person__avatar">
-              {{{Avatar}}}
+              {{#Avatar }}
+                ${avatar ? component : ""}
+              {{/Avatar }}
             </div>
             <div class="person__general-info">
                 <div class="person__row">

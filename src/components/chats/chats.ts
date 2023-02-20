@@ -94,7 +94,7 @@ class Chats extends Component<Props, Refs> {
               {{{Person
                 id=${chat.id}
                 name="${chat.title}"
-                avatar="${chat.avatar}"
+                avatar="${chat.avatar || ""}"
                 messageCount=${chat.unreadCount}
                 lastMessageContent="${chat.lastMessage?.content || ""}"
                 lastMessageUser="${chat.lastMessage?.user?.login || ""}"

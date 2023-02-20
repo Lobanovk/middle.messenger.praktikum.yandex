@@ -3,10 +3,13 @@ import ErrorComponent from "../error-component";
 import { withStore } from "../../helpers/withStore";
 import { changeUserAvatar } from "../../services/user";
 import { Dispatch } from "../../core/Store";
+import { changeAvatarInChat } from "../../services/chats";
 
 type IncomingProps = {
   onClose: () => void;
   changeUserAvatar: (data: File) => Dispatch<AppState>
+  changeAvatarInChat: (data: File) => Dispatch<AppState>
+  type: "chat" | "settings"
 }
 
 type Props = Omit<IncomingProps, "onClose"> & {
@@ -33,7 +36,12 @@ class SettingsModal extends Component<Props, Refs> {
           this.refs.errorRef.setProps({ message: "Нужно выбрать файл" });
           return;
         }
-        this.props.changeUserAvatar(this.props.file);
+        if (this.props.type === "settings") {
+          this.props.changeUserAvatar(this.props.file);
+        }
+        if (this.props.type === "chat") {
+          this.props.changeAvatarInChat(this.props.file);
+        }
         onClose();
       },
       onUploadFile: (event) => {
@@ -82,5 +90,6 @@ export default withStore(SettingsModal)(
   () => ({}),
   store => ({
     changeUserAvatar: (data: File) => store.dispatch(changeUserAvatar, data),
+    changeAvatarInChat: (data: File) => store.dispatch(changeAvatarInChat, data),
   })
 );

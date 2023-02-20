@@ -38,11 +38,14 @@ import ChatModal from "components/chat-modal";
 import MessageContentData from "components/message-content-data";
 import AddUserModal from "components/add-user-modal";
 import SearchUsersByLogin from "components/searh-users-by-login";
-import UserItem from "../components/user-item";
-import AddUserById from "../components/add-user-by-id";
-import UsersList from "../components/users-list";
-import MessageContentInfo from "../components/message-content-info";
-import MessagesList from "../components/messages-list";
+import UserItem from "components/user-item";
+import AddUserById from "components/add-user-by-id";
+import UsersList from "components/users-list";
+import MessageContentInfo from "components/message-content-info";
+import MessagesList from "components/messages-list";
+import RemoveUserModal from "components/remove-user-modal";
+import ChatUserItem from "components/chat-user-item";
+import ChatUsersList from "components/chat-users-list";
 
 
 export default () => {
@@ -90,4 +93,7 @@ export default () => {
   registerComponent(UsersList);
   registerComponent(MessageContentInfo);
   registerComponent(MessagesList);
+  registerComponent(RemoveUserModal);
+  registerComponent(ChatUserItem);
+  registerComponent(ChatUsersList);
 };
