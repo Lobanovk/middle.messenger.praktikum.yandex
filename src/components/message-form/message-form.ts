@@ -23,14 +23,17 @@ class MessageForm extends Component<Props, Refs> {
     super({
       ...props,
       onSubmit: (event) => {
-        console.log('click');
         event.preventDefault();
         const error = !!this.refs.messageRef.getRefs().errorRef.getProps().message;
+        const value = this.refs.messageRef.getProps().value;
+        if (!value?.length) {
+          this.refs.messageRef.getRefs().errorRef.setProps({ message: "Сообщение не должно быть пустым" });
+          return;
+        }
         if (error) {
           console.log("error");
           return;
         }
-        console.log(props);
         this.props.socket?.sendMessage({
           type: "message",
           content: this.refs.messageRef.getProps().value as string
@@ -52,7 +55,7 @@ class MessageForm extends Component<Props, Refs> {
               placeholder="Введите сообщение"
               ref="messageRef"
               modification="outlined"
-              inputClassName="form-chat-content__input-message"
+              inputClassName="form-chat-content__input-message message-form__input-message"
               value=""
           }}}
         </div>

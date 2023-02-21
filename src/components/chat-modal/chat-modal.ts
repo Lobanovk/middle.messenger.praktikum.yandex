@@ -5,6 +5,7 @@ import { Component } from "../../core";
 import { withStore } from "../../helpers/withStore";
 import { createChat } from "../../services/chats";
 import { ControlledTextFieldProps } from "../inputs/controlled-text-field";
+import { replaceTags } from "../../helpers/validation";
 
 type IncomingProps = {
   createChat: (title: ChatRequestData["title"]) => Dispatch<AppState>;
@@ -48,7 +49,7 @@ class ChatModal extends Component<Props, Refs> {
         component: Component<ControlledTextFieldProps>
       ) => {
         component.setProps({
-          value: el.value
+          value: replaceTags(el.value)
         });
       }
     });

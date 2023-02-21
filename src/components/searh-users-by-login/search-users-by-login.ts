@@ -4,6 +4,7 @@ import { Store } from "../../core/Store";
 import TextField from "../inputs/text-field";
 import { withStore } from "../../helpers/withStore";
 import { getUsersList } from "../../services/user";
+import { replaceTags } from "../../helpers/validation";
 
 type IncomingProps = {
   getUsersList: (login: string) => Store<AppState>["dispatch"];
@@ -38,7 +39,7 @@ class SearchUsersByLogin extends Component<Props, Refs> {
         component: Component<ControlledTextFieldProps>
       ) => {
         component.setProps({
-          value: el.value
+          value: replaceTags(el.value)
         });
       }
     });

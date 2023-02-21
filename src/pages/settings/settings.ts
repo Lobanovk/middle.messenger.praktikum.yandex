@@ -3,7 +3,7 @@ import ControlledTextField, {
   ControlledTextFieldIncomingProps
 } from "../../components/inputs/controlled-text-field";
 import { Fields, FieldsPassword, Links } from "./fields";
-import { validation, ValidationKeys } from "../../helpers/validation";
+import { replaceTags, validation, ValidationKeys } from "../../helpers/validation";
 import { withStore } from "../../helpers/withStore";
 import { changeUserPassword, changeUserProfile } from "../../services/user";
 import { Screens } from "../../helpers/screenList";
@@ -77,7 +77,7 @@ export class Settings extends Component<Props, Refs> {
     const onBlur = (_event: FocusEvent, el: HTMLInputElement, component: ControlledTextField) => {
       const error = validation(el.name as ValidationKeys, this.refs.passwordRef.getProps().value || "", el.value);
       component.setProps({
-        value: el.value
+        value: replaceTags(el.value)
       });
       component.getRefs().errorRef.setProps({
         message: error

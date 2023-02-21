@@ -11,6 +11,7 @@ import { Store } from "../../core/Store";
 import { withStore } from "../../helpers/withStore";
 import { login } from "../../services/auth";
 import { Screens } from "../../helpers/screenList";
+import { replaceTags } from "../../helpers/validation";
 
 export type TextFieldProps = (Partial<ControlledTextFieldIncomingProps> & { ref: string })
 
@@ -41,7 +42,7 @@ export class Login extends Component<Props, Refs> {
       component: Component<ControlledTextFieldProps>
     ) {
       component.setProps({
-        value: el.value
+        value: replaceTags(el.value)
       });
     }
 

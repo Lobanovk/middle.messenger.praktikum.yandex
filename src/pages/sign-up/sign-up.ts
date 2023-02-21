@@ -3,7 +3,7 @@ import { TextFieldProps } from "../login/login";
 import { LoginFormInputsWrapperProps } from "../../components/login-form-inputs-wrapper";
 import { LoginFormActionsProps } from "../../components/login-form-actions";
 import { LoginFormActionsFields, LoginFormInputs, LoginFormInputsWrapper } from "./fields";
-import { validation, ValidationKeys } from "../../helpers/validation";
+import { replaceTags, validation, ValidationKeys } from "../../helpers/validation";
 import ControlledTextField, { ControlledTextFieldProps } from "../../components/inputs/controlled-text-field";
 import { withStore } from "../../helpers/withStore";
 import { Dispatch } from "../../core/Store";
@@ -46,7 +46,7 @@ export class SignUp extends Component<Props, Refs> {
           onBlur: (_event: FocusEvent, el: HTMLInputElement, component: Component<ControlledTextFieldProps>) => {
             const error = validation(el.name as ValidationKeys, this.refs.passwordRef.getProps().value || "", el.value);
             component.setProps({
-              value: el.value
+              value: replaceTags(el.value)
             });
             component.getRefs().errorRef.setProps({
               message: error

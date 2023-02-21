@@ -1,4 +1,5 @@
 import { isObject } from "./typeGards";
+import { replaceTags } from "./validation";
 
 function convertCamelCaseToSnakeCase(key: string): string {
   return key.replace(/[A-Z]/gm, value => `_${value.toLowerCase()}`);
@@ -14,7 +15,7 @@ export function convertDataForRequest(data: PlainObject): PlainObject {
   }
   return Object.entries(data)
     .reduce((acc, [key, value]) =>
-      ({...acc, [convertCamelCaseToSnakeCase(key)]: value}),
+      ({...acc, [convertCamelCaseToSnakeCase(key)]: replaceTags(value)}),
     {});
 }
 
@@ -26,7 +27,7 @@ export function convertResponseToData<C extends PlainObject>(response: PlainObje
   return Object.entries(response)
     .reduce((acc, [key, value]) => ({
       ...acc,
-      [convertSnakeCaseToCamelCase(key)]: isObject(value) ? convertResponseToData(value) : value }),
+      [convertSnakeCaseToCamelCase(key)]: isObject(value) ? convertResponseToData(value) : replaceTags(value) }),
     {}) as C;
 }
 

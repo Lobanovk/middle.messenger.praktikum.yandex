@@ -70,3 +70,12 @@ const validationRules: Record<ValidationKeys, (...args: string[]) => string> = {
 export function validation(type: ValidationKeys, ...args: string[]): string {
   return validationRules[type](...args);
 }
+
+export function replaceTags(value: number | string) {
+  if (typeof value === "string") {
+    return `${value}`
+      .replace(/(\/>)|(<\/)/gi, "")
+      .replace(/\"/gi, "'");
+  }
+  return value;
+}
