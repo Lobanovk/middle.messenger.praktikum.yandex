@@ -1,0 +1,10 @@
+@import url("../../styles/vars.css");
+
+.back-to-chats-content {
+    flex: 0;
+    flex-basis: 64px;
+    background: var(--background-chats-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,87 +1,86 @@
 import { Component } from "core";
+import { LoginFormActionsProps } from "components/login-form-actions";
+import { LoginFormInputsWrapperProps } from "components/login-form-inputs-wrapper";
+import ControlledTextField, { ControlledTextFieldProps, ControlledTextFieldIncomingProps } from "components/inputs/controlled-text-field";
+import {
+  LoginFormActionsFields,
+  LoginFormInputsWrapper,
+  LoginFormInputs
+} from "./fields";
+import { Store } from "../../core/Store";
+import { withStore } from "../../helpers/withStore";
+import { login } from "../../services/auth";
+import { Screens } from "../../helpers/screenList";
+import { replaceTags } from "../../helpers/validation";
 
-import './login.css';
+export type TextFieldProps = (Partial<ControlledTextFieldIncomingProps> & { ref: string })
 
-export class Login extends Component {
+type PageProps = {
+  appIsInit: AppState["appIsInit"],
+  login: (data: Record<string, string>) => Store<AppState>
+}
+
+type Props = {
+  inputs: TextFieldProps[],
+  loginInputsWrapper: LoginFormInputsWrapperProps,
+  loginFormActions: LoginFormActionsProps,
+  onSubmit: (event: SubmitEvent) => void;
+} & PageProps;
+
+type Refs = {
+  loginRef: ControlledTextField,
+  passwordRef: ControlledTextField,
+}
+
+export class Login extends Component<Props, Refs> {
   static componentName = "Login";
 
-  constructor() {
+  constructor(props: PageProps) {
+    function onBlur(
+      _event: FocusEvent,
+      el: HTMLInputElement,
+      component: Component<ControlledTextFieldProps>
+    ) {
+      component.setProps({
+        value: replaceTags(el.value)
+      });
+    }
+
+    const inputs = LoginFormInputs.map(item => ({...item, onBlur}) as TextFieldProps);
     super({
-      buttonProps: {
-        text: "Авторизоваться"
-      },
-      linkProps: {
-        text: "Нет аккаунта?",
-        href: "sign-in.html"
-      },
-      inputs: [
-        {
-          name: "login",
-          label: "Логин",
-          placeholder: "Логин",
-          value: "",
-          ref: "loginInput",
-          modification: ['filled'],
-          inputProps: {
-            className: "text-field-login__input"
-          },
-          onFocus: () => {},
-          onBlur: (event: FocusEvent, el: HTMLInputElement, component: Component) => {
-            component.setProps({
-              value: el.value
-            })
-          },
-        },
-        {
-          name: "password",
-          type: "password",
-          label: "Пароль",
-          placeholder: "Пароль",
-          value: '',
-          ref: "passwordInput",
-          modification: ['filled'],
-          inputProps: {
-            className: "text-field-login__input"
-          },
-          onFocus: () => {},
-          onBlur: (event: FocusEvent, el: HTMLInputElement, component: Component) => {
-            component.setProps({
-              value: el.value
-            })
-          },
-        }
-      ],
-      onSubmit: (event: SubmitEvent) => {
+      ...props,
+      loginFormActions: LoginFormActionsFields,
+      loginInputsWrapper: LoginFormInputsWrapper,
+      inputs,
+      onSubmit: event => {
         event.preventDefault();
-        const isValid = Object.keys(this.refs).every(key => this.refs[key].getProps().value === "admin");
-        console.log(this.refs);
-        if (!isValid) {
-          this.refs.passwordInput.getRefs().errorRef.setProps({
-            message: "Неверный логин или пароль"
-          })
-        } else {
-          this.refs.passwordInput.getRefs().errorRef.setProps({
-            message: ""
-          })
-          console.log({
-            login: this.refs.loginInput.getProps().value,
-            password: this.refs.passwordInput.getProps().value,
-          })
-          window.location.replace('chat.html')
-        }
+        const loginData: Record<string, string> = {
+          login: this.refs.loginRef.getProps().value as string,
+          password: this.refs.passwordRef.getProps().value as string,
+        };
+        this.props.login(loginData);
+        // TODO - обработка ошибок запроса
       },
     });
   }
+
+  componentDidMount(_props: Props) {
+    if (this.props.appIsInit) {
+      window.router.go(Screens.Messenger);
+    }
+    // if (this.props.store.getState().appIsInit) {
+    //   window.router.go(Screens.Messenger);
+    // }
+  }
+
   protected render(): string {
-    // language = hbs
     return `
-        {{#LayoutLoginForm 
-            title="Вход"
-            modification="login" 
-            onSubmit=onSubmit 
-            buttonProps=buttonProps
-            linkProps=linkProps
-        }}
+      {{#Wrapper type="login"}}
+        {{#Form className="card card_login" onSubmit=onSubmit}}
+          {{#LoginFormInputsWrapper
+            type=loginInputsWrapper.type
+            title=loginInputsWrapper.title
+          }}
           {{#each inputs}}
             {{{ControlledTextField 
               name=this.name 
@@ -92,11 +91,26 @@ export class Login extends Component {
               ref=this.ref
               onBlur=this.onBlur
               onFocus=this.onFocus
-              modifications=this.modification
-              inputProps=this.inputProps
+              modification=this.modification
+              inputClassName=this.inputClassName
             }}}
           {{/each}}
-        {{/LayoutLoginForm}}
-    `
+          {{/LoginFormInputsWrapper}}
+          {{{LoginFormActions 
+              buttonText=loginFormActions.buttonText 
+              link=loginFormActions.link
+          }}}
+        {{/Form}}
+      {{/Wrapper}}
+    `;
   }
 }
+
+export default withStore(Login)(
+  store => ({
+    appIsInit: store.getState().appIsInit,
+  }),
+  store => ({
+    login: (data: Record<string, string>) => store.dispatch(login, data)
+  })
+);

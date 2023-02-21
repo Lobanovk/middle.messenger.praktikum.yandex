@@ -1,0 +1,26 @@
+@import url("../../../styles/vars.css");
+
+.text-field {
+    position: relative;
+    font-size: 14px;
+    font-weight: 500;
+
+    &__input {
+        padding: 7px 0;
+
+        &::placeholder {
+            color: transparent;
+        }
+    }
+
+    &__label {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--main-action-color);
+        position: absolute;
+        top: 7px;
+        left: 0;
+        transform-origin: 0 0;
+        transition: color 0.15s ease-in-out, transform 0.15s ease-in-out;
+    }
+}

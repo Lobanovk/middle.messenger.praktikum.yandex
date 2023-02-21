@@ -16,6 +16,10 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "indent": ["error", 2],
+        "semi": ["error", "always"],
+        "quotes": ["error", "double"],
+        "no-mixed-spaces-and-tabs": "error",
         "no-empty-function": "off",
         "@typescript-eslint/no-empty-function": "off",
         "no-useless-escape": "off",

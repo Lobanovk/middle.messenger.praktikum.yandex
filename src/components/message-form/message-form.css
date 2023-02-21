@@ -1,0 +1,25 @@
+@import url("../../styles/vars.css");
+
+.message-form {
+    box-sizing: border-box;
+    flex: 0;
+    padding: 10px 0;
+    border-top: 1px solid var(--main-action-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__input-message-container {
+        flex: 1;
+        margin: 0 10px;
+    }
+
+    &__input-message {
+        border-radius: 15px !important;
+        padding: 10px 20px !important;
+    }
+
+    &__icon {
+        fill: var(--main-action-color);
+    }
+}

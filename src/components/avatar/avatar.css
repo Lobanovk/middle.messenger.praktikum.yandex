@@ -1,4 +1,4 @@
-@import "../../styles/vars.css";
+@import url("../../styles/vars.css");
 
 .avatar {
   border-radius: 50%;
@@ -29,6 +29,7 @@
     height: 130px;
     background: var(--profile-avatar-color);
 
+    /* stylelint-disable */
     &:hover .avatar__change {
       display: flex;
       cursor: pointer;

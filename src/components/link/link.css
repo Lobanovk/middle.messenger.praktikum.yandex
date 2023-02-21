@@ -1,4 +1,4 @@
-@import "../../styles/vars.css";
+@import url("../../styles/vars.css");
 
 .link {
   box-sizing: border-box;
@@ -7,7 +7,7 @@
   color: var(--main-action-color);
 
   &_profile {
-    color: var(--link-chats-color);
+    color: white;
   }
 
   &_attention {

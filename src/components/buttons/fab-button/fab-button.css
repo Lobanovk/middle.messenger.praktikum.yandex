@@ -1,0 +1,37 @@
+@import url("../../../styles/vars.css");
+
+.fab-button {
+  background: var(--main-action-color);
+  border: none;
+  padding: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__icon {
+    fill: var(--main-action-color);
+  }
+
+  &_white-icon {
+    fill: var(--white-color);
+  }
+
+  &_exit {
+    transform: rotate(180deg);
+  }
+
+  &_small {
+    min-width: 28px;
+    min-height: 28px;
+  }
+
+  &_transparent {
+    background: transparent;
+  }
+
+  &_selected {
+    background: var(--selected-button-color);
+  }
+}

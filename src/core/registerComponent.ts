@@ -1,13 +1,8 @@
-import Component from './Component';
-import Handlebars, { HelperOptions } from 'handlebars';
+import Handlebars, { HelperOptions } from "handlebars";
 
-interface ComponentConstructable<Props = any> {
-  new(props: Props): Component;
-  componentName: string;
-}
-
-export default function registerComponent<Props extends any>(Component: ComponentConstructable<Props>) {
+export default function registerComponent<Props extends any>(Component: any) {
   Handlebars.registerHelper(Component.componentName || Component.name, function (this: Props, { hash: { ref, ...hash }, data, fn }: HelperOptions) {
+
     if (!data.root.children) {
       data.root.children = {};
     }
@@ -23,8 +18,8 @@ export default function registerComponent<Props extends any>(Component: Componen
      * внутрь блоков вручную подменяя значение
      */
     (Object.keys(hash) as any).forEach((key: keyof Props) => {
-      if (this[key] && typeof this[key] === 'string') {
-        hash[key] = hash[key].replace(new RegExp(`{{${key as string}}}`, 'i'), this[key]);
+      if (this[key] && typeof this[key] === "string") {
+        hash[key] = hash[key].replace(new RegExp(`{{${key as string}}}`, "i"), this[key]);
       }
     });
 
@@ -36,8 +31,8 @@ export default function registerComponent<Props extends any>(Component: Componen
       refs[ref] = component;
     }
 
-    const contents = fn ? fn(this): '';
+    const contents = fn ? fn(this): "";
 
     return `<div data-id="${component.id}">${contents}</div>`;
-  })
+  });
 }

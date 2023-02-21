@@ -1,0 +1,6 @@
+.chat-users-list {
+  width: 100%;
+  margin-top: 15px;
+  max-height: 100px;
+  overflow-y: auto;
+}

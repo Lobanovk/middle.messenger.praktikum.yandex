@@ -1,6 +1,37 @@
-@import "normalize.css/normalize.css";
-@import "https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,300;0,400;0,600;1,100&display=swap";
-@import "./vars.css";
+@import url("normalize.css/normalize.css");
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,300;0,400;0,600;1,100&display=swap");
+@import url("./vars.css");
+@import url("../components/avatar/avatar.css");
+@import url("../components/buttons/button/button.css");
+@import url("../components/buttons/fab-button/fab-button.css");
+@import url("../components/inputs/text-field/text-field.css");
+@import url("../components/inputs/input/input.css");
+@import url("../components/inputs/download-field/download-field.css");
+@import url("../components/link/link.css");
+@import url("../components/text/text.css");
+@import url("../components/error-component/error-component.css");
+@import url("../components/layouts/wrapper/wrapper.css");
+@import url("../components/layouts/modal/modal.css");
+@import url("../components/layouts/chat-wrapper/chat-wraperr.css");
+@import url("../components/layouts/pane/pane.css");
+@import url("../components/login-form-actions/login-form-actions.css");
+@import url("../components/login-form-inputs-wrapper/login-form-inputs-wrapper.css");
+@import url("../components/back-to-chats/back-to-chats.css");
+@import url("../components/settings-form-actions/settings-form-actions.css");
+@import url("../components/settings-modal/settings-modal.css");
+@import url("../components/card-error/card-error.css");
+@import url("../components/person/person.css");
+@import url("../components/message-content/message-content.css");
+@import url("../components/message-form/message-form.css");
+@import url("../components/message-data/message-data.css");
+@import url("../components/message-data-item/message-data-item.css");
+@import url("../components/searh-users-by-login/search-users-by-login.css");
+@import url("../components/add-user-by-id/style.css");
+@import url("../components/users-list/users-list.css");
+@import url("../components/user-item/user-item.css");
+@import url("../components/chat-users-list/chat-users-list.css");
+@import url("../pages/login/login.css");
+@import url("../pages/settings/settings.css");
 
 body {
   margin: 0;
@@ -30,73 +61,11 @@ a {
   text-align: center;
 }
 
-.wrapper {
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-
-  &_login {
-    background: url("../asserts/login.gif") no-repeat center;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &_profile {
-    display: flex;
-  }
-
-  &_error-404 {
-    background: url("../asserts/404.gif") no-repeat center;
-  }
-
-  &_error-505 {
-    background: url("../asserts/505.gif") no-repeat center;
-  }
-
-  &_error {
-    height: 100vh;
-    width: 100%;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  &_chat {
-    display: flex;
-  }
-}
-
-.back-to-chats-content {
-  flex: 0;
-  flex-basis: 64px;
-  background: var(--background-chats-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .main-content {
   flex: 1;
   background: rgb(128 61 226);
-  background: linear-gradient(115deg, rgb(128 61 226 / 100%) 0%, rgb(238 134 99 / 100%) 67%, rgb(251 246 227 / 100%) 100%);
+  background: linear-gradient(115deg, rgb(128 61 226 / 1) 0%, rgb(238 134 99 / 1) 67%, rgb(251 246 227 / 1) 100%);
   height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.content {
-  max-width: 530px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 }
 
 .name {
@@ -127,11 +96,16 @@ a {
   }
 
   &__input-container {
-    margin-top: 23px;
+    margin-top: 15px;
+    display: flex;
   }
 
+  &__text-field {
+      flex: 1;
+   }
+
   &__input-search {
-    padding: 10px 20px !important;
+    padding: 10px 20px;
 
     &::placeholder {
       text-align: center;
@@ -152,12 +126,6 @@ a {
 }
 
 .chat {
-  position: relative;
-  flex: 1;
-  height: 100%;
-  background: rgb(128 61 226);
-  background: linear-gradient(115deg, rgb(128 61 226 / 100%) 0%, rgb(238 134 99 / 100%) 67%, rgb(251 246 227 / 100%) 100%);
-
   &__empty {
     display: flex;
     justify-content: center;
@@ -165,5 +133,21 @@ a {
     width: 100%;
     height: 100%;
     color: var(--white-color);
+  }
+}
+
+.pane-button {
+  color: var(--main-text-color);
+  padding: 3px 5px;
+  border-radius: unset;
+
+  &:hover {
+    cursor: pointer;
+    color: var(--secondary-text-color);
+    background: var(--link-chats-color);
+  }
+
+  &_alert {
+    color: var(--attention-color)
   }
 }

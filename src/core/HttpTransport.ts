@@ -8,74 +8,87 @@ enum METHODS {
 }
 
 function queryStringify(data: Record<string, any>) {
-    const result = Object.keys(data).reduce((acc, key, index, array) => {
-        acc += `${key}=${data[key].toString()}${index === array.length - 1 ? "" : "&"}`;
-        return acc;
-    }, '?')
+  const result = Object.keys(data).reduce((acc, key, index, array) => {
+    acc += `${key}=${data[key].toString()}${index === array.length - 1 ? "" : "&"}`;
+    return acc;
+  }, "?");
 
-    return result.substring(0, result.length - 1);
+  return result.substring(0, result.length - 1);
 }
 
 type OptionsRequest = {
-    data?: Record<string, any>,
-    method: METHODS,
-    headers?: Record<string, string>,
-    timeout?: number
+  data?: Document | XMLHttpRequestBodyInit | null,
+  queryParams?: Record<string, any>,
+  method: METHODS,
+  headers?: Record<string, string>,
+  timeout?: number
 }
 
-type Options = Omit<OptionsRequest, 'method'>
+type Options = Omit<OptionsRequest, "method">
 
 
-export default class HttpTransport {
-    get = (url: string, options: Options = {}) => {
-        return this.request(url, {...options, method: METHODS.GET}, options.timeout);
-    };
+class HttpTransport {
+  private baseUrl = "";
 
-    post = (url: string, options: Options = {}) => {
-        return this.request(url, {...options, method: METHODS.POST}, options.timeout);
-    }
+  constructor(url: string) {
+    this.baseUrl = url;
+  }
+  get<T extends any>(url: string, options: Options = {}) {
+    return this.request<T>(url, {...options, method: METHODS.GET}, options.timeout);
+  }
 
-    put = (url: string, options: Options = {}) => {
-        return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
-    }
-    delete = (url: string, options: Options = {}) => {
-        return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
-    }
+  post<T extends any>(url: string, options: Options = {}) {
+    return this.request<T>(url, {...options, method: METHODS.POST}, options.timeout);
+  }
 
-    patch = (url: string, options: Options = {}) => {
-        return this.request(url, {...options, method: METHODS.PATCH}, options.timeout);
-    }
+  put<T extends any>(url: string, options: Options = {}) {
+    return this.request<T>(url, {...options, method: METHODS.PUT}, options.timeout);
+  }
 
-    request = (url: string, options: OptionsRequest, timeout = 5000) => {
-        const { method, data, headers } = options;
+  delete<T extends any>(url: string, options: Options = {}) {
+    return this.request<T>(url, {...options, method: METHODS.DELETE}, options.timeout);
+  }
 
-        return new Promise((res, rej) => {
-            const isGetMethod = method === METHODS.GET;
-            const xhr = new XMLHttpRequest();
+  patch<T extends any>(url: string, options: Options = {}) {
+    return this.request<T>(url, {...options, method: METHODS.PATCH}, options.timeout);
+  }
+
+  request<T>(url: string, options: OptionsRequest, timeout = 5000): Promise<T> {
+    const { method, data, queryParams, headers } = options;
+
+    url = `${this.baseUrl}${url}`;
+
+    return new Promise((res, rej) => {
+      const isGetMethod = method === METHODS.GET;
+      const xhr = new XMLHttpRequest();
+
+      xhr.timeout = timeout;
+      xhr.withCredentials = true;
 
 
-            if (headers) {
-                Object.keys(headers).forEach(header => {
-                    xhr.setRequestHeader(header, headers[header]);
-                })
-            }
+      xhr.open(method, isGetMethod && !!queryParams ? `${url}${queryStringify(queryParams as Record<string, any>)}` : url, true);
+      if (headers) {
+        Object.keys(headers).forEach(header => {
+          xhr.setRequestHeader(header, headers[header]);
+        });
+      }
 
-            xhr.timeout = timeout;
+      xhr.responseType = "json";
 
-            xhr.open(method, isGetMethod && !!data ? `${url}${queryStringify(data)}` : url);
+      xhr.onload = function() {
+        res(xhr.response as T);
+      };
 
-            xhr.onload = function() {
-                res(xhr);
-            }
-
-            xhr.onabort = rej;
-            xhr.onerror = rej;
-            xhr.ontimeout = rej;
-            if (isGetMethod || !data) {
-                xhr.send();
-            } else {
-                xhr.send(JSON.stringify(data));
-            }
-        })
-    } ;
+      xhr.onabort = rej;
+      xhr.onerror = rej;
+      xhr.ontimeout = rej;
+      if (isGetMethod || !data) {
+        xhr.send();
+      } else {
+        xhr.send(data);
+      }
+    });
+  }
 }
+
+export const httpTransport = new HttpTransport("https://ya-praktikum.tech/api/v2");

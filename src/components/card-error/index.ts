@@ -1,2 +1,3 @@
-import {CardError} from "./card-error";
+import { default as CardError } from "./card-error";
+
 export default CardError;

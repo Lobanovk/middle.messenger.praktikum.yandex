@@ -1,0 +1,20 @@
+@import url("../../styles/vars.css");
+
+.add-user-by-id {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  min-height: 33px;
+  width: 100%;
+
+  &__user-login {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--main-text-color)
+  }
+
+  &__user-name {
+    font-size: 12px;
+    color: var(--secondary-text-color)
+  }
+}

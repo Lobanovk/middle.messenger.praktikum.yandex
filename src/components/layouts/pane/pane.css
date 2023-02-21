@@ -1,0 +1,19 @@
+@import url("../../../styles/vars.css");
+
+.pane-abs {
+  position: absolute;
+  padding: 9px 12px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  background: white;
+
+  &_hide {
+    background: transparent;
+
+   & > button, a {
+        color: transparent;
+     }
+  }
+}
