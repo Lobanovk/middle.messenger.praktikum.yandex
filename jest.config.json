@@ -1,0 +1,10 @@
+{
+  "verbose": true,
+  "preset": "ts-jest",
+  "testEnvironment": "jsdom",
+  "transform": {"^.+\\.ts$": "ts-jest"},
+  "transformIgnorePatterns": ["<rootDir>/node_modules/(?!@foo)"],
+  "moduleNameMapper": {
+    "^nanoid$": "<rootDir>/node_modules/nanoid"
+  }
+}
