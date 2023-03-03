@@ -64,13 +64,10 @@ export class Login extends Component<Props, Refs> {
     });
   }
 
-  componentDidMount(_props: Props) {
+  componentDidMount() {
     if (this.props.appIsInit) {
       window.router.go(Screens.Messenger);
     }
-    // if (this.props.store.getState().appIsInit) {
-    //   window.router.go(Screens.Messenger);
-    // }
   }
 
   protected render(): string {

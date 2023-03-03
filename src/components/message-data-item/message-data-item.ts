@@ -1,8 +1,5 @@
 import { Component } from "core";
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-ignore
-import photo from "../../asserts/photo.jpg";
 import { withStore } from "../../helpers/withStore";
 
 type IncomingProps = {
@@ -39,12 +36,3 @@ export default withStore(MessageDataItem)(
     user: store.getState().user
   })
 );
-//
-// {{#if attachment}}
-// <img class="message-data-item__attachment" src="${photo}" />
-//   {{/if}}
-
-
-// {{#if isCurrentPerson}}
-// {{{DoubleCheckIcon className="message-data-item__time-icon"}}}
-// {{/if}}
