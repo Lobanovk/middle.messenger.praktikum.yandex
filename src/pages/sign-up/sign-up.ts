@@ -46,7 +46,7 @@ export class SignUp extends Component<Props, Refs> {
           onBlur: (_event: FocusEvent, el: HTMLInputElement, component: Component<ControlledTextFieldProps>) => {
             const error = validation(el.name as ValidationKeys, this.refs.passwordRef.getProps().value || "", el.value);
             component.setProps({
-              value: replaceTags(el.value)
+              value: replaceTags(el.value) as string
             });
             component.getRefs().errorRef.setProps({
               message: error

@@ -24,6 +24,8 @@
         "@typescript-eslint/no-empty-function": "off",
         "no-useless-escape": "off",
         "@typescript-eslint/no-unnecessary-type-constraint": "off",
-        "@typescript-eslint/no-explicit-any": "off"
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-var-requires": "off",
+        "no-undef": "off"
     }
 }
