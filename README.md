@@ -1,16 +1,21 @@
 ## Простая реализация web мессанджера
 
 Самая простая реализация web мессанджера с использованием следующих технологий:
-- parcel,
+- webpack,
 - handlebars,
 - postcss.
 - typescript
+- docker
 
 ## Команды запуска
 
 - `npm run dev` — запуск версии для разработчика,
 - `npm run build` — сборка стабильной версии,
 - `npm run start` — сборка стабильной версии и просмотр ее на локальном сервере.
+
+## Команды сборки для Docker
+- `docker build -f Dockerfile -t messenger .`
+- `docker run -p 8080:3000 -d messenger`
 
 ## Где можно посмотреть
 
