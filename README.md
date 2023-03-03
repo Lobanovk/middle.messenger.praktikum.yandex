@@ -20,4 +20,4 @@
 ## Где можно посмотреть
 
 - [Figma](https://www.figma.com/file/47UCaSNkcfBNP2GuZaJS8p/web-messanger-v1?node-id=1%3A102)
-- [Проект](https://sparkly-madeleine-29e503.netlify.app)
+- [Проект](https://messenger-praktikum-yandex-i6n0.onrender.com)
