@@ -12,7 +12,8 @@
     "build": "webpack --config webpack.prod.js",
     "start": "npm run build && node server.js",
     "lint": "eslint '**/*.ts'",
-    "lint:fix": "eslint --fix '**/*.ts'"
+    "lint:fix": "eslint --fix '**/*.ts'",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
