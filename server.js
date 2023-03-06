@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires,no-undef
 const express = require("express");
 const app = express();
 const PORT = 3000;

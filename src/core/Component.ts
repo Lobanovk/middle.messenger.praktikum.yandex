@@ -1,4 +1,4 @@
-import {nanoid} from "nanoid";
+import { nanoid } from "nanoid";
 import Handlebars from "handlebars";
 import EventBus from "./EventBus";
 

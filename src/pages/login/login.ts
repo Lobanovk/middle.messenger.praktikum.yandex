@@ -42,7 +42,7 @@ export class Login extends Component<Props, Refs> {
       component: Component<ControlledTextFieldProps>
     ) {
       component.setProps({
-        value: replaceTags(el.value)
+        value: replaceTags(el.value) as string
       });
     }
 
@@ -64,13 +64,10 @@ export class Login extends Component<Props, Refs> {
     });
   }
 
-  componentDidMount(_props: Props) {
+  componentDidMount() {
     if (this.props.appIsInit) {
       window.router.go(Screens.Messenger);
     }
-    // if (this.props.store.getState().appIsInit) {
-    //   window.router.go(Screens.Messenger);
-    // }
   }
 
   protected render(): string {

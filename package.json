@@ -7,12 +7,13 @@
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel src/**/*.html --no-cache",
-    "build": "parcel build src/**/*.html",
+    "test": "jest ./src",
+    "dev": "webpack-dev-server --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
     "start": "npm run build && node server.js",
     "lint": "eslint '**/*.ts'",
-    "lint:fix": "eslint --fix '**/*.ts'"
+    "lint:fix": "eslint --fix '**/*.ts'",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -25,33 +26,47 @@
     "url": "https://github.com/Lobanovk/middle.messenger.praktikum.yandex/issues"
   },
   "homepage": "https://github.com/Lobanovk/middle.messenger.praktikum.yandex#readme",
-  "alias": {
-    "core": "./src/core",
-    "components": "./src/components",
-    "helpers": "./src/helpers",
-    "pages": "./src/pages"
-  },
   "devDependencies": {
+    "@types/jest": "29.4.0",
     "@types/node": "18.7.23",
     "@typescript-eslint/eslint-plugin": "5.39.0",
     "@typescript-eslint/parser": "5.39.0",
+    "css-loader": "6.7.3",
     "eslint": "8.24.0",
-    "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.26.0",
-    "postcss": "^8.4.16",
-    "postcss-css-variables": "^0.18.0",
-    "postcss-import": "^14.1.0",
-    "postcss-nested": "^5.0.6",
+    "html-webpack-plugin": "5.5.0",
+    "husky": "^8.0.3",
+    "jest": "29.4.3",
+    "jest-environment-jsdom": "29.4.3",
+    "npm-run-all": "^4.1.5",
+    "postcss": "8.4.16",
+    "postcss-css-variables": "0.18.0",
+    "postcss-import": "14.1.0",
+    "postcss-loader": "7.0.2",
+    "postcss-nested": "5.0.6",
+    "postcss-preset-env": "8.0.1",
+    "style-loader": "3.3.1",
     "stylelint": "15.2.0",
     "stylelint-config-standard": "30.0.1",
     "stylelint-selector-bem-pattern": "2.1.1",
-    "typescript": "^4.8.4"
+    "ts-jest": "29.0.5",
+    "ts-loader": "9.4.2",
+    "typescript": "4.8.4"
   },
   "dependencies": {
     "express": "4.18.1",
     "handlebars": "4.7.7",
     "nanoid": "3.3.1",
     "normalize.css": "8.0.1",
-    "parcel": "^2.8.3"
+    "webpack": "5.75.0",
+    "webpack-cli": "5.0.1",
+    "webpack-dev-server": "4.11.1",
+    "webpack-merge": "5.8.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all lint test",
+      "pre-push": "npm-run-all lint test"
+    }
   }
 }

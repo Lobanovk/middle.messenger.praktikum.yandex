@@ -49,7 +49,7 @@ class ChatModal extends Component<Props, Refs> {
         component: Component<ControlledTextFieldProps>
       ) => {
         component.setProps({
-          value: replaceTags(el.value)
+          value: replaceTags(el.value) as string
         });
       }
     });

@@ -77,7 +77,7 @@ export class Settings extends Component<Props, Refs> {
     const onBlur = (_event: FocusEvent, el: HTMLInputElement, component: ControlledTextField) => {
       const error = validation(el.name as ValidationKeys, this.refs.passwordRef.getProps().value || "", el.value);
       component.setProps({
-        value: replaceTags(el.value)
+        value: replaceTags(el.value) as string
       });
       component.getRefs().errorRef.setProps({
         message: error

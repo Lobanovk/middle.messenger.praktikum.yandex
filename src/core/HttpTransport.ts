@@ -7,13 +7,13 @@ enum METHODS {
     DELETE = "DELETE",
 }
 
-function queryStringify(data: Record<string, any>) {
+export function queryStringify(data: Record<string, any>) {
   const result = Object.keys(data).reduce((acc, key, index, array) => {
     acc += `${key}=${data[key].toString()}${index === array.length - 1 ? "" : "&"}`;
     return acc;
   }, "?");
 
-  return result.substring(0, result.length - 1);
+  return result.substring(0, result.length);
 }
 
 type OptionsRequest = {
